@@ -1,0 +1,28 @@
+{
+  "name": "summercamp",
+  "version": "1.0.0",
+  "description": "Kids Summer Camp App",
+  "main": "index.js",
+  "scripts": {
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd server && npm run dev",
+    "client": "cd client && npm start",
+    "build": "cd client && npm run build && cd ../server && npm run build",
+    "seed": "cd server && npm run seed",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MarkKelly00/summerCamp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MarkKelly00/summerCamp/issues"
+  },
+  "homepage": "https://github.com/MarkKelly00/summerCamp#readme",
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
