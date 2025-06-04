@@ -70,7 +70,7 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
       setQuizAnswers(new Array(response.data.quiz.length).fill(''));
     } catch (error) {
       console.error('Error fetching lesson:', error);
-      navigate('/dashboard');
+      navigate('/');
     } finally {
       setLoading(false);
     }
@@ -98,12 +98,12 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
     const finalScore = Math.round((correctCount / lesson.quiz.length) * 100);
     setScore(finalScore);
     setShowResults(true);
-    setStartTime(Date.now());
 
     // Save progress
     try {
       await api.post(`/api/progress/lesson/${lessonId}`, {
-        completed: true,
+        studentId: user.id,
+        status: 'completed',
         score: finalScore,
         timeSpent: lesson.estimatedTime
       });
@@ -115,10 +115,8 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
       };
       
       onUserUpdate(updatedUser);
-      setTimeout(() => navigate('/dashboard'), 2000);
     } catch (error) {
       console.error('Error submitting lesson:', error);
-      setSubmitted(false);
     }
   };
 

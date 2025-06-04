@@ -59,7 +59,6 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
     newPassword: '',
     confirmPassword: ''
   });
-  const [passwordLoading, setPasswordLoading] = useState(false);
   const [passwordMessage, setPasswordMessage] = useState('');
 
   useEffect(() => {
@@ -98,11 +97,23 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
     }
   };
 
-  const handlePasswordUpdate = async () => {
+  const handlePasswordUpdate = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
+      setPasswordMessage('Passwords do not match');
+      return;
+    }
+    
+    if (passwordForm.newPassword.length < 6) {
+      setPasswordMessage('Password must be at least 6 characters long');
+      return;
+    }
+
     try {
       await api.patch(
         `/api/users/password/${passwordForm.studentId}`,
-        { password: passwordForm.newPassword }
+        { newPassword: passwordForm.newPassword }
       );
       setPasswordMessage('Password updated successfully!');
       setPasswordForm({ studentId: '', newPassword: '', confirmPassword: '' });
@@ -398,10 +409,9 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
                   <div className="flex space-x-3">
                     <button
                       type="submit"
-                      disabled={passwordLoading}
-                      className="fun-button bg-green-500 disabled:opacity-50 font-kid"
+                      className="fun-button bg-green-500 font-kid"
                     >
-                      {passwordLoading ? '🔄 Updating...' : '✅ Update Password'}
+                      ✅ Update Password
                     </button>
                     <button
                       type="button"

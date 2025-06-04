@@ -47,6 +47,11 @@ function App() {
     localStorage.removeItem('user');
   };
 
+  const updateUser = (updatedUser: User) => {
+    setUser(updatedUser);
+    localStorage.setItem('user', JSON.stringify(updatedUser));
+  };
+
   if (!user || !token) {
     return <Login onLogin={login} />;
   }
@@ -65,7 +70,7 @@ function App() {
           />
           <Route 
             path="/lesson/:lessonId" 
-            element={<LessonView user={user} token={token} />} 
+            element={<LessonView user={user} token={token} onUserUpdate={updateUser} />} 
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
