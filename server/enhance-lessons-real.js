@@ -829,7 +829,7 @@ function generateScienceContent2nd(topic, week, day) {
     "life cycles": {
       content: {
         introduction: "Today we're going to learn about how plants grow and change! All plants start as tiny seeds and grow into big plants.",
-        mainContent: "A plant's life cycle starts with a seed. Inside the seed is a tiny baby plant. When the seed gets water, warmth, and air, it begins to sprout (this is called germination). First, roots grow down into the soil to get water and food. Then a shoot grows up toward the sun. The shoot develops leaves that use sunlight to make food for the plant. When the plant is fully grown, it can make flowers and new seeds, starting the cycle all over again!",
+        mainContent: "A plant's life cycle starts with a seed. Inside the seed is a tiny baby plant. When the seed gets water, warmth, and air, it begins to sprout (this is called germination). First, roots grow down into the soil to get food and water. Then a shoot grows up toward the sun. The shoot develops leaves that use sunlight to make food for the plant. When the plant is fully grown, it can make flowers and new seeds, starting the cycle all over again!",
         activities: [
           "Plant bean seeds in a clear jar with wet paper towels so you can watch the roots and shoots grow",
           "Draw the plant life cycle: seed → roots → shoot → leaves → adult plant → flowers → new seeds",
@@ -913,6 +913,62 @@ function generateMathContent4th(topic, week, day) {
           correctAnswer: "100",
           explanation: "4 × 25 = 100. You can think of it as 4 × (20 + 5) = (4 × 20) + (4 × 5) = 80 + 20 = 100.",
           points: 10
+        },
+        {
+          question: "Which number will always be even when multiplied by 2?",
+          type: "multiple-choice",
+          options: ["Only even numbers", "Only odd numbers", "Any number", "Only multiples of 5"],
+          correctAnswer: "Any number",
+          explanation: "Any number multiplied by 2 will always give an even result because you're adding the number to itself.",
+          points: 10
+        },
+        {
+          question: "What is 9 × 6?",
+          type: "multiple-choice",
+          options: ["52", "54", "56", "58"],
+          correctAnswer: "54",
+          explanation: "9 × 6 = 54. You can use the fact that 9 × 6 = 6 × 9 (multiplication is commutative).",
+          points: 10
+        },
+        {
+          question: "If you arrange 36 objects in a rectangle with 4 rows, how many columns will you have?",
+          type: "multiple-choice",
+          options: ["7", "8", "9", "10"],
+          correctAnswer: "9",
+          explanation: "36 ÷ 4 = 9, so you'll have 9 columns. This shows the relationship between multiplication and division.",
+          points: 10
+        },
+        {
+          question: "What pattern do you notice in the 5 times table?",
+          type: "multiple-choice",
+          options: ["All products are odd", "Products end in 0 or 5", "Products are always less than 50", "Products double each time"],
+          correctAnswer: "Products end in 0 or 5",
+          explanation: "The 5 times table always ends in 0 or 5: 5, 10, 15, 20, 25, 30, 35, 40, 45, 50...",
+          points: 10
+        },
+        {
+          question: "What is 12 × 3?",
+          type: "multiple-choice",
+          options: ["34", "35", "36", "37"],
+          correctAnswer: "36",
+          explanation: "12 × 3 = 36. You can think of it as (10 × 3) + (2 × 3) = 30 + 6 = 36.",
+          points: 10
+        },
+        {
+          question: "A classroom has 5 rows of desks with 7 desks in each row. How many desks total?",
+          type: "multiple-choice",
+          options: ["33", "34", "35", "36"],
+          correctAnswer: "35",
+          explanation: "5 × 7 = 35 desks. This is a real-world application of multiplication arrays.",
+          points: 10
+        },
+        {
+          question: "What is the relationship between 8 × 9 and 9 × 8?",
+          type: "multiple-choice",
+          options: ["8 × 9 is larger", "9 × 8 is larger", "They are equal", "You can't compare them"],
+          correctAnswer: "They are equal",
+          explanation: "8 × 9 = 9 × 8 = 72. This demonstrates the commutative property of multiplication.",
+          points: 10
         }
       ]
     },
@@ -953,6 +1009,159 @@ function generateMathContent4th(topic, week, day) {
           options: ["5/16", "5/8", "2/3", "6/8"],
           correctAnswer: "5/8",
           explanation: "2/8 + 3/8 = 5/8. When fractions have the same denominator, we just add the numerators!",
+          points: 10
+        },
+        {
+          question: "Which fraction is larger: 1/3 or 1/4?",
+          type: "multiple-choice",
+          options: ["1/3", "1/4", "They are equal", "Cannot determine"],
+          correctAnswer: "1/3",
+          explanation: "1/3 is larger than 1/4. When numerators are the same, the fraction with the smaller denominator is larger.",
+          points: 10
+        },
+        {
+          question: "What fraction of this group is shaded if 3 out of 5 circles are shaded?",
+          type: "multiple-choice",
+          options: ["3/5", "5/3", "2/5", "3/8"],
+          correctAnswer: "3/5",
+          explanation: "3 out of 5 parts are shaded, so the fraction is 3/5.",
+          points: 10
+        },
+        {
+          question: "Which fraction represents one whole?",
+          type: "multiple-choice",
+          options: ["1/2", "2/3", "4/4", "3/4"],
+          correctAnswer: "4/4",
+          explanation: "4/4 = 1 whole because all 4 parts out of 4 total parts are included.",
+          points: 10
+        },
+        {
+          question: "If a recipe calls for 1/4 cup of sugar and you want to double the recipe, how much sugar do you need?",
+          type: "multiple-choice",
+          options: ["1/8 cup", "1/4 cup", "1/2 cup", "1 cup"],
+          correctAnswer: "1/2 cup",
+          explanation: "1/4 × 2 = 2/4 = 1/2 cup. Doubling 1/4 gives you 1/2.",
+          points: 10
+        },
+        {
+          question: "What is another way to write 6/8?",
+          type: "multiple-choice",
+          options: ["2/3", "3/4", "1/2", "4/6"],
+          correctAnswer: "3/4",
+          explanation: "6/8 = 3/4 when we simplify by dividing both the numerator and denominator by 2.",
+          points: 10
+        },
+        {
+          question: "Which is the correct way to compare 2/3 and 1/2?",
+          type: "multiple-choice",
+          options: ["2/3 < 1/2", "2/3 > 1/2", "2/3 = 1/2", "Cannot compare"],
+          correctAnswer: "2/3 > 1/2",
+          explanation: "2/3 is larger than 1/2. We can see this by converting: 2/3 = 4/6 and 1/2 = 3/6, so 4/6 > 3/6.",
+          points: 10
+        },
+        {
+          question: "If you have 3/4 of a chocolate bar and eat 1/4 of it, how much is left?",
+          type: "multiple-choice",
+          options: ["1/4", "2/4", "1/2", "3/8"],
+          correctAnswer: "1/2",
+          explanation: "3/4 - 1/4 = 2/4 = 1/2. You have half the chocolate bar left.",
+          points: 10
+        }
+      ]
+    },
+    "addition": {
+      content: {
+        introduction: "Today we're mastering multi-digit addition! We'll learn to add large numbers using strategies that make it easier and more accurate.",
+        mainContent: "When adding large numbers, we line up the digits by place value: ones under ones, tens under tens, hundreds under hundreds. We start adding from the right (ones place) and work left. When a column adds up to 10 or more, we 'carry' the extra to the next column. For example: 347 + 285 = 632. We can also use mental math strategies like rounding and compensating: 347 + 285 ≈ 350 + 285 = 635, then subtract 3 to get 632.",
+        activities: [
+          "Practice column addition with numbers from your daily life: add up grocery receipts, count collections of items",
+          "Use base-ten blocks or draw place value charts to visualize regrouping when adding",
+          "Estimate sums first, then calculate to check if your answer is reasonable"
+        ],
+        funFacts: [
+          "The word 'addition' comes from the Latin 'addere' meaning 'to give to' or 'put together'!",
+          "Ancient civilizations used counting boards (like an abacus) to help with large addition problems!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is 347 + 286?",
+          type: "multiple-choice",
+          options: ["623", "633", "643", "653"],
+          correctAnswer: "633",
+          explanation: "347 + 286 = 633. Line up place values and add: 7+6=13 (write 3, carry 1), 4+8+1=13 (write 3, carry 1), 3+2+1=6.",
+          points: 10
+        },
+        {
+          question: "When adding 458 + 367, what happens in the ones column?",
+          type: "multiple-choice",
+          options: ["8 + 7 = 15, write 5 and carry 1", "8 + 7 = 15, write 15", "8 + 7 = 14, write 4 and carry 1", "8 + 7 = 16, write 6 and carry 1"],
+          correctAnswer: "8 + 7 = 15, write 5 and carry 1",
+          explanation: "8 + 7 = 15. We write down 5 in the ones place and carry the 1 to the tens column.",
+          points: 10
+        },
+        {
+          question: "What is a good estimate for 592 + 418?",
+          type: "multiple-choice",
+          options: ["900", "1000", "1100", "800"],
+          correctAnswer: "1000",
+          explanation: "Round 592 to 600 and 418 to 400. 600 + 400 = 1000, which is a good estimate.",
+          points: 10
+        },
+        {
+          question: "What is 1,234 + 5,678?",
+          type: "multiple-choice",
+          options: ["6,912", "6,902", "7,912", "6,812"],
+          correctAnswer: "6,912",
+          explanation: "1,234 + 5,678 = 6,912. Add each column: 4+8=12 (carry 1), 3+7+1=11 (carry 1), 2+6+1=9, 1+5=6.",
+          points: 10
+        },
+        {
+          question: "Which strategy helps check if your addition answer is reasonable?",
+          type: "multiple-choice",
+          options: ["Estimating before calculating", "Always using a calculator", "Adding the numbers backwards", "Only adding odd numbers"],
+          correctAnswer: "Estimating before calculating",
+          explanation: "Estimating gives you an approximate answer to compare with your exact calculation.",
+          points: 10
+        },
+        {
+          question: "What is 765 + 0?",
+          type: "multiple-choice",
+          options: ["0", "765", "7650", "Cannot determine"],
+          correctAnswer: "765",
+          explanation: "Adding zero to any number gives you the same number. 765 + 0 = 765.",
+          points: 10
+        },
+        {
+          question: "In the problem 1,847 + 2,965, how many times do you need to regroup (carry)?",
+          type: "multiple-choice",
+          options: ["0 times", "1 time", "2 times", "3 times"],
+          correctAnswer: "3 times",
+          explanation: "You carry in ones (7+5=12), tens (4+6+1=11), and hundreds (8+9+1=18). That's 3 carries.",
+          points: 10
+        },
+        {
+          question: "What does the commutative property tell us about addition?",
+          type: "multiple-choice",
+          options: ["We can add in any order", "We must add from left to right", "We can only add even numbers", "We need to estimate first"],
+          correctAnswer: "We can add in any order",
+          explanation: "The commutative property means 347 + 286 = 286 + 347. Order doesn't matter in addition.",
+          points: 10
+        },
+        {
+          question: "What is 999 + 1?",
+          type: "multiple-choice",
+          options: ["1000", "9991", "999", "1999"],
+          correctAnswer: "1000",
+          explanation: "999 + 1 = 1000. This creates a new thousand when we add 1 to 999.",
+          points: 10
+        },
+        {
+          question: "A school collected 1,847 cans in January and 2,965 cans in February. How many cans total?",
+          type: "multiple-choice",
+          options: ["4,812", "4,702", "4,812", "3,812"],
+          correctAnswer: "4,812",
+          explanation: "1,847 + 2,965 = 4,812 cans total. This shows how addition solves real-world problems.",
           points: 10
         }
       ]
@@ -1049,6 +1258,353 @@ function generateScienceContent4th(topic, week, day) {
           options: ["Nothing would change", "Dead plants and animals would pile up and nutrients wouldn't be recycled", "There would be more food for animals", "Plants would grow faster"],
           correctAnswer: "Dead plants and animals would pile up and nutrients wouldn't be recycled",
           explanation: "Decomposers are essential because they break down dead organisms and return nutrients to the soil for plants to use.",
+          points: 10
+        },
+        {
+          question: "What is the original source of energy for most ecosystems?",
+          type: "multiple-choice",
+          options: ["Wind", "The sun", "Water", "Soil"],
+          correctAnswer: "The sun",
+          explanation: "The sun provides energy that plants capture through photosynthesis, starting most food chains.",
+          points: 10
+        },
+        {
+          question: "Which animal would be a primary consumer?",
+          type: "multiple-choice",
+          options: ["Lion", "Hawk", "Rabbit", "Snake"],
+          correctAnswer: "Rabbit",
+          explanation: "Rabbits are primary consumers because they eat plants (producers) directly.",
+          points: 10
+        },
+        {
+          question: "What do we call animals that eat both plants and meat?",
+          type: "multiple-choice",
+          options: ["Herbivores", "Carnivores", "Omnivores", "Decomposers"],
+          correctAnswer: "Omnivores",
+          explanation: "Omnivores eat both plants and animals, like bears, humans, and many birds.",
+          points: 10
+        },
+        {
+          question: "In a food web, arrows show:",
+          type: "multiple-choice",
+          options: ["Where animals live", "The direction energy flows", "How fast animals move", "What animals look like"],
+          correctAnswer: "The direction energy flows",
+          explanation: "Arrows in food webs point from the food source to the consumer, showing energy flow.",
+          points: 10
+        },
+        {
+          question: "What might happen if wolves were removed from a forest ecosystem?",
+          type: "multiple-choice",
+          options: ["More trees would grow", "Deer population would increase and overeat plants", "Fish would disappear", "Weather would change"],
+          correctAnswer: "Deer population would increase and overeat plants",
+          explanation: "Without wolves to control them, deer populations can grow too large and damage plant communities.",
+          points: 10
+        },
+        {
+          question: "Which of these is an abiotic (non-living) part of an ecosystem?",
+          type: "multiple-choice",
+          options: ["Trees", "Birds", "Sunlight", "Bacteria"],
+          correctAnswer: "Sunlight",
+          explanation: "Sunlight is abiotic (non-living) but essential for ecosystems. Trees, birds, and bacteria are all living (biotic).",
+          points: 10
+        },
+        {
+          question: "Why are decomposers sometimes called 'nature's recyclers'?",
+          type: "multiple-choice",
+          options: ["They eat garbage", "They break down dead things and return nutrients to the soil", "They live in recycling centers", "They make new animals"],
+          correctAnswer: "They break down dead things and return nutrients to the soil",
+          explanation: "Decomposers recycle nutrients from dead organisms back into the ecosystem for new life to use.",
+          points: 10
+        }
+      ]
+    },
+    "astronomy": {
+      content: {
+        introduction: "Welcome to the incredible universe! Today we'll explore our solar system and learn about the planets, sun, and moon that make up our cosmic neighborhood.",
+        mainContent: "Our solar system consists of the sun (a star) and eight planets that orbit around it. The planets in order from the sun are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. The inner planets (Mercury, Venus, Earth, Mars) are rocky and smaller. The outer planets (Jupiter, Saturn, Uranus, Neptune) are gas giants and much larger. Earth is special because it has liquid water and the right temperature to support life. The moon orbits Earth and affects our tides.",
+        activities: [
+          "Create a scale model of the solar system using different sized balls or fruits to represent the planets",
+          "Keep a moon observation journal for one week, drawing the moon's shape each night",
+          "Research one planet and create a travel brochure describing what a visit there would be like"
+        ],
+        funFacts: [
+          "You could fit about 1.3 million Earths inside the sun!",
+          "A day on Venus is longer than its year because it rotates so slowly!"
+        ]
+      },
+      quiz: [
+        {
+          question: "Which planet is closest to the sun?",
+          type: "multiple-choice",
+          options: ["Venus", "Earth", "Mercury", "Mars"],
+          correctAnswer: "Mercury",
+          explanation: "Mercury is the closest planet to the sun and has the shortest year of all planets.",
+          points: 10
+        },
+        {
+          question: "How many planets are in our solar system?",
+          type: "multiple-choice",
+          options: ["7", "8", "9", "10"],
+          correctAnswer: "8",
+          explanation: "There are 8 planets in our solar system. Pluto is now classified as a dwarf planet.",
+          points: 10
+        },
+        {
+          question: "Which planets are known as the 'gas giants'?",
+          type: "multiple-choice",
+          options: ["Mercury, Venus, Earth, Mars", "Jupiter, Saturn, Uranus, Neptune", "Only Jupiter and Saturn", "Earth and Mars"],
+          correctAnswer: "Jupiter, Saturn, Uranus, Neptune",
+          explanation: "The four outer planets are called gas giants because they are made mostly of gas and are very large.",
+          points: 10
+        },
+        {
+          question: "What makes Earth special compared to other planets?",
+          type: "multiple-choice",
+          options: ["It's the biggest planet", "It has liquid water and can support life", "It's closest to the sun", "It has the most moons"],
+          correctAnswer: "It has liquid water and can support life",
+          explanation: "Earth is in the 'Goldilocks zone' - just the right distance from the sun for liquid water and life.",
+          points: 10
+        },
+        {
+          question: "What is the sun?",
+          type: "multiple-choice",
+          options: ["A planet", "A star", "A moon", "A comet"],
+          correctAnswer: "A star",
+          explanation: "The sun is a star - a huge ball of hot gas that produces light and heat through nuclear reactions.",
+          points: 10
+        },
+        {
+          question: "Which planet is known for its beautiful rings?",
+          type: "multiple-choice",
+          options: ["Jupiter", "Mars", "Saturn", "Uranus"],
+          correctAnswer: "Saturn",
+          explanation: "Saturn is famous for its spectacular ring system made of ice and rock particles.",
+          points: 10
+        },
+        {
+          question: "How long does it take Earth to orbit around the sun?",
+          type: "multiple-choice",
+          options: ["One day", "One month", "One year", "One decade"],
+          correctAnswer: "One year",
+          explanation: "Earth takes 365.25 days (one year) to complete one orbit around the sun.",
+          points: 10
+        },
+        {
+          question: "Which planet is called the 'Red Planet'?",
+          type: "multiple-choice",
+          options: ["Mercury", "Venus", "Mars", "Jupiter"],
+          correctAnswer: "Mars",
+          explanation: "Mars appears red because of iron oxide (rust) on its surface.",
+          points: 10
+        },
+        {
+          question: "What causes the phases of the moon?",
+          type: "multiple-choice",
+          options: ["Earth's shadow on the moon", "The moon changing shape", "How much of the moon we can see as it orbits Earth", "Clouds covering the moon"],
+          correctAnswer: "How much of the moon we can see as it orbits Earth",
+          explanation: "Moon phases happen because we see different amounts of the moon's lit side as it orbits Earth.",
+          points: 10
+        },
+        {
+          question: "Which is the largest planet in our solar system?",
+          type: "multiple-choice",
+          options: ["Earth", "Saturn", "Jupiter", "Neptune"],
+          correctAnswer: "Jupiter",
+          explanation: "Jupiter is the largest planet and is more than twice as massive as all other planets combined!",
+          points: 10
+        }
+      ]
+    },
+    "adaptations": {
+      content: {
+        introduction: "Today we'll discover how amazing animals and plants have special features that help them survive in their environments!",
+        mainContent: "Adaptations are special characteristics that help living things survive in their environment. Physical adaptations include body parts like a bird's beak shape, a polar bear's thick fur, or a cactus's waxy coating. Behavioral adaptations are things animals do, like migration, hibernation, or nocturnal hunting. These adaptations develop over many generations to help species survive challenges like finding food, staying safe from predators, or dealing with weather.",
+        activities: [
+          "Design an imaginary animal perfectly adapted for a specific environment (desert, ocean, Arctic)",
+          "Research and compare how different birds' beaks are adapted for their food sources",
+          "Observe adaptations in your backyard: look for how different plants and animals are suited to their environment"
+        ],
+        funFacts: [
+          "Arctic foxes change fur color from brown in summer to white in winter for camouflage!",
+          "Some desert plants can live for over a year without any rain!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is an adaptation?",
+          type: "multiple-choice",
+          options: ["Any body part of an animal", "A special characteristic that helps a living thing survive", "The food an animal eats", "Where an animal lives"],
+          correctAnswer: "A special characteristic that helps a living thing survive",
+          explanation: "Adaptations are special features that have evolved to help organisms survive in their environment.",
+          points: 10
+        },
+        {
+          question: "A polar bear's thick fur is an example of what type of adaptation?",
+          type: "multiple-choice",
+          options: ["Physical adaptation", "Behavioral adaptation", "Food adaptation", "Seasonal adaptation"],
+          correctAnswer: "Physical adaptation",
+          explanation: "Thick fur is a physical adaptation - a body feature that helps polar bears stay warm in cold environments.",
+          points: 10
+        },
+        {
+          question: "Birds flying south for winter is an example of:",
+          type: "multiple-choice",
+          options: ["Physical adaptation", "Behavioral adaptation", "Structural adaptation", "Genetic adaptation"],
+          correctAnswer: "Behavioral adaptation",
+          explanation: "Migration is a behavioral adaptation - an action or behavior that helps animals survive seasonal changes.",
+          points: 10
+        },
+        {
+          question: "Why do cactuses have waxy coatings on their stems?",
+          type: "multiple-choice",
+          options: ["To look pretty", "To prevent water loss in the desert", "To attract insects", "To protect from cold"],
+          correctAnswer: "To prevent water loss in the desert",
+          explanation: "The waxy coating helps cactuses conserve precious water in hot, dry desert environments.",
+          points: 10
+        },
+        {
+          question: "Which beak shape would be best for cracking hard seeds?",
+          type: "multiple-choice",
+          options: ["Long and thin", "Short and thick", "Curved and sharp", "Flat and wide"],
+          correctAnswer: "Short and thick",
+          explanation: "Short, thick beaks provide the strength needed to crack open hard seeds and nuts.",
+          points: 10
+        },
+        {
+          question: "What helps a chameleon catch insects?",
+          type: "multiple-choice",
+          options: ["Changing colors", "Long, sticky tongue", "Sharp claws", "Loud calls"],
+          correctAnswer: "Long, sticky tongue",
+          explanation: "Chameleons have extremely long, sticky tongues that can shoot out quickly to catch insects.",
+          points: 10
+        },
+        {
+          question: "Why do some animals hibernate?",
+          type: "multiple-choice",
+          options: ["They're lazy", "To survive winter when food is scarce", "To avoid predators", "To find mates"],
+          correctAnswer: "To survive winter when food is scarce",
+          explanation: "Hibernation helps animals survive winter by slowing their body processes when food is hard to find.",
+          points: 10
+        },
+        {
+          question: "A fish's gills are adapted for:",
+          type: "multiple-choice",
+          options: ["Swimming fast", "Breathing underwater", "Finding food", "Avoiding predators"],
+          correctAnswer: "Breathing underwater",
+          explanation: "Gills extract oxygen from water, allowing fish to breathe underwater.",
+          points: 10
+        },
+        {
+          question: "Why do zebras have stripes?",
+          type: "multiple-choice",
+          options: ["To look beautiful", "To confuse predators and flies", "To stay warm", "To find food"],
+          correctAnswer: "To confuse predators and flies",
+          explanation: "Zebra stripes may confuse predators when zebras are in groups and also help repel biting flies.",
+          points: 10
+        },
+        {
+          question: "What adaptation helps owls hunt at night?",
+          type: "multiple-choice",
+          options: ["Colorful feathers", "Large eyes and excellent hearing", "Long legs", "Bright calls"],
+          correctAnswer: "Large eyes and excellent hearing",
+          explanation: "Owls have large eyes to gather more light and asymmetrical ears for precise hearing to locate prey in darkness.",
+          points: 10
+        }
+      ]
+    },
+    "anatomy": {
+      content: {
+        introduction: "Welcome to the amazing world inside your body! Today we'll explore how different body systems work together to keep you healthy and strong.",
+        mainContent: "Your body has several organ systems that work together like a well-organized team. The circulatory system (heart and blood vessels) delivers oxygen and nutrients throughout your body. The respiratory system (lungs) brings in oxygen and removes carbon dioxide. The digestive system breaks down food into nutrients your body can use. The nervous system (brain and nerves) controls everything and helps you think. The skeletal system (bones) supports your body, and the muscular system helps you move.",
+        activities: [
+          "Create a human body diagram showing the major organ systems and label their functions",
+          "Track your pulse and breathing rate before and after exercise to see your circulatory and respiratory systems at work",
+          "Keep a food diary for one day and research how your digestive system processes different foods"
+        ],
+        funFacts: [
+          "Your heart beats about 100,000 times every day!",
+          "Your brain uses about 20% of all the energy your body produces!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is the main function of the circulatory system?",
+          type: "multiple-choice",
+          options: ["To help you breathe", "To carry blood throughout your body", "To digest food", "To help you think"],
+          correctAnswer: "To carry blood throughout your body",
+          explanation: "The circulatory system pumps blood through blood vessels to deliver oxygen and nutrients to all parts of your body.",
+          points: 10
+        },
+        {
+          question: "Which organ is the control center of your nervous system?",
+          type: "multiple-choice",
+          options: ["Heart", "Lungs", "Brain", "Stomach"],
+          correctAnswer: "Brain",
+          explanation: "The brain is the control center that coordinates all body functions and enables thinking, memory, and emotions.",
+          points: 10
+        },
+        {
+          question: "What do your lungs do?",
+          type: "multiple-choice",
+          options: ["Pump blood", "Take in oxygen and remove carbon dioxide", "Digest food", "Make you move"],
+          correctAnswer: "Take in oxygen and remove carbon dioxide",
+          explanation: "Your lungs are part of the respiratory system that brings oxygen into your body and removes waste carbon dioxide.",
+          points: 10
+        },
+        {
+          question: "How many bones are in an adult human skeleton?",
+          type: "multiple-choice",
+          options: ["150", "206", "300", "400"],
+          correctAnswer: "206",
+          explanation: "An adult human skeleton has 206 bones that provide structure and protect internal organs.",
+          points: 10
+        },
+        {
+          question: "What does your digestive system do?",
+          type: "multiple-choice",
+          options: ["Help you breathe", "Break down food into nutrients", "Pump blood", "Control your movements"],
+          correctAnswer: "Break down food into nutrients",
+          explanation: "The digestive system breaks down food into smaller nutrients that your body can absorb and use for energy and growth.",
+          points: 10
+        },
+        {
+          question: "Which system helps you move your body?",
+          type: "multiple-choice",
+          options: ["Digestive system", "Respiratory system", "Muscular system", "Circulatory system"],
+          correctAnswer: "Muscular system",
+          explanation: "The muscular system contains muscles that contract and relax to move your bones and body parts.",
+          points: 10
+        },
+        {
+          question: "What carries messages between your brain and the rest of your body?",
+          type: "multiple-choice",
+          options: ["Blood vessels", "Nerves", "Muscles", "Bones"],
+          correctAnswer: "Nerves",
+          explanation: "Nerves are like electrical wires that carry messages between your brain and all parts of your body.",
+          points: 10
+        },
+        {
+          question: "Why is your heart important?",
+          type: "multiple-choice",
+          options: ["It helps you think", "It pumps blood to your whole body", "It helps you digest food", "It stores oxygen"],
+          correctAnswer: "It pumps blood to your whole body",
+          explanation: "Your heart is a muscle that pumps blood containing oxygen and nutrients to every cell in your body.",
+          points: 10
+        },
+        {
+          question: "What protects your brain?",
+          type: "multiple-choice",
+          options: ["Your hair", "Your skull", "Your skin", "Your muscles"],
+          correctAnswer: "Your skull",
+          explanation: "Your skull is a hard, bony case that protects your brain from injury.",
+          points: 10
+        },
+        {
+          question: "How do your body systems work together?",
+          type: "multiple-choice",
+          options: ["They don't work together", "Each system works independently", "They coordinate to keep you healthy and functioning", "Only some systems work together"],
+          correctAnswer: "They coordinate to keep you healthy and functioning",
+          explanation: "All body systems work together as a team - for example, your respiratory and circulatory systems work together to deliver oxygen throughout your body.",
           points: 10
         }
       ]
