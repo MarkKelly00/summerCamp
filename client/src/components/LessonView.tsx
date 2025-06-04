@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 
 interface User {
   id: string;
@@ -42,9 +42,10 @@ interface Lesson {
 interface LessonViewProps {
   user: User;
   token: string;
+  onUserUpdate: (user: User) => void;
 }
 
-const LessonView: React.FC<LessonViewProps> = ({ user, token }) => {
+const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) => {
   const { lessonId } = useParams<{ lessonId: string }>();
   const navigate = useNavigate();
   const [lesson, setLesson] = useState<Lesson | null>(null);
@@ -53,6 +54,8 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token }) => {
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [submitted, setSubmitted] = useState(false);
+  const [startTime, setStartTime] = useState(0);
 
   useEffect(() => {
     fetchLesson();
@@ -60,17 +63,14 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token }) => {
 
   const fetchLesson = async () => {
     try {
-      const response = await axios.get<Lesson>(
-        `http://localhost:5001/api/lessons/lesson/${lessonId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
+      const response = await api.get<Lesson>(
+        `/api/lessons/lesson/${lessonId}`
       );
-      const lesson = response.data;
-      setLesson(lesson);
-      setQuizAnswers(new Array(lesson.quiz.length).fill(''));
+      setLesson(response.data);
+      setQuizAnswers(new Array(response.data.quiz.length).fill(''));
     } catch (error) {
       console.error('Error fetching lesson:', error);
+      navigate('/dashboard');
     } finally {
       setLoading(false);
     }
@@ -86,38 +86,39 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token }) => {
     if (!lesson) return;
 
     let correctCount = 0;
+    let totalPoints = 0;
+    
     lesson.quiz.forEach((question, index) => {
       if (quizAnswers[index] === question.correctAnswer) {
         correctCount++;
+        totalPoints += question.points;
       }
     });
 
     const finalScore = Math.round((correctCount / lesson.quiz.length) * 100);
     setScore(finalScore);
     setShowResults(true);
+    setStartTime(Date.now());
 
     // Save progress
     try {
-      await axios.post(
-        `http://localhost:5001/api/progress/lesson/${lessonId}`,
-        {
-          studentId: user.id,
-          status: 'completed',
-          score: finalScore,
-          quizAnswers: lesson.quiz.map((q, index) => ({
-            questionIndex: index,
-            answer: quizAnswers[index],
-            isCorrect: quizAnswers[index] === q.correctAnswer,
-            timeSpent: 0
-          })),
-          timeSpent: lesson.estimatedTime
-        },
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
-      );
+      await api.post(`/api/progress/lesson/${lessonId}`, {
+        completed: true,
+        score: finalScore,
+        timeSpent: lesson.estimatedTime
+      });
+
+      // Update user's fun money based on quiz points earned
+      const updatedUser = {
+        ...user,
+        funMoney: user.funMoney + totalPoints
+      };
+      
+      onUserUpdate(updatedUser);
+      setTimeout(() => navigate('/dashboard'), 2000);
     } catch (error) {
-      console.error('Error saving progress:', error);
+      console.error('Error submitting lesson:', error);
+      setSubmitted(false);
     }
   };
 

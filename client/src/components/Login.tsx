@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../context/AuthContext';
+import api from '../utils/api';
 
 interface User {
   id: string;
@@ -32,19 +34,24 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setLoading(true);
     setError('');
+    setLoading(true);
 
     try {
-      const response = await axios.post<LoginResponse>('http://localhost:5001/api/auth/login', {
+      const response = await api.post<LoginResponse>('/api/auth/login', {
         username,
         password
       });
 
       const { user, token } = response.data;
       onLogin(user, token);
-    } catch (err: any) {
-      setError(err.response?.data?.message || 'Login failed');
+    } catch (error: any) {
+      console.error('Login error:', error);
+      if (error.response?.data?.message) {
+        setError(error.response.data.message);
+      } else {
+        setError('An error occurred during login');
+      }
     } finally {
       setLoading(false);
     }

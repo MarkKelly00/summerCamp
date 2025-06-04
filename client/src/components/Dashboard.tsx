@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from '../utils/api';
 
 interface User {
   id: string;
@@ -56,12 +56,8 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
 
   const fetchLessons = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get<Lesson[]>(
-        `http://localhost:5001/api/lessons/${user.profile.gradeLevel}/${currentWeek}`,
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
+      const response = await api.get<Lesson[]>(
+        `/api/lessons/${user.profile.gradeLevel}/${currentWeek}`
       );
       setLessons(response.data);
     } catch (error) {

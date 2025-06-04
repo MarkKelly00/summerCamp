@@ -8,6 +8,8 @@
     "server": "cd server && npm run dev",
     "client": "cd client && npm start",
     "build": "cd client && npm run build && cd ../server && npm run build",
+    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client && npm install --prefix server && npm run build --prefix server",
+    "start": "cd server && npm start",
     "seed": "cd server && npm run seed",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -24,5 +26,9 @@
   "homepage": "https://github.com/MarkKelly00/summerCamp#readme",
   "devDependencies": {
     "concurrently": "^8.2.0"
+  },
+  "engines": {
+    "node": "18.x",
+    "npm": "9.x"
   }
 }

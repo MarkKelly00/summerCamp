@@ -1,6 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
+import path from 'path';
 import connectDB from './config/database';
 
 // Import routes
@@ -20,7 +21,9 @@ connectDB();
 
 // Middleware
 app.use(cors({
-  origin: ['http://localhost:3000', 'http://127.0.0.1:3000'],
+  origin: process.env.NODE_ENV === 'production' 
+    ? [process.env.FRONTEND_URL || 'https://your-app.herokuapp.com']
+    : ['http://localhost:3000', 'http://127.0.0.1:3000'],
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -39,6 +42,16 @@ app.use('/api/users', userRoutes);
 app.get('/api/health', (req, res) => {
   res.json({ message: 'Summer Camp API is running!' });
 });
+
+// Serve static files from React app in production
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../../client/build')));
+  
+  // Catch all handler: send back React's index.html file for any non-API routes
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
+  });
+}
 
 // Error handling middleware
 app.use((err: Error, req: express.Request, res: express.Response, next: express.NextFunction) => {

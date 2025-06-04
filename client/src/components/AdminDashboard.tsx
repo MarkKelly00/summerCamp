@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api from '../utils/api';
 
 interface User {
   id: string;
@@ -74,10 +74,7 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
 
   const fetchStudents = async () => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get<Student[]>('http://localhost:5001/api/users/students', {
-        headers: { Authorization: `Bearer ${token}` }
-      });
+      const response = await api.get<Student[]>('/api/users/students');
       setStudents(response.data);
       if (response.data.length > 0) {
         setSelectedStudent(response.data[0]._id);
@@ -91,12 +88,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
 
   const fetchProgress = async (studentId: string) => {
     try {
-      const token = localStorage.getItem('token');
-      const response = await axios.get<Progress[]>(
-        `http://localhost:5001/api/progress/student/${studentId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` }
-        }
+      const response = await api.get<Progress[]>(
+        `/api/progress/student/${studentId}`
       );
       const progressData = response.data;
       setProgress(progressData);
@@ -105,36 +98,18 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
     }
   };
 
-  const handlePasswordUpdate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (passwordForm.newPassword !== passwordForm.confirmPassword) {
-      setPasswordMessage('Passwords do not match');
-      return;
-    }
-    
-    if (passwordForm.newPassword.length < 6) {
-      setPasswordMessage('Password must be at least 6 characters long');
-      return;
-    }
-
-    setPasswordLoading(true);
-    setPasswordMessage('');
-
+  const handlePasswordUpdate = async () => {
     try {
-      const token = localStorage.getItem('token');
-      await axios.patch(
-        `http://localhost:5001/api/users/password/${passwordForm.studentId}`,
-        { newPassword: passwordForm.newPassword },
-        { headers: { Authorization: `Bearer ${token}` } }
+      await api.patch(
+        `/api/users/password/${passwordForm.studentId}`,
+        { password: passwordForm.newPassword }
       );
-      
       setPasswordMessage('Password updated successfully!');
       setPasswordForm({ studentId: '', newPassword: '', confirmPassword: '' });
+      setTimeout(() => setPasswordMessage(''), 3000);
     } catch (error: any) {
+      console.error('Error updating password:', error);
       setPasswordMessage(error.response?.data?.message || 'Error updating password');
-    } finally {
-      setPasswordLoading(false);
     }
   };
 
