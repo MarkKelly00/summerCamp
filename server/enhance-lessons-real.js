@@ -414,7 +414,7 @@ const realLessons = [
         type: "multiple-choice",
         options: ["To eat other animals", "To make food from sunlight", "To break down dead organisms", "To control the weather"],
         correctAnswer: "To break down dead organisms",
-        explanation: "Decomposers like bacteria and fungi break down dead plants and animals, returning nutrients to the soil.",
+        explanation: "Decomposers like bacteria and fungi break down dead plants and animals, returning nutrients to the soil for plants to use again.",
         points: 10
       },
       {
@@ -1224,15 +1224,16 @@ function generateScienceContent4th(topic, week, day) {
     "ecosystems": {
       content: {
         introduction: "Welcome to the amazing world of ecosystems! Today we'll explore how all living things are connected through food chains and energy flow.",
-        mainContent: "An ecosystem includes all living and non-living things in an area working together. Energy flows from the sun to producers (plants that make their own food) to primary consumers (plant-eaters) to secondary consumers (meat-eaters). A food chain shows this flow: grass → rabbit → fox. Food webs show how multiple food chains connect. Decomposers like bacteria and fungi break down dead organisms, returning nutrients to the soil for plants to use again.",
+        mainContent: "An ecosystem includes all living and non-living things in an area working together. Energy flows from the sun to producers (plants that make their own food) to primary consumers (plant-eaters) to secondary consumers (meat-eaters). A food chain shows this flow: grass → rabbit → fox. Food webs show how multiple food chains connect. Decomposers like bacteria and fungi break down dead organisms, returning nutrients to the soil for plants to use again. Different ecosystems like forests, deserts, and wetlands have different plants and animals adapted to their conditions.",
         activities: [
           "Create a food web poster for a local ecosystem (forest, pond, or grassland) showing at least 8 organisms and their connections",
           "Research and write about one animal's role in its ecosystem: what it eats, what eats it, and how it helps other organisms",
-          "Observe a small ecosystem in your yard or a park: identify producers, consumers, and decomposers"
+          "Observe a small ecosystem in your yard or a park: identify producers, consumers, and decomposers using a magnifying glass"
         ],
         funFacts: [
           "Wolves in Yellowstone changed the shape of rivers by controlling deer populations, which allowed trees to grow back along riverbanks!",
-          "One teaspoon of soil contains more organisms than there are people on Earth!"
+          "One teaspoon of soil contains more organisms than there are people on Earth!",
+          "A single large tree can provide oxygen for two people for an entire day!"
         ]
       },
       quiz: [
@@ -1320,16 +1321,17 @@ function generateScienceContent4th(topic, week, day) {
     },
     "astronomy": {
       content: {
-        introduction: "Welcome to the incredible universe! Today we'll explore our solar system and learn about the planets, sun, and moon that make up our cosmic neighborhood.",
-        mainContent: "Our solar system consists of the sun (a star) and eight planets that orbit around it. The planets in order from the sun are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. The inner planets (Mercury, Venus, Earth, Mars) are rocky and smaller. The outer planets (Jupiter, Saturn, Uranus, Neptune) are gas giants and much larger. Earth is special because it has liquid water and the right temperature to support life. The moon orbits Earth and affects our tides.",
+        introduction: "Welcome to the incredible universe! Today we'll explore our solar system and learn about the planets, sun, and their relationships in space.",
+        mainContent: "Our solar system consists of the sun (a massive star) and eight planets that orbit around it. The planets in order from the sun are: Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, and Neptune. The inner planets (Mercury, Venus, Earth, Mars) are rocky and smaller. The outer planets (Jupiter, Saturn, Uranus, Neptune) are gas giants and much larger. Earth is special because it has liquid water, the right temperature, and an atmosphere that supports life. The sun is 1.3 million times bigger than Earth and provides the light and heat that makes life on Earth possible.",
         activities: [
-          "Create a scale model of the solar system using different sized balls or fruits to represent the planets",
-          "Keep a moon observation journal for one week, drawing the moon's shape each night",
-          "Research one planet and create a travel brochure describing what a visit there would be like"
+          "Create a scale model of the solar system using different sized balls or fruits to represent the planets, measuring distances in your backyard",
+          "Research one planet and create a travel brochure describing what a visit there would be like (temperature, gravity, atmosphere)",
+          "Make a planet fact trading card collection with drawings and important data for each planet"
         ],
         funFacts: [
           "You could fit about 1.3 million Earths inside the sun!",
-          "A day on Venus is longer than its year because it rotates so slowly!"
+          "A day on Venus is longer than its year because it rotates so slowly!",
+          "Jupiter's Great Red Spot is a storm that has been raging for over 300 years and is bigger than Earth!"
         ]
       },
       quiz: [
@@ -1398,220 +1400,336 @@ function generateScienceContent4th(topic, week, day) {
           points: 10
         },
         {
-          question: "What causes the phases of the moon?",
-          type: "multiple-choice",
-          options: ["Earth's shadow on the moon", "The moon changing shape", "How much of the moon we can see as it orbits Earth", "Clouds covering the moon"],
-          correctAnswer: "How much of the moon we can see as it orbits Earth",
-          explanation: "Moon phases happen because we see different amounts of the moon's lit side as it orbits Earth.",
-          points: 10
-        },
-        {
           question: "Which is the largest planet in our solar system?",
           type: "multiple-choice",
           options: ["Earth", "Saturn", "Jupiter", "Neptune"],
           correctAnswer: "Jupiter",
           explanation: "Jupiter is the largest planet and is more than twice as massive as all other planets combined!",
           points: 10
-        }
-      ]
-    },
-    "adaptations": {
-      content: {
-        introduction: "Today we'll discover how amazing animals and plants have special features that help them survive in their environments!",
-        mainContent: "Adaptations are special characteristics that help living things survive in their environment. Physical adaptations include body parts like a bird's beak shape, a polar bear's thick fur, or a cactus's waxy coating. Behavioral adaptations are things animals do, like migration, hibernation, or nocturnal hunting. These adaptations develop over many generations to help species survive challenges like finding food, staying safe from predators, or dealing with weather.",
-        activities: [
-          "Design an imaginary animal perfectly adapted for a specific environment (desert, ocean, Arctic)",
-          "Research and compare how different birds' beaks are adapted for their food sources",
-          "Observe adaptations in your backyard: look for how different plants and animals are suited to their environment"
-        ],
-        funFacts: [
-          "Arctic foxes change fur color from brown in summer to white in winter for camouflage!",
-          "Some desert plants can live for over a year without any rain!"
-        ]
-      },
-      quiz: [
-        {
-          question: "What is an adaptation?",
-          type: "multiple-choice",
-          options: ["Any body part of an animal", "A special characteristic that helps a living thing survive", "The food an animal eats", "Where an animal lives"],
-          correctAnswer: "A special characteristic that helps a living thing survive",
-          explanation: "Adaptations are special features that have evolved to help organisms survive in their environment.",
-          points: 10
         },
         {
-          question: "A polar bear's thick fur is an example of what type of adaptation?",
+          question: "What keeps the planets in orbit around the sun?",
           type: "multiple-choice",
-          options: ["Physical adaptation", "Behavioral adaptation", "Food adaptation", "Seasonal adaptation"],
-          correctAnswer: "Physical adaptation",
-          explanation: "Thick fur is a physical adaptation - a body feature that helps polar bears stay warm in cold environments.",
-          points: 10
-        },
-        {
-          question: "Birds flying south for winter is an example of:",
-          type: "multiple-choice",
-          options: ["Physical adaptation", "Behavioral adaptation", "Structural adaptation", "Genetic adaptation"],
-          correctAnswer: "Behavioral adaptation",
-          explanation: "Migration is a behavioral adaptation - an action or behavior that helps animals survive seasonal changes.",
-          points: 10
-        },
-        {
-          question: "Why do cactuses have waxy coatings on their stems?",
-          type: "multiple-choice",
-          options: ["To look pretty", "To prevent water loss in the desert", "To attract insects", "To protect from cold"],
-          correctAnswer: "To prevent water loss in the desert",
-          explanation: "The waxy coating helps cactuses conserve precious water in hot, dry desert environments.",
-          points: 10
-        },
-        {
-          question: "Which beak shape would be best for cracking hard seeds?",
-          type: "multiple-choice",
-          options: ["Long and thin", "Short and thick", "Curved and sharp", "Flat and wide"],
-          correctAnswer: "Short and thick",
-          explanation: "Short, thick beaks provide the strength needed to crack open hard seeds and nuts.",
-          points: 10
-        },
-        {
-          question: "What helps a chameleon catch insects?",
-          type: "multiple-choice",
-          options: ["Changing colors", "Long, sticky tongue", "Sharp claws", "Loud calls"],
-          correctAnswer: "Long, sticky tongue",
-          explanation: "Chameleons have extremely long, sticky tongues that can shoot out quickly to catch insects.",
-          points: 10
-        },
-        {
-          question: "Why do some animals hibernate?",
-          type: "multiple-choice",
-          options: ["They're lazy", "To survive winter when food is scarce", "To avoid predators", "To find mates"],
-          correctAnswer: "To survive winter when food is scarce",
-          explanation: "Hibernation helps animals survive winter by slowing their body processes when food is hard to find.",
-          points: 10
-        },
-        {
-          question: "A fish's gills are adapted for:",
-          type: "multiple-choice",
-          options: ["Swimming fast", "Breathing underwater", "Finding food", "Avoiding predators"],
-          correctAnswer: "Breathing underwater",
-          explanation: "Gills extract oxygen from water, allowing fish to breathe underwater.",
-          points: 10
-        },
-        {
-          question: "Why do zebras have stripes?",
-          type: "multiple-choice",
-          options: ["To look beautiful", "To confuse predators and flies", "To stay warm", "To find food"],
-          correctAnswer: "To confuse predators and flies",
-          explanation: "Zebra stripes may confuse predators when zebras are in groups and also help repel biting flies.",
-          points: 10
-        },
-        {
-          question: "What adaptation helps owls hunt at night?",
-          type: "multiple-choice",
-          options: ["Colorful feathers", "Large eyes and excellent hearing", "Long legs", "Bright calls"],
-          correctAnswer: "Large eyes and excellent hearing",
-          explanation: "Owls have large eyes to gather more light and asymmetrical ears for precise hearing to locate prey in darkness.",
+          options: ["Magnetism", "Gravity", "Wind", "Electricity"],
+          correctAnswer: "Gravity",
+          explanation: "The sun's powerful gravity pulls on the planets, keeping them in orbit around it.",
           points: 10
         }
       ]
     },
-    "anatomy": {
+    "moon_phases": {
       content: {
-        introduction: "Welcome to the amazing world inside your body! Today we'll explore how different body systems work together to keep you healthy and strong.",
-        mainContent: "Your body has several organ systems that work together like a well-organized team. The circulatory system (heart and blood vessels) delivers oxygen and nutrients throughout your body. The respiratory system (lungs) brings in oxygen and removes carbon dioxide. The digestive system breaks down food into nutrients your body can use. The nervous system (brain and nerves) controls everything and helps you think. The skeletal system (bones) supports your body, and the muscular system helps you move.",
+        introduction: "Have you ever wondered why the moon looks different every night? Today we'll discover the fascinating cycle of moon phases and how they happen!",
+        mainContent: "The moon doesn't make its own light - it reflects light from the sun. As the moon orbits Earth (taking about 29.5 days), we see different amounts of its lit side, creating phases. The cycle starts with the New Moon (we can't see it), then Waxing Crescent (small sliver), First Quarter (half visible), Waxing Gibbous (more than half), Full Moon (completely visible), Waning Gibbous (shrinking), Third Quarter (half visible again), and Waning Crescent (small sliver) before returning to New Moon. The moon also affects Earth's ocean tides through its gravitational pull.",
         activities: [
-          "Create a human body diagram showing the major organ systems and label their functions",
-          "Track your pulse and breathing rate before and after exercise to see your circulatory and respiratory systems at work",
-          "Keep a food diary for one day and research how your digestive system processes different foods"
+          "Keep a moon observation journal for two weeks, drawing the moon's shape each night and noting the time",
+          "Use a flashlight (sun) and ball (moon) to model moon phases in a dark room",
+          "Research how moon phases have been used throughout history for calendars and planting crops"
         ],
         funFacts: [
-          "Your heart beats about 100,000 times every day!",
-          "Your brain uses about 20% of all the energy your body produces!"
+          "The same side of the moon always faces Earth - we never see the 'dark side' from our planet!",
+          "The moon is slowly moving away from Earth by about 1.5 inches per year!",
+          "A 'blue moon' doesn't actually look blue - it's just the second full moon in one month!"
         ]
       },
       quiz: [
         {
-          question: "What is the main function of the circulatory system?",
+          question: "Why do we see different moon phases?",
           type: "multiple-choice",
-          options: ["To help you breathe", "To carry blood throughout your body", "To digest food", "To help you think"],
-          correctAnswer: "To carry blood throughout your body",
-          explanation: "The circulatory system pumps blood through blood vessels to deliver oxygen and nutrients to all parts of your body.",
+          options: ["The moon changes shape", "Earth's shadow covers the moon", "We see different amounts of the moon's lit side as it orbits Earth", "Clouds cover parts of the moon"],
+          correctAnswer: "We see different amounts of the moon's lit side as it orbits Earth",
+          explanation: "Moon phases happen because we see different amounts of the moon's sunlit side as it moves around Earth.",
           points: 10
         },
         {
-          question: "Which organ is the control center of your nervous system?",
+          question: "How long does it take for the moon to go through all its phases?",
           type: "multiple-choice",
-          options: ["Heart", "Lungs", "Brain", "Stomach"],
-          correctAnswer: "Brain",
-          explanation: "The brain is the control center that coordinates all body functions and enables thinking, memory, and emotions.",
+          options: ["7 days", "14 days", "About 29.5 days", "One year"],
+          correctAnswer: "About 29.5 days",
+          explanation: "The moon takes about 29.5 days to orbit Earth and complete one full cycle of phases.",
           points: 10
         },
         {
-          question: "What do your lungs do?",
+          question: "During which phase can you see the entire face of the moon?",
           type: "multiple-choice",
-          options: ["Pump blood", "Take in oxygen and remove carbon dioxide", "Digest food", "Make you move"],
-          correctAnswer: "Take in oxygen and remove carbon dioxide",
-          explanation: "Your lungs are part of the respiratory system that brings oxygen into your body and removes waste carbon dioxide.",
+          options: ["New Moon", "First Quarter", "Full Moon", "Waning Crescent"],
+          correctAnswer: "Full Moon",
+          explanation: "During a full moon, the entire face of the moon facing Earth is lit by the sun.",
           points: 10
         },
         {
-          question: "How many bones are in an adult human skeleton?",
+          question: "Why doesn't the moon make its own light?",
           type: "multiple-choice",
-          options: ["150", "206", "300", "400"],
-          correctAnswer: "206",
-          explanation: "An adult human skeleton has 206 bones that provide structure and protect internal organs.",
+          options: ["It's too small", "It's too cold", "It's not a star", "It's too far away"],
+          correctAnswer: "It's not a star",
+          explanation: "Only stars make their own light. The moon reflects sunlight, which is why we can see it.",
           points: 10
         },
         {
-          question: "What does your digestive system do?",
+          question: "During a New Moon, why can't we see the moon?",
           type: "multiple-choice",
-          options: ["Help you breathe", "Break down food into nutrients", "Pump blood", "Control your movements"],
-          correctAnswer: "Break down food into nutrients",
-          explanation: "The digestive system breaks down food into smaller nutrients that your body can absorb and use for energy and growth.",
+          options: ["It's behind Earth", "The lit side faces away from Earth", "It's too cloudy", "The moon disappears"],
+          correctAnswer: "The lit side faces away from Earth",
+          explanation: "During a new moon, the sun lights the side of the moon facing away from Earth, so we can't see it.",
           points: 10
         },
         {
-          question: "Which system helps you move your body?",
+          question: "What effect does the moon have on Earth?",
           type: "multiple-choice",
-          options: ["Digestive system", "Respiratory system", "Muscular system", "Circulatory system"],
-          correctAnswer: "Muscular system",
-          explanation: "The muscular system contains muscles that contract and relax to move your bones and body parts.",
+          options: ["It controls the weather", "It causes ocean tides", "It makes earthquakes", "It changes seasons"],
+          correctAnswer: "It causes ocean tides",
+          explanation: "The moon's gravity pulls on Earth's oceans, causing high and low tides.",
           points: 10
         },
         {
-          question: "What carries messages between your brain and the rest of your body?",
+          question: "Which phase comes right after a Full Moon?",
           type: "multiple-choice",
-          options: ["Blood vessels", "Nerves", "Muscles", "Bones"],
-          correctAnswer: "Nerves",
-          explanation: "Nerves are like electrical wires that carry messages between your brain and all parts of your body.",
+          options: ["New Moon", "Waxing Gibbous", "Waning Gibbous", "First Quarter"],
+          correctAnswer: "Waning Gibbous",
+          explanation: "After a full moon, we see a waning gibbous as the visible part of the moon starts to shrink.",
           points: 10
         },
         {
-          question: "Why is your heart important?",
+          question: "What does 'waxing' mean when describing moon phases?",
           type: "multiple-choice",
-          options: ["It helps you think", "It pumps blood to your whole body", "It helps you digest food", "It stores oxygen"],
-          correctAnswer: "It pumps blood to your whole body",
-          explanation: "Your heart is a muscle that pumps blood containing oxygen and nutrients to every cell in your body.",
+          options: ["The moon is getting smaller", "The moon is getting brighter", "The visible part is getting larger", "The moon is moving faster"],
+          correctAnswer: "The visible part is getting larger",
+          explanation: "Waxing means the visible part of the moon is growing larger each night.",
           points: 10
         },
         {
-          question: "What protects your brain?",
+          question: "Why do we always see the same side of the moon?",
           type: "multiple-choice",
-          options: ["Your hair", "Your skull", "Your skin", "Your muscles"],
-          correctAnswer: "Your skull",
-          explanation: "Your skull is a hard, bony case that protects your brain from injury.",
+          options: ["The moon doesn't rotate", "The moon rotates once for each orbit around Earth", "Earth holds it in place", "The moon is too small to rotate"],
+          correctAnswer: "The moon rotates once for each orbit around Earth",
+          explanation: "The moon rotates at the same rate it orbits Earth, so the same side always faces us.",
           points: 10
         },
         {
-          question: "How do your body systems work together?",
+          question: "During which phase is exactly half of the moon visible?",
           type: "multiple-choice",
-          options: ["They don't work together", "Each system works independently", "They coordinate to keep you healthy and functioning", "Only some systems work together"],
-          correctAnswer: "They coordinate to keep you healthy and functioning",
-          explanation: "All body systems work together as a team - for example, your respiratory and circulatory systems work together to deliver oxygen throughout your body.",
+          options: ["New Moon and Full Moon", "First Quarter and Third Quarter", "Waxing Gibbous and Waning Gibbous", "Waxing Crescent and Waning Crescent"],
+          correctAnswer: "First Quarter and Third Quarter",
+          explanation: "During First Quarter and Third Quarter phases, exactly half of the moon's face is visible from Earth.",
+          points: 10
+        }
+      ]
+    },
+    "waves": {
+      content: {
+        introduction: "Today we'll explore the amazing world of sound and light waves! Waves are all around us, carrying energy from place to place.",
+        mainContent: "Sound waves are vibrations that travel through air, water, or solid materials. When you speak, your vocal cords vibrate, creating sound waves that travel to someone's ears. Sound waves need matter to travel through - that's why there's no sound in space! Light waves are different - they can travel through empty space and that's how sunlight reaches Earth. Light waves travel much faster than sound waves. We can see different colors because light waves have different wavelengths. When light hits objects, it can be absorbed (taken in), reflected (bounced back), or transmitted (passed through).",
+        activities: [
+          "Create a 'telephone' using two cups and a string to see how sound waves travel through solids",
+          "Experiment with different materials (glass, paper, fabric) to see which ones absorb, reflect, or transmit light",
+          "Make different sounds (whisper, shout, musical instruments) and observe how sound waves behave differently"
+        ],
+        funFacts: [
+          "Lightning and thunder happen at the same time, but we see lightning first because light travels much faster than sound!",
+          "Dolphins and bats use sound waves to 'see' by listening to echoes - this is called echolocation!",
+          "Radio waves, microwaves, and X-rays are all types of light waves, just ones our eyes can't see!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What are sound waves?",
+          type: "multiple-choice",
+          options: ["Vibrations that travel through matter", "Light that we can hear", "Electricity in the air", "Wind moving very fast"],
+          correctAnswer: "Vibrations that travel through matter",
+          explanation: "Sound waves are vibrations that travel through air, water, or solid materials to reach our ears.",
+          points: 10
+        },
+        {
+          question: "Why is there no sound in space?",
+          type: "multiple-choice",
+          options: ["Space is too cold", "Sound waves need matter to travel through", "Space is too big", "There are no ears in space"],
+          correctAnswer: "Sound waves need matter to travel through",
+          explanation: "Sound waves need matter (like air) to travel through, and space is mostly empty vacuum.",
+          points: 10
+        },
+        {
+          question: "Which travels faster: light or sound?",
+          type: "multiple-choice",
+          options: ["Light", "Sound", "They travel the same speed", "It depends on the weather"],
+          correctAnswer: "Light",
+          explanation: "Light travels much faster than sound - that's why you see lightning before hearing thunder.",
+          points: 10
+        },
+        {
+          question: "When light hits a mirror, what happens?",
+          type: "multiple-choice",
+          options: ["The light is absorbed", "The light is reflected", "The light is transmitted", "The light disappears"],
+          correctAnswer: "The light is reflected",
+          explanation: "Mirrors reflect light waves, bouncing them back so we can see our reflection.",
+          points: 10
+        },
+        {
+          question: "What makes different colors of light?",
+          type: "multiple-choice",
+          options: ["Different temperatures", "Different wavelengths", "Different volumes", "Different speeds"],
+          correctAnswer: "Different wavelengths",
+          explanation: "Different colors are light waves with different wavelengths - red has long wavelengths, blue has short ones.",
+          points: 10
+        },
+        {
+          question: "How do dolphins use sound waves to find food?",
+          type: "multiple-choice",
+          options: ["They make loud noises to scare fish", "They listen to echoes bouncing back from objects", "They follow the sound of fish swimming", "They use sound to call other dolphins"],
+          correctAnswer: "They listen to echoes bouncing back from objects",
+          explanation: "Dolphins use echolocation - they make sounds and listen to the echoes to locate objects and food.",
+          points: 10
+        },
+        {
+          question: "What happens when you speak into a cup-and-string telephone?",
+          type: "multiple-choice",
+          options: ["Sound waves travel through the string", "The cup makes the sound louder", "The string creates new sounds", "Nothing special happens"],
+          correctAnswer: "Sound waves travel through the string",
+          explanation: "Your voice creates vibrations that travel through the string to the other cup, where they turn back into sound.",
+          points: 10
+        },
+        {
+          question: "Why can we see the sun's light even though it's 93 million miles away?",
+          type: "multiple-choice",
+          options: ["The sun is very bright", "Light waves can travel through empty space", "Earth pulls the light toward us", "The light bounces off planets"],
+          correctAnswer: "Light waves can travel through empty space",
+          explanation: "Unlike sound waves, light waves don't need matter to travel through - they can cross empty space.",
+          points: 10
+        },
+        {
+          question: "When you shout in a large empty room, why do you hear an echo?",
+          type: "multiple-choice",
+          options: ["Sound waves bounce off the walls and return to you", "The room creates new sounds", "Your voice gets louder in big spaces", "Air moves differently in empty rooms"],
+          correctAnswer: "Sound waves bounce off the walls and return to you",
+          explanation: "Echoes happen when sound waves reflect off surfaces and return to your ears after a short delay.",
+          points: 10
+        },
+        {
+          question: "What type of wave would you use to cook food quickly?",
+          type: "multiple-choice",
+          options: ["Sound waves", "Microwaves", "Water waves", "Air waves"],
+          correctAnswer: "Microwaves",
+          explanation: "Microwaves are a type of light wave that can heat food by making water molecules vibrate rapidly.",
+          points: 10
+        }
+      ]
+    },
+    "matter": {
+      content: {
+        introduction: "Everything around you is made of matter! Today we'll explore the properties of matter and how it can change from one form to another.",
+        mainContent: "Matter is anything that takes up space and has mass. All matter is made of tiny particles called atoms and molecules. Matter exists in different states: solids (particles packed tightly together), liquids (particles can slide past each other), and gases (particles spread far apart and move freely). Matter has properties we can observe: color, texture, hardness, flexibility, and whether it's magnetic. Some changes are physical (like melting ice) where the matter stays the same but changes form. Other changes are chemical (like burning wood) where new substances are created.",
+        activities: [
+          "Experiment with ice cubes: observe them melt (solid to liquid) and then evaporate (liquid to gas)",
+          "Test different materials to see which are magnetic, which conduct electricity, and which dissolve in water",
+          "Mix baking soda and vinegar to observe a chemical change that produces gas bubbles"
+        ],
+        funFacts: [
+          "Diamond and pencil lead are both made of carbon - the same atoms arranged differently!",
+          "A gas called helium makes balloons float because it's lighter than air!",
+          "When you burn a candle, the wax doesn't disappear - it changes into carbon dioxide gas and water vapor!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is matter?",
+          type: "multiple-choice",
+          options: ["Only things we can see", "Anything that takes up space and has mass", "Only solid objects", "Only living things"],
+          correctAnswer: "Anything that takes up space and has mass",
+          explanation: "Matter includes all substances - solids, liquids, and gases - that take up space and have mass.",
+          points: 10
+        },
+        {
+          question: "In which state of matter are particles packed most tightly together?",
+          type: "multiple-choice",
+          options: ["Gas", "Liquid", "Solid", "Plasma"],
+          correctAnswer: "Solid",
+          explanation: "In solids, particles are packed tightly together and can only vibrate in place.",
+          points: 10
+        },
+        {
+          question: "When ice melts into water, what type of change is this?",
+          type: "multiple-choice",
+          options: ["Chemical change", "Physical change", "Nuclear change", "No change"],
+          correctAnswer: "Physical change",
+          explanation: "Melting is a physical change - the ice changes form but is still the same substance (H₂O).",
+          points: 10
+        },
+        {
+          question: "What happens during a chemical change?",
+          type: "multiple-choice",
+          options: ["Matter changes state", "New substances are formed", "Objects change color only", "Nothing really changes"],
+          correctAnswer: "New substances are formed",
+          explanation: "In chemical changes, atoms rearrange to form completely new substances with different properties.",
+          points: 10
+        },
+        {
+          question: "Which of these is a property of matter?",
+          type: "multiple-choice",
+          options: ["Color", "Hardness", "Whether it's magnetic", "All of the above"],
+          correctAnswer: "All of the above",
+          explanation: "Color, hardness, magnetism, and many other characteristics are all properties of matter.",
+          points: 10
+        },
+        {
+          question: "Why do gases expand to fill their container?",
+          type: "multiple-choice",
+          options: ["Gas particles are spread far apart and move freely", "Gases are always hot", "Gases are lighter than air", "Gases have no mass"],
+          correctAnswer: "Gas particles are spread far apart and move freely",
+          explanation: "Gas particles have lots of space between them and move in all directions, filling available space.",
+          points: 10
+        },
+        {
+          question: "What makes diamond and pencil lead different even though they're both carbon?",
+          type: "multiple-choice",
+          options: ["They have different atoms", "The carbon atoms are arranged differently", "One has more atoms", "One is not really carbon"],
+          correctAnswer: "The carbon atoms are arranged differently",
+          explanation: "Same atoms arranged differently create materials with completely different properties.",
+          points: 10
+        },
+        {
+          question: "When you mix baking soda and vinegar, what shows a chemical change is happening?",
+          type: "multiple-choice",
+          options: ["The mixture gets cold", "Gas bubbles form", "It changes color", "It becomes solid"],
+          correctAnswer: "Gas bubbles form",
+          explanation: "The gas bubbles are carbon dioxide - a new substance formed by the chemical reaction.",
+          points: 10
+        },
+        {
+          question: "Why does a helium balloon float in air?",
+          type: "multiple-choice",
+          options: ["Helium is magical", "Helium is less dense than air", "Helium is very hot", "Helium pushes against gravity"],
+          correctAnswer: "Helium is less dense than air",
+          explanation: "Helium gas is lighter (less dense) than the surrounding air, so it floats upward.",
+          points: 10
+        },
+        {
+          question: "What are all types of matter made of?",
+          type: "multiple-choice",
+          options: ["Cells", "Atoms and molecules", "Energy", "Light"],
+          correctAnswer: "Atoms and molecules",
+          explanation: "All matter is composed of tiny particles called atoms, which can combine to form molecules.",
           points: 10
         }
       ]
     }
   };
   
-  return scienceContents[topic.concept] || scienceContents["ecosystems"];
+  // Now return based on the specific concept, with proper fallbacks  
+  const conceptMap = {
+    "ecosystems": "ecosystems",
+    "astronomy": "astronomy", 
+    "lunar cycle": "moon_phases",  
+    "waves": "waves",
+    "matter": "matter", 
+    "energy": "energy",
+    "adaptations": "adaptations",
+    "anatomy": "anatomy",
+    "cycles": "cycles",
+    "geology": "geology", 
+    "meteorology": "meteorology"
+  };
+  
+  const mappedConcept = conceptMap[topic.concept] || conceptMap[topic.focus] || "ecosystems";
+  return scienceContents[mappedConcept] || scienceContents["ecosystems"];
 }
 
 function generateHistoryContent4th(topic, week, day) {
