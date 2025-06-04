@@ -54,8 +54,6 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
   const [showResults, setShowResults] = useState(false);
   const [score, setScore] = useState(0);
   const [loading, setLoading] = useState(true);
-  const [submitted, setSubmitted] = useState(false);
-  const [startTime, setStartTime] = useState(0);
 
   useEffect(() => {
     fetchLesson();
