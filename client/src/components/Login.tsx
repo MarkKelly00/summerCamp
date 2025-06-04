@@ -50,11 +50,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
     }
   };
 
-  const quickLogin = (user: string, pass: string) => {
-    setUsername(user);
-    setPassword(pass);
-  };
-
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 px-4">
       <div className="max-w-md w-full">
@@ -111,30 +106,6 @@ const Login: React.FC<LoginProps> = ({ onLogin }) => {
               {loading ? '🔄 Logging in...' : '🚀 Let\'s Go!'}
             </button>
           </form>
-
-          <div className="mt-8 space-y-2">
-            <p className="text-sm text-gray-600 font-kid">Quick Login:</p>
-            <div className="flex space-x-2">
-              <button
-                onClick={() => quickLogin('son', 'son123')}
-                className="fun-button bg-blue-500 text-sm font-kid"
-              >
-                👦 Dean
-              </button>
-              <button
-                onClick={() => quickLogin('daughter', 'daughter123')}
-                className="fun-button bg-pink-500 text-sm font-kid"
-              >
-                👧 Addie
-              </button>
-              <button
-                onClick={() => quickLogin('admin', 'admin123')}
-                className="fun-button bg-gray-600 text-sm font-kid"
-              >
-                👨‍💼 Admin
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </div>
