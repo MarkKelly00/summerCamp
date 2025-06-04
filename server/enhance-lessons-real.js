@@ -486,71 +486,89 @@ function generateGrade2Lesson(week, day) {
   const subjects = ['math', 'reading', 'science'];
   const subject = subjects[day % 3];
   
-  const titles = {
-    math: [
-      "Addition Adventures", "Subtraction Safari", "Place Value Party", "Shape Detective",
-      "Counting Fun", "Number Patterns", "Time Adventures", "Money Math"
-    ],
-    reading: [
-      "Phonics Fun", "Sight Word Safari", "Story Time", "Character Friends",
-      "Vocabulary Builders", "Reading Adventures", "Picture Book Fun", "Word Detective"
-    ],
-    science: [
-      "Plant Power", "Animal Friends", "Weather Watch", "Matter Matters",
-      "Force and Motion", "Space Adventures", "Rock Explorers", "Life Cycles"
-    ]
-  };
+  // Real educational content organized by week and subject
+  const mathTopics = [
+    // Week 1-3: Addition and Subtraction
+    { title: "Adding Numbers to 20", concept: "addition", range: "0-20" },
+    { title: "Subtracting Within 20", concept: "subtraction", range: "0-20" },
+    { title: "Addition and Subtraction Stories", concept: "word problems", range: "0-20" },
+    // Week 4-6: Place Value
+    { title: "Tens and Ones", concept: "place value", range: "10-99" },
+    { title: "Comparing Numbers", concept: "comparison", range: "10-99" },
+    { title: "Skip Counting by 2s, 5s, and 10s", concept: "skip counting", range: "patterns" },
+    // Week 7-9: Measurement and Time
+    { title: "Measuring Length", concept: "measurement", range: "inches/cm" },
+    { title: "Telling Time to the Hour", concept: "time", range: "clocks" },
+    { title: "Money: Coins and Values", concept: "money", range: "penny-quarter" },
+    // Week 10-12: Shapes and Data
+    { title: "2D Shapes Around Us", concept: "geometry", range: "shapes" },
+    { title: "3D Shapes We See", concept: "geometry", range: "solids" },
+    { title: "Making Graphs", concept: "data", range: "bar graphs" }
+  ];
   
-  const titleIndex = (week + day) % titles[subject].length;
+  const readingTopics = [
+    // Week 1-3: Phonics and Sight Words
+    { title: "Short Vowel Sounds", concept: "phonics", focus: "CVC words" },
+    { title: "Long Vowel Magic E", concept: "phonics", focus: "CVCe words" },
+    { title: "High-Frequency Words", concept: "sight words", focus: "common words" },
+    // Week 4-6: Reading Comprehension
+    { title: "Story Characters", concept: "comprehension", focus: "who is in the story" },
+    { title: "Story Settings", concept: "comprehension", focus: "where and when" },
+    { title: "Story Problems and Solutions", concept: "comprehension", focus: "plot elements" },
+    // Week 7-9: Reading Skills
+    { title: "Making Predictions", concept: "prediction", focus: "what happens next" },
+    { title: "Finding the Main Idea", concept: "main idea", focus: "what's it about" },
+    { title: "Comparing Stories", concept: "comparison", focus: "similarities/differences" },
+    // Week 10-12: Reading Fluency
+    { title: "Reading with Expression", concept: "fluency", focus: "emotion in reading" },
+    { title: "Reading Different Genres", concept: "genres", focus: "fiction vs nonfiction" },
+    { title: "Author and Illustrator", concept: "text features", focus: "who creates books" }
+  ];
+  
+  const scienceTopics = [
+    // Week 1-3: Life Science
+    { title: "Plant Life Cycles", concept: "life cycles", focus: "seed to plant" },
+    { title: "Animal Habitats", concept: "habitats", focus: "where animals live" },
+    { title: "Animal Needs", concept: "basic needs", focus: "food, water, shelter" },
+    // Week 4-6: Physical Science
+    { title: "States of Matter", concept: "matter", focus: "solid, liquid, gas" },
+    { title: "Push and Pull Forces", concept: "forces", focus: "motion" },
+    { title: "Simple Machines", concept: "machines", focus: "lever, wheel" },
+    // Week 7-9: Earth Science
+    { title: "Weather and Seasons", concept: "weather", focus: "seasonal changes" },
+    { title: "Day and Night", concept: "earth science", focus: "sun and moon" },
+    { title: "Rocks and Soil", concept: "geology", focus: "earth materials" },
+    // Week 10-12: Space Science
+    { title: "The Sun and Moon", concept: "astronomy", focus: "day/night cycle" },
+    { title: "Stars in the Sky", concept: "astronomy", focus: "constellations" },
+    { title: "Exploring Space", concept: "space", focus: "planets and rockets" }
+  ];
+  
+  const topicIndex = ((week - 1) * 5 + (day - 1)) % 12;
+  let topic, content;
+  
+  if (subject === 'math') {
+    topic = mathTopics[topicIndex];
+    content = generateMathContent2nd(topic, week, day);
+  } else if (subject === 'reading') {
+    topic = readingTopics[topicIndex];
+    content = generateReadingContent2nd(topic, week, day);
+  } else {
+    topic = scienceTopics[topicIndex];
+    content = generateScienceContent2nd(topic, week, day);
+  }
   
   return {
-    title: titles[subject][titleIndex],
+    title: topic.title,
     subject: subject,
     gradeLevel: 2,
     week: week,
     day: day,
-    content: {
-      introduction: `Welcome to today's ${subject} adventure! We're going to learn exciting new concepts that will help you grow as a learner.`,
-      mainContent: `Today we'll explore important ${subject} concepts through hands-on activities and engaging discussions. We'll practice skills that help us understand the world around us.`,
-      activities: [
-        `Practice key ${subject} skills with hands-on activities`,
-        "Work with partners to solve problems and share ideas",
-        "Use creativity to show what you've learned"
-      ],
-      funFacts: [
-        `Did you know that ${subject} is all around us in everyday life?`,
-        "Learning new things helps your brain grow stronger every day!"
-      ]
-    },
-    quiz: [
-      {
-        question: `What is one important thing we learned about ${subject} today?`,
-        type: "multiple-choice",
-        options: ["It's everywhere around us", "It's only in books", "It's not important", "It's too hard"],
-        correctAnswer: "It's everywhere around us",
-        explanation: `${subject.charAt(0).toUpperCase() + subject.slice(1)} concepts help us understand our world better!`,
-        points: 10
-      },
-      {
-        question: "What is the best way to learn new things?",
-        type: "multiple-choice",
-        options: ["Practice and ask questions", "Just memorize everything", "Don't try at all", "Only use technology"],
-        correctAnswer: "Practice and ask questions",
-        explanation: "Active learning through practice and curiosity helps us understand concepts deeply.",
-        points: 10
-      },
-      {
-        question: "How can we apply what we learned today?",
-        type: "multiple-choice",
-        options: ["Look for examples in real life", "Forget about it", "Only use it in school", "Never practice"],
-        correctAnswer: "Look for examples in real life",
-        explanation: "The best learning happens when we connect what we learn to our everyday experiences!",
-        points: 10
-      }
-    ],
-    estimatedTime: 30,
+    content: content.content,
+    quiz: content.quiz,
+    estimatedTime: 25,
     isBonus: false,
-    funMoneyReward: Math.floor(Math.random() * 10) + 10,
+    funMoneyReward: Math.floor(Math.random() * 5) + 10,
     difficulty: "easy"
   };
 }
@@ -559,77 +577,533 @@ function generateGrade4Lesson(week, day) {
   const subjects = ['math', 'reading', 'science', 'history'];
   const subject = subjects[day % 4];
   
-  const titles = {
-    math: [
-      "Multiplication Mastery", "Division Deep Dive", "Fraction Adventures", "Decimal Discoveries",
-      "Geometry Investigations", "Problem Solving", "Data Analysis", "Measurement Math"
-    ],
-    reading: [
-      "Character Analysis", "Plot Adventures", "Theme Exploration", "Text Features",
-      "Compare and Contrast", "Author's Purpose", "Making Inferences", "Critical Thinking"
-    ],
-    science: [
-      "Ecosystem Exploration", "Force and Motion", "Energy Adventures", "Matter Investigations",
-      "Earth Science", "Space Discoveries", "Life Science", "Physical Science"
-    ],
-    history: [
-      "American History", "World Cultures", "Geography Adventures", "Time Periods",
-      "Historical Figures", "Civilizations", "Cultural Studies", "Historical Events"
-    ]
-  };
+  // Real educational content for 4th grade
+  const mathTopics = [
+    // Week 1-3: Multi-digit Operations
+    { title: "Multi-Digit Addition", concept: "addition", range: "1000s" },
+    { title: "Multi-Digit Subtraction", concept: "subtraction", range: "1000s" },
+    { title: "Multiplication Facts", concept: "multiplication", range: "times tables" },
+    // Week 4-6: Fractions
+    { title: "Understanding Fractions", concept: "fractions", range: "parts of whole" },
+    { title: "Equivalent Fractions", concept: "fractions", range: "same value" },
+    { title: "Adding Fractions", concept: "fractions", range: "same denominator" },
+    // Week 7-9: Decimals and Measurement
+    { title: "Introduction to Decimals", concept: "decimals", range: "tenths/hundredths" },
+    { title: "Area and Perimeter", concept: "measurement", range: "rectangles" },
+    { title: "Converting Units", concept: "measurement", range: "metric/standard" },
+    // Week 10-12: Geometry and Data
+    { title: "Angles and Lines", concept: "geometry", range: "acute/obtuse/right" },
+    { title: "Coordinate Graphing", concept: "graphing", range: "ordered pairs" },
+    { title: "Data Analysis", concept: "statistics", range: "mean/median/mode" }
+  ];
   
-  const titleIndex = (week + day) % titles[subject].length;
+  const readingTopics = [
+    // Week 1-3: Literary Analysis
+    { title: "Character Development", concept: "characters", focus: "traits and motivation" },
+    { title: "Plot Structure", concept: "plot", focus: "beginning/middle/end" },
+    { title: "Theme and Message", concept: "theme", focus: "lesson of story" },
+    // Week 4-6: Reading Strategies
+    { title: "Making Inferences", concept: "inference", focus: "reading between lines" },
+    { title: "Cause and Effect", concept: "relationships", focus: "what happens why" },
+    { title: "Compare and Contrast", concept: "comparison", focus: "similarities/differences" },
+    // Week 7-9: Text Features
+    { title: "Nonfiction Text Features", concept: "text features", focus: "headings/captions" },
+    { title: "Author's Purpose", concept: "purpose", focus: "inform/persuade/entertain" },
+    { title: "Point of View", concept: "perspective", focus: "who tells story" },
+    // Week 10-12: Critical Reading
+    { title: "Fact vs Opinion", concept: "critical thinking", focus: "truth vs belief" },
+    { title: "Research Skills", concept: "research", focus: "finding information" },
+    { title: "Poetry Elements", concept: "poetry", focus: "rhyme/rhythm/metaphor" }
+  ];
+  
+  const scienceTopics = [
+    // Week 1-3: Life Science
+    { title: "Food Chains and Webs", concept: "ecosystems", focus: "energy flow" },
+    { title: "Plant and Animal Adaptations", concept: "adaptations", focus: "survival features" },
+    { title: "Human Body Systems", concept: "anatomy", focus: "organs work together" },
+    // Week 4-6: Physical Science
+    { title: "Properties of Matter", concept: "matter", focus: "physical/chemical" },
+    { title: "Energy and Motion", concept: "energy", focus: "kinetic/potential" },
+    { title: "Sound and Light Waves", concept: "waves", focus: "vibration/reflection" },
+    // Week 7-9: Earth Science
+    { title: "Water Cycle", concept: "cycles", focus: "evaporation/precipitation" },
+    { title: "Rock Cycle", concept: "geology", focus: "igneous/sedimentary/metamorphic" },
+    { title: "Weather Systems", concept: "meteorology", focus: "fronts/pressure" },
+    // Week 10-12: Space Science
+    { title: "Solar System", concept: "astronomy", focus: "planets and sun" },
+    { title: "Moon Phases", concept: "astronomy", focus: "lunar cycle" },
+    { title: "Earth's Rotation", concept: "astronomy", focus: "day/night/seasons" }
+  ];
+  
+  const historyTopics = [
+    // Week 1-3: Early America
+    { title: "Native American Cultures", concept: "indigenous peoples", focus: "before Europeans" },
+    { title: "European Exploration", concept: "exploration", focus: "Columbus and others" },
+    { title: "Colonial Life", concept: "colonies", focus: "daily life in 1600s-1700s" },
+    // Week 4-6: American Revolution
+    { title: "Causes of Revolution", concept: "revolution", focus: "taxes and freedom" },
+    { title: "Revolutionary War", concept: "war", focus: "fighting for independence" },
+    { title: "Founding Fathers", concept: "leaders", focus: "Washington/Jefferson/Franklin" },
+    // Week 7-9: Westward Expansion
+    { title: "Pioneer Life", concept: "pioneers", focus: "moving west" },
+    { title: "California Gold Rush", concept: "migration", focus: "seeking fortune" },
+    { title: "Transcontinental Railroad", concept: "transportation", focus: "connecting country" },
+    // Week 10-12: Industrial Revolution
+    { title: "Inventions Change Life", concept: "technology", focus: "machines and factories" },
+    { title: "Immigration to America", concept: "immigration", focus: "people seeking new life" },
+    { title: "Growth of Cities", concept: "urbanization", focus: "farms to cities" }
+  ];
+  
+  const topicIndex = ((week - 1) * 5 + (day - 1)) % 12;
+  let topic, content;
+  
+  if (subject === 'math') {
+    topic = mathTopics[topicIndex];
+    content = generateMathContent4th(topic, week, day);
+  } else if (subject === 'reading') {
+    topic = readingTopics[topicIndex];
+    content = generateReadingContent4th(topic, week, day);
+  } else if (subject === 'science') {
+    topic = scienceTopics[topicIndex];
+    content = generateScienceContent4th(topic, week, day);
+  } else {
+    topic = historyTopics[topicIndex];
+    content = generateHistoryContent4th(topic, week, day);
+  }
   
   return {
-    title: titles[subject][titleIndex],
+    title: topic.title,
     subject: subject,
     gradeLevel: 4,
     week: week,
     day: day,
-    content: {
-      introduction: `Welcome to advanced ${subject}! Today we'll tackle challenging concepts and develop critical thinking skills.`,
-      mainContent: `In this lesson, we'll explore complex ${subject} topics through investigation, analysis, and problem-solving. We'll use evidence and reasoning to support our conclusions.`,
-      activities: [
-        `Analyze complex ${subject} concepts using multiple strategies`,
-        "Collaborate with peers to solve challenging problems",
-        "Create presentations or projects to demonstrate understanding"
-      ],
-      funFacts: [
-        `Advanced ${subject} skills help us understand complex systems and relationships!`,
-        "Critical thinking skills in one subject area help us in all areas of learning!"
-      ]
-    },
-    quiz: [
-      {
-        question: `What makes ${subject} concepts more complex at this level?`,
-        type: "multiple-choice",
-        options: ["They involve multiple steps and connections", "They're just harder words", "They're impossible to understand", "They don't relate to anything"],
-        correctAnswer: "They involve multiple steps and connections",
-        explanation: `Advanced ${subject} requires us to think about relationships between different concepts and ideas.`,
-        points: 10
-      },
-      {
-        question: "How should we approach challenging problems?",
-        type: "multiple-choice",
-        options: ["Break them into smaller parts", "Give up immediately", "Guess randomly", "Only use one strategy"],
-        correctAnswer: "Break them into smaller parts",
-        explanation: "Breaking complex problems into manageable pieces helps us solve them step by step.",
-        points: 10
-      },
-      {
-        question: "What is most important when learning advanced concepts?",
-        type: "multiple-choice",
-        options: ["Understanding connections and reasoning", "Memorizing everything", "Working alone always", "Avoiding mistakes"],
-        correctAnswer: "Understanding connections and reasoning",
-        explanation: "Deep understanding comes from seeing how concepts connect and being able to explain our reasoning.",
-        points: 10
-      }
-    ],
-    estimatedTime: 40,
+    content: content.content,
+    quiz: content.quiz,
+    estimatedTime: 35,
     isBonus: false,
-    funMoneyReward: Math.floor(Math.random() * 15) + 15,
+    funMoneyReward: Math.floor(Math.random() * 10) + 15,
     difficulty: "medium"
   };
+}
+
+// Content generation functions for 2nd grade
+function generateMathContent2nd(topic, week, day) {
+  const mathContents = {
+    "addition": {
+      content: {
+        introduction: "Today we're going to practice adding numbers! Addition means putting numbers together to find how many you have in total.",
+        mainContent: "When we add, we can count forward from the bigger number. For example, 8 + 5: start at 8 and count 5 more (9, 10, 11, 12, 13). We can also use our fingers, draw pictures, or use objects like beans or coins to help us add. Try these strategies: doubles (7+7=14), near doubles (7+8 is just one more than 7+7), and making 10 (8+6 = 8+2+4 = 10+4 = 14).",
+        activities: [
+          "Use household items (beans, coins, toys) to make addition problems and solve them",
+          "Practice addition facts by writing them 5 times each: 6+4=10, 7+3=10, 8+2=10",
+          "Find addition in real life: count books on a shelf, then count books on another shelf, add them together"
+        ],
+        funFacts: [
+          "Did you know you can add numbers in any order? 5+3 is the same as 3+5!",
+          "Your brain actually does addition automatically when you see groups of things!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is 9 + 4?",
+          type: "multiple-choice",
+          options: ["12", "13", "14", "15"],
+          correctAnswer: "13",
+          explanation: "9 + 4 = 13. You can count forward from 9: 10, 11, 12, 13!",
+          points: 10
+        },
+        {
+          question: "If you have 7 stickers and find 6 more stickers, how many stickers do you have altogether?",
+          type: "multiple-choice",
+          options: ["12", "13", "14", "15"],
+          correctAnswer: "13",
+          explanation: "7 + 6 = 13 stickers! You can use the doubles strategy: 6+6=12, so 7+6=13.",
+          points: 10
+        },
+        {
+          question: "Which number sentence shows the same amount as 5 + 8?",
+          type: "multiple-choice",
+          options: ["8 + 5", "5 + 3", "8 - 5", "5 - 8"],
+          correctAnswer: "8 + 5",
+          explanation: "5 + 8 = 8 + 5 because you can add numbers in any order!",
+          points: 10
+        }
+      ]
+    },
+    "subtraction": {
+      content: {
+        introduction: "Today we're learning about subtraction! Subtraction means taking away or finding the difference between numbers.",
+        mainContent: "When we subtract, we start with a number and take some away. For 15 - 7, we can count backwards from 15 seven times, or we can think 'what plus 7 equals 15?' We can use objects to help: start with 15 items, take away 7, and count what's left. Another strategy is to use a number line - start at 15 and jump back 7 spaces.",
+        activities: [
+          "Use toys or snacks to practice subtraction: start with 12 items, take away 5, count what remains",
+          "Draw pictures to solve subtraction problems: draw 14 circles, cross out 6, count what's left",
+          "Practice subtraction facts that you'll use often: 10-3=7, 10-4=6, 10-5=5"
+        ],
+        funFacts: [
+          "Subtraction is the opposite of addition! If 8+5=13, then 13-5=8!",
+          "You use subtraction when you figure out how much change you should get when buying something!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is 14 - 6?",
+          type: "multiple-choice",
+          options: ["6", "7", "8", "9"],
+          correctAnswer: "8",
+          explanation: "14 - 6 = 8. You can think: what plus 6 equals 14? The answer is 8!",
+          points: 10
+        },
+        {
+          question: "You have 16 candies and eat 9 of them. How many candies do you have left?",
+          type: "multiple-choice",
+          options: ["6", "7", "8", "9"],
+          correctAnswer: "7",
+          explanation: "16 - 9 = 7 candies left. You can count back from 16 or think 9 + ? = 16.",
+          points: 10
+        },
+        {
+          question: "If 7 + 8 = 15, what is 15 - 8?",
+          type: "multiple-choice",
+          options: ["6", "7", "8", "9"],
+          correctAnswer: "7",
+          explanation: "15 - 8 = 7. Addition and subtraction are opposites, so if 7+8=15, then 15-8=7!",
+          points: 10
+        }
+      ]
+    }
+  };
+  
+  return mathContents[topic.concept] || mathContents["addition"];
+}
+
+function generateReadingContent2nd(topic, week, day) {
+  const readingContents = {
+    "phonics": {
+      content: {
+        introduction: "Today we're going to learn about sounds that letters make! These sounds help us read and spell words.",
+        mainContent: "Short vowel sounds are the sounds a, e, i, o, u make in simple words. A says 'ah' like in 'cat', E says 'eh' like in 'bed', I says 'ih' like in 'sit', O says 'oh' like in 'hot', and U says 'uh' like in 'bug'. When we see a word like 'cat', we sound out each letter: c-a-t, then blend them together: cat!",
+        activities: [
+          "Find 10 objects around your house that have short vowel sounds (hat, pen, lip, pot, cup)",
+          "Practice writing and saying CVC words: bat, bet, bit, bot, but",
+          "Play 'I Spy' with short vowel words: 'I spy something that rhymes with hat' (cat, mat, bat)"
+        ],
+        funFacts: [
+          "The word 'vowel' comes from a Latin word meaning 'voice' because vowels are the sounds we make with our voice!",
+          "Every English word has at least one vowel sound in it!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What sound does the 'a' make in the word 'cat'?",
+          type: "multiple-choice",
+          options: ["ay (like in cake)", "ah (like in cat)", "aw (like in saw)", "ar (like in car)"],
+          correctAnswer: "ah (like in cat)",
+          explanation: "In 'cat', the 'a' makes the short vowel sound 'ah'.",
+          points: 10
+        },
+        {
+          question: "Which word has the same vowel sound as 'bed'?",
+          type: "multiple-choice",
+          options: ["bat", "bet", "bit", "but"],
+          correctAnswer: "bet",
+          explanation: "Both 'bed' and 'bet' have the short 'e' sound that says 'eh'.",
+          points: 10
+        },
+        {
+          question: "How do we read a new word we've never seen before?",
+          type: "multiple-choice",
+          options: ["Guess what it might be", "Sound out each letter, then blend them", "Skip it and keep reading", "Ask someone else"],
+          correctAnswer: "Sound out each letter, then blend them",
+          explanation: "Sounding out letters and blending them together helps us read new words!",
+          points: 10
+        }
+      ]
+    }
+  };
+  
+  return readingContents[topic.concept] || readingContents["phonics"];
+}
+
+function generateScienceContent2nd(topic, week, day) {
+  const scienceContents = {
+    "life cycles": {
+      content: {
+        introduction: "Today we're going to learn about how plants grow and change! All plants start as tiny seeds and grow into big plants.",
+        mainContent: "A plant's life cycle starts with a seed. Inside the seed is a tiny baby plant. When the seed gets water, warmth, and air, it begins to sprout (this is called germination). First, roots grow down into the soil to get water and food. Then a shoot grows up toward the sun. The shoot develops leaves that use sunlight to make food for the plant. When the plant is fully grown, it can make flowers and new seeds, starting the cycle all over again!",
+        activities: [
+          "Plant bean seeds in a clear jar with wet paper towels so you can watch the roots and shoots grow",
+          "Draw the plant life cycle: seed → roots → shoot → leaves → adult plant → flowers → new seeds",
+          "Look for plants at different stages in your yard or neighborhood - find seedlings, young plants, and adult plants"
+        ],
+        funFacts: [
+          "Some seeds can sleep for hundreds of years before they start growing!",
+          "The oldest living tree is over 4,800 years old and still growing!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What do seeds need to start growing?",
+          type: "multiple-choice",
+          options: ["Only water", "Water, warmth, and air", "Only sunlight", "Only soil"],
+          correctAnswer: "Water, warmth, and air",
+          explanation: "Seeds need water to soften, warmth to wake up, and air to breathe - just like us!",
+          points: 10
+        },
+        {
+          question: "What grows first when a seed starts to sprout?",
+          type: "multiple-choice",
+          options: ["Leaves", "Flowers", "Roots", "Fruits"],
+          correctAnswer: "Roots",
+          explanation: "Roots grow first to anchor the plant and find water and nutrients in the soil.",
+          points: 10
+        },
+        {
+          question: "What do leaves use to make food for the plant?",
+          type: "multiple-choice",
+          options: ["Moonlight", "Sunlight", "Wind", "Rain"],
+          correctAnswer: "Sunlight",
+          explanation: "Leaves use sunlight to make food for the plant through a process called photosynthesis.",
+          points: 10
+        }
+      ]
+    }
+  };
+  
+  return scienceContents[topic.concept] || scienceContents["life cycles"];
+}
+
+// Content generation functions for 4th grade
+function generateMathContent4th(topic, week, day) {
+  const mathContents = {
+    "multiplication": {
+      content: {
+        introduction: "Today we're mastering multiplication! Multiplication is a fast way to add equal groups together.",
+        mainContent: "Multiplication shows repeated addition. 4 × 6 means 'four groups of six' or 6+6+6+6 = 24. We can visualize this with arrays (rectangles of objects) or skip counting. The multiplication table shows patterns: products of 5 always end in 0 or 5, products of 2 are always even. To multiply larger numbers, we can break them apart: 4 × 16 = 4 × (10 + 6) = (4 × 10) + (4 × 6) = 40 + 24 = 64.",
+        activities: [
+          "Create arrays with household items to show multiplication: arrange 24 items in different rectangles (3×8, 4×6, 2×12)",
+          "Practice skip counting for times tables: 3, 6, 9, 12, 15... (3 times table)",
+          "Find multiplication in real life: eggs in cartons (2×6=12), floor tiles (8×8=64), ice cube trays"
+        ],
+        funFacts: [
+          "Ancient Babylonians used multiplication tables over 4,000 years ago!",
+          "The largest number with a commonly known name is a googol (1 followed by 100 zeros)!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is 7 × 8?",
+          type: "multiple-choice",
+          options: ["54", "56", "63", "64"],
+          correctAnswer: "56",
+          explanation: "7 × 8 = 56. You can think of it as 8 groups of 7, or skip count by 7s eight times.",
+          points: 10
+        },
+        {
+          question: "If there are 6 boxes with 9 pencils in each box, how many pencils are there total?",
+          type: "multiple-choice",
+          options: ["52", "54", "56", "58"],
+          correctAnswer: "54",
+          explanation: "6 × 9 = 54 pencils. This shows how multiplication helps solve real-world problems quickly!",
+          points: 10
+        },
+        {
+          question: "What is 4 × 25?",
+          type: "multiple-choice",
+          options: ["90", "95", "100", "105"],
+          correctAnswer: "100",
+          explanation: "4 × 25 = 100. You can think of it as 4 × (20 + 5) = (4 × 20) + (4 × 5) = 80 + 20 = 100.",
+          points: 10
+        }
+      ]
+    },
+    "fractions": {
+      content: {
+        introduction: "Welcome to the world of fractions! Fractions help us describe parts of wholes and make precise measurements.",
+        mainContent: "A fraction shows part of a whole. The bottom number (denominator) tells us how many equal parts the whole is divided into. The top number (numerator) tells us how many parts we're talking about. 3/4 means 3 parts out of 4 equal parts. We can see fractions everywhere: pizza slices, pie pieces, measuring cups. Equivalent fractions show the same amount but use different numbers: 1/2 = 2/4 = 3/6.",
+        activities: [
+          "Cut paper circles into halves, fourths, and eighths to see how fractions relate to each other",
+          "Use measuring cups to explore fractions: 1/4 cup + 1/4 cup = 1/2 cup",
+          "Find fractions in your kitchen: look at measuring spoons, recipe ingredients, food packaging"
+        ],
+        funFacts: [
+          "Ancient Egyptians used fractions over 4,000 years ago, but they mostly used unit fractions (fractions with 1 on top)!",
+          "The word 'fraction' comes from the Latin word 'fractus' meaning 'broken'!"
+        ]
+      },
+      quiz: [
+        {
+          question: "In the fraction 3/8, what does the 8 tell us?",
+          type: "multiple-choice",
+          options: ["How many parts we have", "How many equal parts the whole is divided into", "How big each part is", "How many wholes there are"],
+          correctAnswer: "How many equal parts the whole is divided into",
+          explanation: "The denominator (bottom number) tells us how many equal parts make up the whole.",
+          points: 10
+        },
+        {
+          question: "Which fraction is equivalent to 1/2?",
+          type: "multiple-choice",
+          options: ["1/4", "2/4", "1/3", "3/4"],
+          correctAnswer: "2/4",
+          explanation: "2/4 = 1/2 because both represent half of something, just divided differently.",
+          points: 10
+        },
+        {
+          question: "If you eat 2/8 of a pizza and your friend eats 3/8 of the same pizza, how much pizza did you eat together?",
+          type: "multiple-choice",
+          options: ["5/16", "5/8", "2/3", "6/8"],
+          correctAnswer: "5/8",
+          explanation: "2/8 + 3/8 = 5/8. When fractions have the same denominator, we just add the numerators!",
+          points: 10
+        }
+      ]
+    }
+  };
+  
+  return mathContents[topic.concept] || mathContents["multiplication"];
+}
+
+function generateReadingContent4th(topic, week, day) {
+  const readingContents = {
+    "characters": {
+      content: {
+        introduction: "Today we're going to explore story characters and what makes them interesting! Characters are the people, animals, or creatures in stories.",
+        mainContent: "Characters have traits (qualities that describe them) and motivations (reasons for their actions). We learn about characters through what they say, do, think, and how others react to them. Main characters change and grow throughout the story, while supporting characters help move the plot along. We can describe characters using adjectives like brave, curious, stubborn, or kind. Understanding characters helps us understand why they make certain choices in the story.",
+        activities: [
+          "Choose a favorite book character and create a character profile: list their traits, motivations, and how they change",
+          "Write a character diary entry: imagine you are the character and write about your thoughts and feelings",
+          "Compare two characters from different stories: how are they similar and different?"
+        ],
+        funFacts: [
+          "The word 'character' comes from a Greek word meaning 'to engrave' - like characters are engraved in our memory!",
+          "Some characters, like Sherlock Holmes, are so famous they seem like real people to many readers!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What are character traits?",
+          type: "multiple-choice",
+          options: ["The places characters go", "The qualities that describe what characters are like", "The things characters own", "The jobs characters have"],
+          correctAnswer: "The qualities that describe what characters are like",
+          explanation: "Character traits are qualities like brave, funny, or stubborn that tell us what a character is like as a person.",
+          points: 10
+        },
+        {
+          question: "How can we learn about a character in a story?",
+          type: "multiple-choice",
+          options: ["Only by what they look like", "By what they say, do, and think", "Only by their name", "Only by where they live"],
+          correctAnswer: "By what they say, do, and think",
+          explanation: "We learn about characters through their words, actions, thoughts, and how others react to them.",
+          points: 10
+        },
+        {
+          question: "What is a character's motivation?",
+          type: "multiple-choice",
+          options: ["How fast they can run", "The reason why they do something", "What they look like", "Where they were born"],
+          correctAnswer: "The reason why they do something",
+          explanation: "Motivation is what drives a character to act - their reasons, goals, and desires.",
+          points: 10
+        }
+      ]
+    }
+  };
+  
+  return readingContents[topic.concept] || readingContents["characters"];
+}
+
+function generateScienceContent4th(topic, week, day) {
+  const scienceContents = {
+    "ecosystems": {
+      content: {
+        introduction: "Welcome to the amazing world of ecosystems! Today we'll explore how all living things are connected through food chains and energy flow.",
+        mainContent: "An ecosystem includes all living and non-living things in an area working together. Energy flows from the sun to producers (plants that make their own food) to primary consumers (plant-eaters) to secondary consumers (meat-eaters). A food chain shows this flow: grass → rabbit → fox. Food webs show how multiple food chains connect. Decomposers like bacteria and fungi break down dead organisms, returning nutrients to the soil for plants to use again.",
+        activities: [
+          "Create a food web poster for a local ecosystem (forest, pond, or grassland) showing at least 8 organisms and their connections",
+          "Research and write about one animal's role in its ecosystem: what it eats, what eats it, and how it helps other organisms",
+          "Observe a small ecosystem in your yard or a park: identify producers, consumers, and decomposers"
+        ],
+        funFacts: [
+          "Wolves in Yellowstone changed the shape of rivers by controlling deer populations, which allowed trees to grow back along riverbanks!",
+          "One teaspoon of soil contains more organisms than there are people on Earth!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What are producers in an ecosystem?",
+          type: "multiple-choice",
+          options: ["Animals that hunt other animals", "Plants that make their own food using sunlight", "Animals that eat plants", "Organisms that break down dead things"],
+          correctAnswer: "Plants that make their own food using sunlight",
+          explanation: "Producers are plants and some bacteria that can make their own food using sunlight through photosynthesis.",
+          points: 10
+        },
+        {
+          question: "In the food chain: grass → grasshopper → frog → snake, what is the frog?",
+          type: "multiple-choice",
+          options: ["Producer", "Primary consumer", "Secondary consumer", "Decomposer"],
+          correctAnswer: "Secondary consumer",
+          explanation: "The frog is a secondary consumer because it eats the grasshopper (primary consumer) that ate the grass (producer).",
+          points: 10
+        },
+        {
+          question: "What would happen if all the decomposers disappeared from an ecosystem?",
+          type: "multiple-choice",
+          options: ["Nothing would change", "Dead plants and animals would pile up and nutrients wouldn't be recycled", "There would be more food for animals", "Plants would grow faster"],
+          correctAnswer: "Dead plants and animals would pile up and nutrients wouldn't be recycled",
+          explanation: "Decomposers are essential because they break down dead organisms and return nutrients to the soil for plants to use.",
+          points: 10
+        }
+      ]
+    }
+  };
+  
+  return scienceContents[topic.concept] || scienceContents["ecosystems"];
+}
+
+function generateHistoryContent4th(topic, week, day) {
+  const historyContents = {
+    "indigenous peoples": {
+      content: {
+        introduction: "Today we'll learn about the Native American peoples who lived in North America for thousands of years before Europeans arrived.",
+        mainContent: "Native American tribes had diverse cultures, languages, and ways of life. Plains tribes like the Lakota followed buffalo herds and lived in tipis they could move easily. Woodland tribes like the Iroquois lived in longhouses and grew crops like corn, beans, and squash (called the 'Three Sisters'). Southwest tribes like the Pueblo built adobe homes and developed advanced farming techniques. Each tribe had its own government, traditions, and beliefs, often living in harmony with nature.",
+        activities: [
+          "Research one Native American tribe and create a fact sheet about their homes, food, and customs",
+          "Make a map showing where different Native American tribes lived across North America",
+          "Learn about the 'Three Sisters' planting method and why corn, beans, and squash grow well together"
+        ],
+        funFacts: [
+          "There were over 500 different Native American tribes in North America, each with their own language and culture!",
+          "Native Americans gave us many foods we eat today: corn, potatoes, tomatoes, chocolate, and turkey!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What were the 'Three Sisters' that many Native American tribes grew?",
+          type: "multiple-choice",
+          options: ["Corn, beans, and squash", "Wheat, rice, and oats", "Apples, oranges, and pears", "Carrots, potatoes, and onions"],
+          correctAnswer: "Corn, beans, and squash",
+          explanation: "The Three Sisters - corn, beans, and squash - were grown together because they helped each other grow better.",
+          points: 10
+        },
+        {
+          question: "How did Plains tribes like the Lakota adapt to their environment?",
+          type: "multiple-choice",
+          options: ["They built permanent stone houses", "They followed buffalo herds and lived in portable tipis", "They lived only near the ocean", "They never moved from one place"],
+          correctAnswer: "They followed buffalo herds and lived in portable tipis",
+          explanation: "Plains tribes followed the buffalo that provided food, clothing, and shelter materials, so they needed homes they could move easily.",
+          points: 10
+        },
+        {
+          question: "How many different Native American tribes existed in North America?",
+          type: "multiple-choice",
+          options: ["About 50", "About 100", "About 250", "Over 500"],
+          correctAnswer: "Over 500",
+          explanation: "There were over 500 different Native American tribes, each with their own unique culture, language, and traditions.",
+          points: 10
+        }
+      ]
+    }
+  };
+  
+  return historyContents[topic.concept] || historyContents["indigenous peoples"];
 }
 
 // Run the enhancement
