@@ -1710,6 +1710,594 @@ function generateScienceContent4th(topic, week, day) {
           points: 10
         }
       ]
+    },
+    "energy": {
+      content: {
+        introduction: "Energy is everywhere! Today we'll explore the different forms of energy and how energy can change from one form to another.",
+        mainContent: "Energy is the ability to do work or cause changes. There are two main types of energy: kinetic energy (energy of motion) and potential energy (stored energy). Kinetic energy includes moving objects like a rolling ball or flowing water. Potential energy includes a book on a shelf or stretched rubber band. Energy can transform from one form to another. When you ride a bike, chemical energy from food becomes kinetic energy in your muscles. At the top of a roller coaster, you have potential energy that becomes kinetic energy as you speed down. Energy cannot be created or destroyed, only changed from one form to another.",
+        activities: [
+          "Build a simple pendulum using string and a small weight - observe how potential energy changes to kinetic energy and back",
+          "Create an energy transformation chart showing how a windmill converts wind energy to electrical energy",
+          "Design and test paper airplanes to see how potential energy (your throw) becomes kinetic energy (flight)"
+        ],
+        funFacts: [
+          "Lightning contains enough energy to power a 100-watt light bulb for 3 months!",
+          "Your body produces enough heat energy every day to boil 2 gallons of water!",
+          "A hummingbird's wings beat so fast they store and release energy 80 times per second!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is energy?",
+          type: "multiple-choice",
+          options: ["Only electricity", "The ability to do work or cause changes", "Only heat", "Only light"],
+          correctAnswer: "The ability to do work or cause changes",
+          explanation: "Energy is the ability to do work or cause changes - it comes in many forms including motion, heat, light, and electricity.",
+          points: 10
+        },
+        {
+          question: "Which type of energy does a moving bicycle have?",
+          type: "multiple-choice",
+          options: ["Potential energy", "Kinetic energy", "Chemical energy", "Nuclear energy"],
+          correctAnswer: "Kinetic energy",
+          explanation: "A moving bicycle has kinetic energy because kinetic energy is the energy of motion.",
+          points: 10
+        },
+        {
+          question: "When you stretch a rubber band, what type of energy does it have?",
+          type: "multiple-choice",
+          options: ["Kinetic energy", "Potential energy", "Heat energy", "Sound energy"],
+          correctAnswer: "Potential energy",
+          explanation: "A stretched rubber band has potential energy - stored energy that can be released when you let go.",
+          points: 10
+        },
+        {
+          question: "What happens to energy when it changes from one form to another?",
+          type: "multiple-choice",
+          options: ["It disappears", "It is destroyed", "It transforms but the total amount stays the same", "It doubles"],
+          correctAnswer: "It transforms but the total amount stays the same",
+          explanation: "Energy cannot be created or destroyed, only transformed from one form to another.",
+          points: 10
+        },
+        {
+          question: "Which shows energy transformation?",
+          type: "multiple-choice",
+          options: ["A book sitting on a table", "A flashlight converting battery energy to light energy", "A rock on the ground", "Water in a glass"],
+          correctAnswer: "A flashlight converting battery energy to light energy",
+          explanation: "A flashlight transforms chemical energy from batteries into light energy and heat energy.",
+          points: 10
+        },
+        {
+          question: "What type of energy does food provide for your body?",
+          type: "multiple-choice",
+          options: ["Electrical energy", "Chemical energy", "Nuclear energy", "Magnetic energy"],
+          correctAnswer: "Chemical energy",
+          explanation: "Food contains chemical energy that your body converts into energy for movement and body functions.",
+          points: 10
+        },
+        {
+          question: "At the top of a roller coaster hill, you have the most:",
+          type: "multiple-choice",
+          options: ["Kinetic energy", "Potential energy", "Sound energy", "Light energy"],
+          correctAnswer: "Potential energy",
+          explanation: "At the highest point, you have maximum potential energy that will convert to kinetic energy as you go down.",
+          points: 10
+        },
+        {
+          question: "Which of these converts wind energy into electrical energy?",
+          type: "multiple-choice",
+          options: ["Solar panel", "Wind turbine", "Battery", "Light bulb"],
+          correctAnswer: "Wind turbine",
+          explanation: "Wind turbines use the kinetic energy of moving air to generate electrical energy.",
+          points: 10
+        },
+        {
+          question: "When you rub your hands together quickly, kinetic energy becomes:",
+          type: "multiple-choice",
+          options: ["Light energy", "Heat energy", "Sound energy", "Electrical energy"],
+          correctAnswer: "Heat energy",
+          explanation: "The friction from rubbing your hands converts kinetic energy into heat energy, making your hands warm.",
+          points: 10
+        },
+        {
+          question: "Which energy source will never run out?",
+          type: "multiple-choice",
+          options: ["Coal", "Oil", "Solar energy", "Natural gas"],
+          correctAnswer: "Solar energy",
+          explanation: "Solar energy from the sun is renewable and will continue for billions of years.",
+          points: 10
+        }
+      ]
+    },
+    "adaptations": {
+      content: {
+        introduction: "Welcome to the amazing world of animal adaptations! Today we'll discover how animals have special features that help them survive in their environments.",
+        mainContent: "An adaptation is a special feature that helps an animal survive in its environment. Animals have physical adaptations (body parts) and behavioral adaptations (actions). Physical adaptations include thick fur for cold climates, sharp claws for hunting, or long necks for reaching food. Behavioral adaptations include migration (moving to warmer places), hibernation (sleeping through winter), or hunting in groups. Predators have adaptations for catching prey like sharp teeth, excellent eyesight, and speed. Prey animals have adaptations for escaping like camouflage, warning colors, or being very fast. These adaptations develop over many generations through natural selection.",
+        activities: [
+          "Design your own animal: draw a creature perfectly adapted for a specific environment (desert, arctic, rainforest) and explain each adaptation",
+          "Play 'Adaptation Bingo' - match animals with their survival adaptations using pictures and descriptions",
+          "Create a predator-prey matching game showing how predator adaptations work against prey adaptations"
+        ],
+        funFacts: [
+          "A giraffe's tongue is 18-20 inches long and purple to protect it from sunburn while eating leaves!",
+          "Arctic foxes change their fur color from brown in summer to white in winter for perfect camouflage!",
+          "A toucan's large beak helps it reach fruit and also works like a natural air conditioner to keep it cool!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is an adaptation?",
+          type: "multiple-choice",
+          options: ["Only the way an animal looks", "A special feature that helps an animal survive", "Only an animal's behavior", "The place where an animal lives"],
+          correctAnswer: "A special feature that helps an animal survive",
+          explanation: "An adaptation is any special feature (physical or behavioral) that helps an animal survive in its environment.",
+          points: 10
+        },
+        {
+          question: "Which is a physical adaptation?",
+          type: "multiple-choice",
+          options: ["Migration", "Hibernation", "Thick fur", "Building nests"],
+          correctAnswer: "Thick fur",
+          explanation: "Thick fur is a physical adaptation - a body part that helps animals stay warm in cold environments.",
+          points: 10
+        },
+        {
+          question: "Why do polar bears have thick fur and fat?",
+          type: "multiple-choice",
+          options: ["To look bigger", "To stay warm in the Arctic", "To swim faster", "To be more beautiful"],
+          correctAnswer: "To stay warm in the Arctic",
+          explanation: "Polar bears' thick fur and fat layer are adaptations that help them survive in the extremely cold Arctic.",
+          points: 10
+        },
+        {
+          question: "What is camouflage?",
+          type: "multiple-choice",
+          options: ["Making loud noises", "Blending in with surroundings", "Running very fast", "Flying high"],
+          correctAnswer: "Blending in with surroundings",
+          explanation: "Camouflage is an adaptation where animals blend in with their environment to hide from predators or prey.",
+          points: 10
+        },
+        {
+          question: "Which animal adaptation helps with hunting?",
+          type: "multiple-choice",
+          options: ["Bright warning colors", "Sharp claws and teeth", "Slow movement", "Loud calls"],
+          correctAnswer: "Sharp claws and teeth",
+          explanation: "Sharp claws and teeth are predator adaptations that help animals catch and eat their prey.",
+          points: 10
+        },
+        {
+          question: "Why do some animals migrate?",
+          type: "multiple-choice",
+          options: ["For fun", "To find food and suitable climate", "To get lost", "To make noise"],
+          correctAnswer: "To find food and suitable climate",
+          explanation: "Migration is a behavioral adaptation where animals move to find food and better living conditions.",
+          points: 10
+        },
+        {
+          question: "What helps a fish breathe underwater?",
+          type: "multiple-choice",
+          options: ["Lungs", "Gills", "Nose", "Mouth"],
+          correctAnswer: "Gills",
+          explanation: "Gills are a fish's adaptation for extracting oxygen from water so they can breathe underwater.",
+          points: 10
+        },
+        {
+          question: "Why do skunks have black and white stripes?",
+          type: "multiple-choice",
+          options: ["To look pretty", "To warn predators they spray bad smells", "To blend in with trees", "To attract mates"],
+          correctAnswer: "To warn predators they spray bad smells",
+          explanation: "Skunks' bold stripes are warning coloration that tells predators to stay away or get sprayed!",
+          points: 10
+        },
+        {
+          question: "Which bird adaptation helps them fly?",
+          type: "multiple-choice",
+          options: ["Heavy bones", "Light, hollow bones", "No wings", "Small muscles"],
+          correctAnswer: "Light, hollow bones",
+          explanation: "Birds have hollow bones that are strong but very light, making it easier for them to fly.",
+          points: 10
+        },
+        {
+          question: "How do adaptations develop in animals?",
+          type: "multiple-choice",
+          options: ["Animals choose them", "They develop overnight", "Through natural selection over many generations", "Magic"],
+          correctAnswer: "Through natural selection over many generations",
+          explanation: "Adaptations develop slowly over many generations as animals with helpful traits survive better and pass them on.",
+          points: 10
+        }
+      ]
+    },
+    "anatomy": {
+      content: {
+        introduction: "Welcome to the incredible world inside your body! Today we'll explore the amazing systems that work together to keep you healthy and alive.",
+        mainContent: "Your body is made up of different systems that work together like a well-organized team. The circulatory system includes your heart and blood vessels that pump blood throughout your body, delivering oxygen and nutrients. The respiratory system includes your lungs that help you breathe in oxygen and breathe out carbon dioxide. The digestive system breaks down food into nutrients your body can use for energy and growth. The nervous system includes your brain and nerves that control everything your body does. The skeletal system provides structure and protection, while the muscular system helps you move. Each system has a special job, but they all work together to keep you healthy.",
+        activities: [
+          "Take your pulse and count heartbeats per minute - compare resting heart rate to after jumping jacks",
+          "Track your breathing: time how long you can hold your breath and count breaths per minute during different activities",
+          "Create a 'Body Systems Tour' poster showing how food travels through your digestive system"
+        ],
+        funFacts: [
+          "Your heart beats about 100,000 times every day and pumps 2,000 gallons of blood!",
+          "You have about 37 trillion cells in your body - that's more than the number of stars in our galaxy!",
+          "Your brain uses 20% of all the energy your body makes, even though it's only 2% of your body weight!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What does the circulatory system do?",
+          type: "multiple-choice",
+          options: ["Helps you think", "Pumps blood throughout your body", "Digests food", "Helps you breathe"],
+          correctAnswer: "Pumps blood throughout your body",
+          explanation: "The circulatory system includes your heart and blood vessels that pump blood and deliver oxygen and nutrients throughout your body.",
+          points: 10
+        },
+        {
+          question: "Which organ is the main part of the respiratory system?",
+          type: "multiple-choice",
+          options: ["Heart", "Brain", "Lungs", "Stomach"],
+          correctAnswer: "Lungs",
+          explanation: "Your lungs are the main organs of the respiratory system that help you breathe in oxygen and breathe out carbon dioxide.",
+          points: 10
+        },
+        {
+          question: "What does your skeletal system do?",
+          type: "multiple-choice",
+          options: ["Pumps blood", "Provides structure and protects organs", "Digests food", "Controls breathing"],
+          correctAnswer: "Provides structure and protects organs",
+          explanation: "Your skeletal system gives your body structure and protects important organs like your brain and heart.",
+          points: 10
+        },
+        {
+          question: "Which system helps you move your body?",
+          type: "multiple-choice",
+          options: ["Digestive system", "Muscular system", "Respiratory system", "Circulatory system"],
+          correctAnswer: "Muscular system",
+          explanation: "Your muscular system includes all your muscles that contract and relax to help you move your body.",
+          points: 10
+        },
+        {
+          question: "What is the main job of the digestive system?",
+          type: "multiple-choice",
+          options: ["To pump blood", "To help you breathe", "To break down food into nutrients", "To help you think"],
+          correctAnswer: "To break down food into nutrients",
+          explanation: "Your digestive system breaks down food into nutrients that your body can use for energy and growth.",
+          points: 10
+        },
+        {
+          question: "Which organ controls all the other systems in your body?",
+          type: "multiple-choice",
+          options: ["Heart", "Brain", "Lungs", "Stomach"],
+          correctAnswer: "Brain",
+          explanation: "Your brain is the control center of your nervous system and controls all the other systems in your body.",
+          points: 10
+        },
+        {
+          question: "How many chambers does a human heart have?",
+          type: "multiple-choice",
+          options: ["Two", "Three", "Four", "Five"],
+          correctAnswer: "Four",
+          explanation: "The human heart has four chambers - two atria (upper chambers) and two ventricles (lower chambers).",
+          points: 10
+        },
+        {
+          question: "What gas do you breathe in that your body needs?",
+          type: "multiple-choice",
+          options: ["Carbon dioxide", "Oxygen", "Nitrogen", "Hydrogen"],
+          correctAnswer: "Oxygen",
+          explanation: "You breathe in oxygen which your body needs to function, and breathe out carbon dioxide as waste.",
+          points: 10
+        },
+        {
+          question: "About how many bones does an adult human have?",
+          type: "multiple-choice",
+          options: ["106", "206", "306", "406"],
+          correctAnswer: "206",
+          explanation: "An adult human has 206 bones in their skeletal system. Babies are born with about 270 bones that fuse together as they grow!",
+          points: 10
+        },
+        {
+          question: "Why do your body systems need to work together?",
+          type: "multiple-choice",
+          options: ["They don't need to work together", "To keep you healthy and alive", "Only some systems work together", "They work against each other"],
+          correctAnswer: "To keep you healthy and alive",
+          explanation: "All your body systems work together like a team to keep you healthy, alive, and functioning properly.",
+          points: 10
+        }
+      ]
+    },
+    "cycles": {
+      content: {
+        introduction: "Welcome to the amazing world of water! Today we'll follow water's incredible journey as it travels around our Earth in the water cycle.",
+        mainContent: "The water cycle is how water moves around Earth in a continuous circle. The sun heats water in oceans, lakes, and rivers, causing evaporation where liquid water becomes invisible water vapor that rises into the air. As water vapor rises higher, it cools and condenses around tiny dust particles in clouds. When water droplets in clouds become too heavy, precipitation occurs - water falls as rain, snow, sleet, or hail. Some precipitation flows as runoff into rivers and streams, some soaks into the ground as groundwater, and some falls directly into oceans and lakes. Then the cycle begins again! This same water has been cycling for millions of years.",
+        activities: [
+          "Create a water cycle in a bag: seal warm water in a plastic bag and tape it to a sunny window to observe evaporation, condensation, and precipitation",
+          "Make a weather journal: track daily precipitation and temperature for one week and predict weather patterns",
+          "Build a mini water cycle model using a clear container, hot water, ice, and plastic wrap to see the cycle in action"
+        ],
+        funFacts: [
+          "The water you drink today might have once been part of a cloud, fallen as rain on dinosaurs, or even been inside a plant!",
+          "Less than 1% of all water on Earth is fresh water that we can drink - most is in oceans!",
+          "A single raindrop can stay in the atmosphere for up to 9 days before falling back to Earth!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is the water cycle?",
+          type: "multiple-choice",
+          options: ["Water standing still", "How water moves around Earth continuously", "Water only in oceans", "Water only in the sky"],
+          correctAnswer: "How water moves around Earth continuously",
+          explanation: "The water cycle describes how water continuously moves between the Earth's surface and atmosphere through evaporation, condensation, and precipitation.",
+          points: 10
+        },
+        {
+          question: "What causes water to evaporate?",
+          type: "multiple-choice",
+          options: ["Cold temperatures", "Heat from the sun", "Wind only", "Nothing"],
+          correctAnswer: "Heat from the sun",
+          explanation: "The sun's heat energy causes water molecules to move faster and change from liquid water to invisible water vapor.",
+          points: 10
+        },
+        {
+          question: "What is condensation?",
+          type: "multiple-choice",
+          options: ["Water heating up", "Water vapor cooling and forming droplets", "Water freezing", "Water flowing"],
+          correctAnswer: "Water vapor cooling and forming droplets",
+          explanation: "Condensation occurs when water vapor cools and changes back into tiny liquid water droplets that form clouds.",
+          points: 10
+        },
+        {
+          question: "What is precipitation?",
+          type: "multiple-choice",
+          options: ["Water evaporating", "Water falling from clouds as rain, snow, sleet, or hail", "Water in rivers", "Water in oceans"],
+          correctAnswer: "Water falling from clouds as rain, snow, sleet, or hail",
+          explanation: "Precipitation is when water falls from clouds to Earth's surface in various forms depending on temperature.",
+          points: 10
+        },
+        {
+          question: "What happens to rainwater that soaks into the ground?",
+          type: "multiple-choice",
+          options: ["It disappears", "It becomes groundwater", "It turns to ice", "It becomes clouds"],
+          correctAnswer: "It becomes groundwater",
+          explanation: "When precipitation soaks into the ground, it becomes groundwater that can flow underground and feed springs and wells.",
+          points: 10
+        },
+        {
+          question: "Which step comes first in the water cycle?",
+          type: "multiple-choice",
+          options: ["Precipitation", "Condensation", "Evaporation", "Collection"],
+          correctAnswer: "Evaporation",
+          explanation: "Evaporation is often considered the first step, where the sun's energy causes water to change from liquid to water vapor.",
+          points: 10
+        },
+        {
+          question: "Where does most evaporation occur?",
+          type: "multiple-choice",
+          options: ["From ice", "From oceans", "From plants only", "From mountains"],
+          correctAnswer: "From oceans",
+          explanation: "Most evaporation occurs from oceans since they cover about 71% of Earth's surface and contain most of Earth's water.",
+          points: 10
+        },
+        {
+          question: "What is runoff?",
+          type: "multiple-choice",
+          options: ["Water going up to clouds", "Water flowing over land into rivers and streams", "Water freezing", "Water evaporating"],
+          correctAnswer: "Water flowing over land into rivers and streams",
+          explanation: "Runoff is precipitation that flows over the land surface into rivers, streams, and eventually back to oceans.",
+          points: 10
+        },
+        {
+          question: "How long has the water cycle been happening?",
+          type: "multiple-choice",
+          options: ["For 100 years", "For 1,000 years", "For millions of years", "It just started"],
+          correctAnswer: "For millions of years",
+          explanation: "The water cycle has been happening for billions of years - the same water has been cycling around Earth since ancient times!",
+          points: 10
+        },
+        {
+          question: "Why is the water cycle important?",
+          type: "multiple-choice",
+          options: ["It's not important", "It provides fresh water for all living things", "Only for making clouds", "Only for oceans"],
+          correctAnswer: "It provides fresh water for all living things",
+          explanation: "The water cycle is essential because it distributes fresh water around the world, which all living things need to survive.",
+          points: 10
+        }
+      ]
+    },
+    "geology": {
+      content: {
+        introduction: "Welcome to the incredible world of rocks and Earth science! Today we'll explore how rocks form, change, and shape our planet's surface.",
+        mainContent: "Geology is the study of rocks, minerals, and how Earth's surface changes over time. There are three main types of rocks: igneous rocks form when melted rock (magma or lava) cools and hardens, like granite and obsidian. Sedimentary rocks form when layers of sediment are pressed together over time, like sandstone and limestone. Metamorphic rocks form when existing rocks are changed by heat and pressure, like marble and slate. The rock cycle shows how rocks can change from one type to another over millions of years. Weathering breaks rocks down into smaller pieces, while erosion moves these pieces to new locations. This process shapes mountains, valleys, and all the landforms we see today.",
+        activities: [
+          "Create your own sedimentary rock by layering different colored sand and clay, then pressing it together",
+          "Go on a neighborhood rock hunt: collect different rocks and classify them as igneous, sedimentary, or metamorphic",
+          "Make a rock cycle wheel showing how the three types of rocks can change into each other"
+        ],
+        funFacts: [
+          "The oldest rocks on Earth are about 4 billion years old - that's almost as old as Earth itself!",
+          "Diamonds are formed deep underground under extreme pressure and heat, then brought to the surface by volcanic eruptions!",
+          "The Grand Canyon was carved by the Colorado River over 6 million years - water is incredibly powerful over time!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is geology?",
+          type: "multiple-choice",
+          options: ["The study of animals", "The study of rocks, minerals, and Earth's surface", "The study of weather", "The study of plants"],
+          correctAnswer: "The study of rocks, minerals, and Earth's surface",
+          explanation: "Geology is the science that studies rocks, minerals, and how Earth's surface forms and changes over time.",
+          points: 10
+        },
+        {
+          question: "How do igneous rocks form?",
+          type: "multiple-choice",
+          options: ["From layers of sediment", "When melted rock cools and hardens", "Under extreme pressure", "From plant materials"],
+          correctAnswer: "When melted rock cools and hardens",
+          explanation: "Igneous rocks form when magma (underground) or lava (above ground) cools and solidifies into rock.",
+          points: 10
+        },
+        {
+          question: "Which type of rock forms in layers?",
+          type: "multiple-choice",
+          options: ["Igneous rocks", "Sedimentary rocks", "Metamorphic rocks", "Crystal rocks"],
+          correctAnswer: "Sedimentary rocks",
+          explanation: "Sedimentary rocks form when layers of sediment (sand, mud, shells) are deposited and pressed together over time.",
+          points: 10
+        },
+        {
+          question: "What causes metamorphic rocks to form?",
+          type: "multiple-choice",
+          options: ["Cooling magma", "Heat and pressure", "Layers of sediment", "Freezing water"],
+          correctAnswer: "Heat and pressure",
+          explanation: "Metamorphic rocks form when existing rocks are changed by intense heat and pressure deep underground.",
+          points: 10
+        },
+        {
+          question: "What is weathering?",
+          type: "multiple-choice",
+          options: ["Making weather predictions", "The breakdown of rocks into smaller pieces", "Building mountains", "Making new rocks"],
+          correctAnswer: "The breakdown of rocks into smaller pieces",
+          explanation: "Weathering is the process where wind, water, ice, and chemicals break rocks down into smaller fragments.",
+          points: 10
+        },
+        {
+          question: "What is erosion?",
+          type: "multiple-choice",
+          options: ["Rocks forming", "The movement of weathered rock pieces to new locations", "Rocks melting", "Rocks getting bigger"],
+          correctAnswer: "The movement of weathered rock pieces to new locations",
+          explanation: "Erosion is when wind, water, or ice carries away pieces of weathered rock and deposits them elsewhere.",
+          points: 10
+        },
+        {
+          question: "Which rock would you most likely find near a volcano?",
+          type: "multiple-choice",
+          options: ["Sedimentary rock", "Metamorphic rock", "Igneous rock", "Fossil rock"],
+          correctAnswer: "Igneous rock",
+          explanation: "Igneous rocks form from cooling lava or magma, so they're commonly found near volcanoes.",
+          points: 10
+        },
+        {
+          question: "What can you sometimes find in sedimentary rocks?",
+          type: "multiple-choice",
+          options: ["Crystals only", "Fossils", "Lava", "Diamonds"],
+          correctAnswer: "Fossils",
+          explanation: "Fossils are often found in sedimentary rocks because they form in layers where plants and animals can be preserved.",
+          points: 10
+        },
+        {
+          question: "How long does it take for most rocks to form?",
+          type: "multiple-choice",
+          options: ["A few days", "A few months", "Thousands to millions of years", "One year"],
+          correctAnswer: "Thousands to millions of years",
+          explanation: "Most rock formation is a very slow process that takes thousands to millions of years to complete.",
+          points: 10
+        },
+        {
+          question: "What happens in the rock cycle?",
+          type: "multiple-choice",
+          options: ["Rocks stay the same forever", "Rocks can change from one type to another over time", "Only igneous rocks change", "Rocks disappear"],
+          correctAnswer: "Rocks can change from one type to another over time",
+          explanation: "The rock cycle shows how any type of rock can change into any other type through various geological processes.",
+          points: 10
+        }
+      ]
+    },
+    "meteorology": {
+      content: {
+        introduction: "Welcome to the exciting world of weather! Today we'll explore weather systems, how they form, and how meteorologists predict what's coming next.",
+        mainContent: "Meteorology is the study of weather and the atmosphere. Weather is caused by the movement of air masses - large bodies of air with similar temperature and humidity. When warm and cold air masses meet, they create weather fronts that bring changes in weather. Cold fronts often bring thunderstorms and cooler temperatures, while warm fronts usually bring steady rain and warmer weather. Air pressure changes indicate weather changes: high pressure usually means clear skies, while low pressure often brings clouds and storms. Wind is caused by differences in air pressure as air moves from high pressure to low pressure areas. Meteorologists use tools like thermometers, barometers, anemometers, and weather balloons to collect data and predict weather patterns.",
+        activities: [
+          "Create a weather station with homemade instruments: a barometer using a jar and balloon, a wind vane using a straw and paper",
+          "Keep a 5-day weather journal recording temperature, precipitation, wind direction, and cloud types",
+          "Track a weather front moving through your area using online weather maps and make predictions about changes"
+        ],
+        funFacts: [
+          "Lightning can reach temperatures of 54,000°F - that's 5 times hotter than the surface of the sun!",
+          "A single thunderstorm can contain 500,000 tons of water and release energy equal to 10 atomic bombs!",
+          "The fastest wind speed ever recorded was 301 mph during a tornado in Oklahoma!"
+        ]
+      },
+      quiz: [
+        {
+          question: "What is meteorology?",
+          type: "multiple-choice",
+          options: ["The study of meteors", "The study of weather and atmosphere", "The study of rocks", "The study of animals"],
+          correctAnswer: "The study of weather and atmosphere",
+          explanation: "Meteorology is the science that studies weather patterns, atmospheric conditions, and weather prediction.",
+          points: 10
+        },
+        {
+          question: "What is an air mass?",
+          type: "multiple-choice",
+          options: ["A group of clouds", "A large body of air with similar temperature and humidity", "A type of storm", "Moving water"],
+          correctAnswer: "A large body of air with similar temperature and humidity",
+          explanation: "An air mass is a large area of air that has uniform temperature and humidity characteristics.",
+          points: 10
+        },
+        {
+          question: "What usually happens when a cold front moves through?",
+          type: "multiple-choice",
+          options: ["Steady warm rain", "Thunderstorms and cooler temperatures", "Clear skies forever", "No weather changes"],
+          correctAnswer: "Thunderstorms and cooler temperatures",
+          explanation: "Cold fronts often bring dramatic weather changes including thunderstorms, followed by cooler, clearer weather.",
+          points: 10
+        },
+        {
+          question: "What does high air pressure usually bring?",
+          type: "multiple-choice",
+          options: ["Thunderstorms", "Clear skies and nice weather", "Hurricanes", "Snow"],
+          correctAnswer: "Clear skies and nice weather",
+          explanation: "High pressure systems typically bring clear, stable weather with few clouds and little precipitation.",
+          points: 10
+        },
+        {
+          question: "What causes wind?",
+          type: "multiple-choice",
+          options: ["Trees moving", "Differences in air pressure", "The ocean", "Mountains"],
+          correctAnswer: "Differences in air pressure",
+          explanation: "Wind is created when air moves from areas of high pressure to areas of low pressure.",
+          points: 10
+        },
+        {
+          question: "Which tool measures air pressure?",
+          type: "multiple-choice",
+          options: ["Thermometer", "Barometer", "Anemometer", "Rain gauge"],
+          correctAnswer: "Barometer",
+          explanation: "A barometer measures atmospheric pressure, which helps predict weather changes.",
+          points: 10
+        },
+        {
+          question: "What do meteorologists do?",
+          type: "multiple-choice",
+          options: ["Study meteors only", "Predict and study weather patterns", "Study animals", "Build weather"],
+          correctAnswer: "Predict and study weather patterns",
+          explanation: "Meteorologists collect weather data and use it to predict future weather conditions and understand weather patterns.",
+          points: 10
+        },
+        {
+          question: "Which clouds often indicate that a storm is coming?",
+          type: "multiple-choice",
+          options: ["Thin, wispy clouds", "Dark, thick clouds", "No clouds", "White fluffy clouds"],
+          correctAnswer: "Dark, thick clouds",
+          explanation: "Dark, thick cumulonimbus clouds often indicate thunderstorms and severe weather are approaching.",
+          points: 10
+        },
+        {
+          question: "What happens when warm air meets cold air?",
+          type: "multiple-choice",
+          options: ["They don't interact", "Weather fronts form and create weather changes", "The air disappears", "They heat up"],
+          correctAnswer: "Weather fronts form and create weather changes",
+          explanation: "When air masses with different temperatures meet, they create fronts that cause weather changes.",
+          points: 10
+        },
+        {
+          question: "How do meteorologists collect weather data from high in the atmosphere?",
+          type: "multiple-choice",
+          options: ["Weather balloons", "Climbing mountains", "Swimming", "Guessing"],
+          correctAnswer: "Weather balloons",
+          explanation: "Weather balloons carry instruments high into the atmosphere to collect data about temperature, pressure, and humidity.",
+          points: 10
+        }
+      ]
     }
   };
   
