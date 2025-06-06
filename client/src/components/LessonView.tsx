@@ -57,6 +57,7 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
 
   useEffect(() => {
     fetchLesson();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonId]);
 
   const fetchLesson = async () => {

@@ -52,7 +52,8 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
 
   useEffect(() => {
     fetchLessons();
-  }, [currentWeek]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
 
   const fetchLessons = async () => {
     try {
