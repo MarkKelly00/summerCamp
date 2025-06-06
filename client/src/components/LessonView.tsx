@@ -121,13 +121,15 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
         timeSpent: lesson.estimatedTime
       });
 
-      // Update user's fun money based on quiz points earned
-      const updatedUser = {
-        ...user,
-        funMoney: user.funMoney + totalPoints
-      };
-      
-      onUserUpdate(updatedUser);
+      // Update user's fun money in the database
+      if (totalPoints > 0) {
+        const funMoneyResponse = await api.patch<User>(`/api/users/funmoney/${user.id}`, {
+          amount: totalPoints
+        });
+        
+        // Update local user state with the response from the server
+        onUserUpdate(funMoneyResponse.data);
+      }
     } catch (error) {
       console.error('Error submitting lesson:', error);
     }

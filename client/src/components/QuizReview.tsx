@@ -48,6 +48,7 @@ const QuizReview: React.FC = () => {
 
   useEffect(() => {
     fetchQuizReview();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studentId, lessonId]);
 
   const fetchQuizReview = async () => {
@@ -110,6 +111,9 @@ const QuizReview: React.FC = () => {
   const { progress } = reviewData;
   const lesson = progress.lessonId;
 
+  // Get quiz answers - check both sources
+  const quizAnswers = reviewData.quizAnswers || progress.quizAnswers || [];
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-400 via-purple-500 to-pink-500 p-4">
       <div className="max-w-4xl mx-auto">
@@ -144,7 +148,7 @@ const QuizReview: React.FC = () => {
               </span>
             </div>
             <div className="mt-2 text-sm text-gray-600 font-kid">
-              {progress.quizAnswers.filter(qa => qa.isCorrect).length} out of {lesson.quiz.length} questions correct
+              {quizAnswers.filter(qa => qa.isCorrect).length} out of {lesson.quiz.length} questions correct
             </div>
           </div>
         </div>
@@ -152,7 +156,7 @@ const QuizReview: React.FC = () => {
         {/* Question by Question Review */}
         <div className="space-y-6">
           {lesson.quiz.map((question, index) => {
-            const studentAnswer = progress.quizAnswers.find(qa => qa.questionIndex === index);
+            const studentAnswer = quizAnswers.find(qa => qa.questionIndex === index);
             const isCorrect = studentAnswer?.isCorrect || false;
             
             return (
@@ -231,19 +235,19 @@ const QuizReview: React.FC = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <div className="bg-green-50 p-4 rounded-lg text-center">
               <div className="text-2xl font-bold text-green-600">
-                {progress.quizAnswers.filter(qa => qa.isCorrect).length}
+                {quizAnswers.filter(qa => qa.isCorrect).length}
               </div>
               <div className="text-green-700 font-kid">Correct Answers</div>
             </div>
             <div className="bg-red-50 p-4 rounded-lg text-center">
               <div className="text-2xl font-bold text-red-600">
-                {progress.quizAnswers.filter(qa => !qa.isCorrect).length}
+                {quizAnswers.filter(qa => !qa.isCorrect).length}
               </div>
               <div className="text-red-700 font-kid">Incorrect Answers</div>
             </div>
             <div className="bg-blue-50 p-4 rounded-lg text-center">
               <div className="text-2xl font-bold text-blue-600">
-                {progress.quizAnswers.filter(qa => qa.isCorrect).reduce((sum, qa) => {
+                {quizAnswers.filter(qa => qa.isCorrect).reduce((sum, qa) => {
                   const question = lesson.quiz[qa.questionIndex];
                   return sum + (question?.points || 0);
                 }, 0)}
