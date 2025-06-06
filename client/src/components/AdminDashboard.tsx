@@ -244,14 +244,25 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
                   </h3>
                   <div className="space-y-3 max-h-96 overflow-y-auto">
                     {progress.slice(0, 10).map((item) => {
-                      const lessonId = typeof item.lessonId === 'string' ? item.lessonId : (item.lessonId._id || '');
-                      const lesson = typeof item.lessonId === 'string' ? null : item.lessonId;
+                      // Safely handle lessonId which might be null, undefined, or string
+                      let lessonId = '';
+                      let lesson = null;
+                      
+                      if (item.lessonId) {
+                        if (typeof item.lessonId === 'string') {
+                          lessonId = item.lessonId;
+                        } else if (item.lessonId._id) {
+                          lessonId = item.lessonId._id;
+                          lesson = item.lessonId;
+                        }
+                      }
                       
                       return (
                         <button
                           key={item._id}
-                          onClick={() => navigate(`/quiz-review/${selectedStudent}/${lessonId}`)}
+                          onClick={() => lessonId && navigate(`/quiz-review/${selectedStudent}/${lessonId}`)}
                           className="w-full bg-gray-50 hover:bg-gray-100 p-3 rounded-lg transition-colors cursor-pointer"
+                          disabled={!lessonId}
                         >
                           <div className="flex justify-between items-center">
                             <div className="flex items-center space-x-3">
@@ -260,13 +271,13 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
                               </span>
                               <div className="text-left">
                                 <p className="font-bold font-kid text-sm">
-                                  {lesson?.title || 'Lesson'}
+                                  {lesson?.title || 'Unknown Lesson'}
                                 </p>
                                 <p className="text-xs text-gray-600">
                                   Week {lesson?.week || 0}, Day {lesson?.day || 0}
                                 </p>
                                 <p className="text-xs text-blue-600 font-bold">
-                                  👁️ Click to view quiz answers
+                                  {lessonId ? '👁️ Click to view quiz answers' : '❌ Lesson not found'}
                                 </p>
                               </div>
                             </div>

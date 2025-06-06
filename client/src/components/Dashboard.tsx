@@ -55,11 +55,18 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
+  useEffect(() => {
+    fetchLessons();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentWeek]);
+
   const fetchLessons = async () => {
     try {
+      console.log('Fetching lessons for grade:', user.profile.gradeLevel, 'week:', currentWeek);
       const response = await api.get<Lesson[]>(
         `/api/lessons/${user.profile.gradeLevel}/${currentWeek}`
       );
+      console.log('Lessons response:', response.data);
       setLessons(response.data);
     } catch (error) {
       console.error('Error fetching lessons:', error);
