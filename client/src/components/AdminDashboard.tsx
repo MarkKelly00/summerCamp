@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import api from '../utils/api';
 
 interface User {
@@ -36,11 +37,12 @@ interface Progress {
   _id: string;
   studentId: string;
   lessonId: {
+    _id?: string;
     title: string;
     subject: string;
     week: number;
     day: number;
-  };
+  } | string;
   status: string;
   score: number;
   completedAt: Date;
@@ -60,6 +62,8 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
     confirmPassword: ''
   });
   const [passwordMessage, setPasswordMessage] = useState('');
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchStudents();
@@ -239,33 +243,45 @@ const AdminDashboard: React.FC<AdminDashboardProps> = ({ user, onLogout }) => {
                     📊 Recent Progress
                   </h3>
                   <div className="space-y-3 max-h-96 overflow-y-auto">
-                    {progress.slice(0, 10).map((item) => (
-                      <div key={item._id} className="bg-gray-50 p-3 rounded-lg">
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center space-x-3">
-                            <span className="text-2xl">
-                              {getSubjectEmoji(item.lessonId.subject)}
-                            </span>
-                            <div>
-                              <p className="font-bold font-kid text-sm">
-                                {item.lessonId.title}
-                              </p>
-                              <p className="text-xs text-gray-600">
-                                Week {item.lessonId.week}, Day {item.lessonId.day}
+                    {progress.slice(0, 10).map((item) => {
+                      const lessonId = typeof item.lessonId === 'string' ? item.lessonId : (item.lessonId._id || '');
+                      const lesson = typeof item.lessonId === 'string' ? null : item.lessonId;
+                      
+                      return (
+                        <button
+                          key={item._id}
+                          onClick={() => navigate(`/quiz-review/${selectedStudent}/${lessonId}`)}
+                          className="w-full bg-gray-50 hover:bg-gray-100 p-3 rounded-lg transition-colors cursor-pointer"
+                        >
+                          <div className="flex justify-between items-center">
+                            <div className="flex items-center space-x-3">
+                              <span className="text-2xl">
+                                {getSubjectEmoji(lesson?.subject || 'reading')}
+                              </span>
+                              <div className="text-left">
+                                <p className="font-bold font-kid text-sm">
+                                  {lesson?.title || 'Lesson'}
+                                </p>
+                                <p className="text-xs text-gray-600">
+                                  Week {lesson?.week || 0}, Day {lesson?.day || 0}
+                                </p>
+                                <p className="text-xs text-blue-600 font-bold">
+                                  👁️ Click to view quiz answers
+                                </p>
+                              </div>
+                            </div>
+                            <div className="text-right">
+                              <span className={`px-2 py-1 rounded-full text-xs font-bold ${getScoreColor(item.score)}`}>
+                                {item.score}%
+                              </span>
+                              <p className="text-xs text-gray-500 mt-1">
+                                {new Date(item.completedAt).toLocaleDateString()}
                               </p>
                             </div>
                           </div>
-                          <div className="text-right">
-                            <span className={`px-2 py-1 rounded-full text-xs font-bold ${getScoreColor(item.score)}`}>
-                              {item.score}%
-                            </span>
-                            <p className="text-xs text-gray-500 mt-1">
-                              {new Date(item.completedAt).toLocaleDateString()}
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
+                        </button>
+                      );
+                    })}
                   </div>
                 </div>
 

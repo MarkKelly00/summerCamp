@@ -17,6 +17,30 @@ router.get('/student/:studentId', authenticateToken, async (req: Request, res: R
   }
 });
 
+// Get detailed quiz answers for a specific lesson
+router.get('/quiz-review/:studentId/:lessonId', authenticateToken, async (req: Request, res: Response) => {
+  try {
+    const progress = await Progress.findOne({
+      studentId: req.params.studentId,
+      lessonId: req.params.lessonId
+    }).populate('lessonId');
+    
+    if (!progress) {
+      return res.status(404).json({ message: 'Progress not found' });
+    }
+    
+    res.json({
+      progress,
+      quizAnswers: progress.quizAnswers,
+      score: progress.score,
+      completedAt: progress.completedAt
+    });
+  } catch (error) {
+    console.error('Error fetching quiz review:', error);
+    res.status(500).json({ message: 'Error fetching quiz review' });
+  }
+});
+
 // Update lesson progress
 router.post('/lesson/:lessonId', authenticateToken, async (req: Request, res: Response) => {
   try {

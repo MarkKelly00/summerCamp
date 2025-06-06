@@ -85,24 +85,39 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
 
     let correctCount = 0;
     let totalPoints = 0;
+    const detailedQuizAnswers: Array<{
+      questionIndex: number;
+      answer: string;
+      isCorrect: boolean;
+      timeSpent: number;
+    }> = [];
     
     lesson.quiz.forEach((question, index) => {
-      if (quizAnswers[index] === question.correctAnswer) {
+      const isCorrect = quizAnswers[index] === question.correctAnswer;
+      if (isCorrect) {
         correctCount++;
         totalPoints += question.points;
       }
+      
+      detailedQuizAnswers.push({
+        questionIndex: index,
+        answer: quizAnswers[index],
+        isCorrect,
+        timeSpent: 0 // Could be enhanced to track actual time per question
+      });
     });
 
     const finalScore = Math.round((correctCount / lesson.quiz.length) * 100);
     setScore(finalScore);
     setShowResults(true);
 
-    // Save progress
+    // Save progress with detailed quiz answers
     try {
       await api.post(`/api/progress/lesson/${lessonId}`, {
         studentId: user.id,
         status: 'completed',
         score: finalScore,
+        quizAnswers: detailedQuizAnswers,
         timeSpent: lesson.estimatedTime
       });
 

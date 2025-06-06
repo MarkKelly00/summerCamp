@@ -483,201 +483,103 @@ async function enhanceLessons() {
 
 // Helper functions to generate lessons
 function generateGrade2Lesson(week, day) {
-  const subjects = ['math', 'reading', 'science'];
-  const subject = subjects[day % 3];
-  
-  // Real educational content organized by week and subject
-  const mathTopics = [
-    // Week 1-3: Addition and Subtraction
-    { title: "Adding Numbers to 20", concept: "addition", range: "0-20" },
-    { title: "Subtracting Within 20", concept: "subtraction", range: "0-20" },
-    { title: "Addition and Subtraction Stories", concept: "word problems", range: "0-20" },
-    // Week 4-6: Place Value
-    { title: "Tens and Ones", concept: "place value", range: "10-99" },
-    { title: "Comparing Numbers", concept: "comparison", range: "10-99" },
-    { title: "Skip Counting by 2s, 5s, and 10s", concept: "skip counting", range: "patterns" },
-    // Week 7-9: Measurement and Time
-    { title: "Measuring Length", concept: "measurement", range: "inches/cm" },
-    { title: "Telling Time to the Hour", concept: "time", range: "clocks" },
-    { title: "Money: Coins and Values", concept: "money", range: "penny-quarter" },
-    // Week 10-12: Shapes and Data
-    { title: "2D Shapes Around Us", concept: "geometry", range: "shapes" },
-    { title: "3D Shapes We See", concept: "geometry", range: "solids" },
-    { title: "Making Graphs", concept: "data", range: "bar graphs" }
+  const lessonTypes = [
+    { subject: 'math', topics: ['addition', 'subtraction', 'counting', 'shapes', 'patterns', 'measurement', 'time', 'money', 'fractions', 'place value', 'data graphs', 'word problems'] },
+    { subject: 'science', topics: ['plants', 'animals', 'weather', 'space', 'forces', 'matter', 'earth', 'living things', 'non-living things', 'seasons', 'rocks', 'water'] },
+    { subject: 'reading', topics: ['phonics', 'sight words', 'comprehension', 'story elements', 'vocabulary', 'fluency', 'predictions', 'characters', 'setting', 'main idea', 'fiction', 'nonfiction'] },
+    { subject: 'history', topics: ['family', 'community', 'holidays', 'traditions', 'heroes', 'past and present', 'maps', 'culture', 'citizenship', 'symbols', 'timeline', 'geography'] }
   ];
+
+  const subjects = ['math', 'science', 'reading', 'history'];
+  const subjectIndex = (day - 1) % subjects.length;
+  const subject = subjects[subjectIndex];
   
-  const readingTopics = [
-    // Week 1-3: Phonics and Sight Words
-    { title: "Short Vowel Sounds", concept: "phonics", focus: "CVC words" },
-    { title: "Long Vowel Magic E", concept: "phonics", focus: "CVCe words" },
-    { title: "High-Frequency Words", concept: "sight words", focus: "common words" },
-    // Week 4-6: Reading Comprehension
-    { title: "Story Characters", concept: "comprehension", focus: "who is in the story" },
-    { title: "Story Settings", concept: "comprehension", focus: "where and when" },
-    { title: "Story Problems and Solutions", concept: "comprehension", focus: "plot elements" },
-    // Week 7-9: Reading Skills
-    { title: "Making Predictions", concept: "prediction", focus: "what happens next" },
-    { title: "Finding the Main Idea", concept: "main idea", focus: "what's it about" },
-    { title: "Comparing Stories", concept: "comparison", focus: "similarities/differences" },
-    // Week 10-12: Reading Fluency
-    { title: "Reading with Expression", concept: "fluency", focus: "emotion in reading" },
-    { title: "Reading Different Genres", concept: "genres", focus: "fiction vs nonfiction" },
-    { title: "Author and Illustrator", concept: "text features", focus: "who creates books" }
-  ];
+  const lessonType = lessonTypes.find(type => type.subject === subject);
+  const topicIndex = (week - 1 + day - 1) % lessonType.topics.length;
+  const topic = lessonType.topics[topicIndex];
+
+  let content, quiz;
   
-  const scienceTopics = [
-    // Week 1-3: Life Science
-    { title: "Plant Life Cycles", concept: "life cycles", focus: "seed to plant" },
-    { title: "Animal Habitats", concept: "habitats", focus: "where animals live" },
-    { title: "Animal Needs", concept: "basic needs", focus: "food, water, shelter" },
-    // Week 4-6: Physical Science
-    { title: "States of Matter", concept: "matter", focus: "solid, liquid, gas" },
-    { title: "Push and Pull Forces", concept: "forces", focus: "motion" },
-    { title: "Simple Machines", concept: "machines", focus: "lever, wheel" },
-    // Week 7-9: Earth Science
-    { title: "Weather and Seasons", concept: "weather", focus: "seasonal changes" },
-    { title: "Day and Night", concept: "earth science", focus: "sun and moon" },
-    { title: "Rocks and Soil", concept: "geology", focus: "earth materials" },
-    // Week 10-12: Space Science
-    { title: "The Sun and Moon", concept: "astronomy", focus: "day/night cycle" },
-    { title: "Stars in the Sky", concept: "astronomy", focus: "constellations" },
-    { title: "Exploring Space", concept: "space", focus: "planets and rockets" }
-  ];
-  
-  const topicIndex = ((week - 1) * 5 + (day - 1)) % 12;
-  let topic, content;
-  
-  if (subject === 'math') {
-    topic = mathTopics[topicIndex];
-    content = generateMathContent2nd(topic, week, day);
-  } else if (subject === 'reading') {
-    topic = readingTopics[topicIndex];
-    content = generateReadingContent2nd(topic, week, day);
-  } else {
-    topic = scienceTopics[topicIndex];
-    content = generateScienceContent2nd(topic, week, day);
+  // Generate unique titles by including week and day context
+  const weekDayContext = `Week ${week}, Day ${day}`;
+
+  switch (subject) {
+    case 'math':
+      content = generateMathContent2nd(topic, week, day);
+      break;
+    case 'science':
+      content = generateScienceContent2nd(topic, week, day);
+      break;
+    case 'reading':
+      content = generateReadingContent2nd(topic, week, day);
+      break;
+    case 'history':
+      content = generateHistoryContent2nd(topic, week, day);
+      break;
   }
+
+  // Ensure unique titles by adding context when needed
+  let title = content.title;
+  const baseTitle = title;
   
+  // Add specificity to prevent duplicates
+  if (baseTitle.includes('Story Characters')) {
+    title = week <= 6 ? 'Story Characters: Heroes and Villains' : 'Story Characters: Feelings and Traits';
+  } else if (baseTitle.includes('Push and Pull Forces')) {
+    title = week <= 6 ? 'Push and Pull Forces: Playground Physics' : 'Push and Pull Forces: Home and School';
+  } else if (baseTitle.includes('Weather and Seasons')) {
+    title = week <= 6 ? 'Weather and Seasons: Spring and Summer' : 'Weather and Seasons: Fall and Winter';
+  } else if (baseTitle.includes('Comparing Stories')) {
+    title = week <= 6 ? 'Comparing Stories: Same Characters' : 'Comparing Stories: Different Settings';
+  } else if (baseTitle.includes('The Sun and Moon')) {
+    title = week <= 6 ? 'The Sun and Moon: Day and Night' : 'The Sun and Moon: Shadows and Light';
+  } else if (baseTitle.includes('Reading Different Genres')) {
+    title = week <= 6 ? 'Reading Different Genres: Fiction Fun' : 'Reading Different Genres: Nonfiction Facts';
+  } else if (baseTitle.includes('Exploring Space')) {
+    title = week <= 6 ? 'Exploring Space: Planets and Stars' : 'Exploring Space: Rockets and Astronauts';
+  } else if (baseTitle.includes('Long Vowel Magic E')) {
+    title = week <= 6 ? 'Long Vowel Magic E: a_e and i_e' : 'Long Vowel Magic E: o_e and u_e';
+  } else if (baseTitle.includes('Animal Needs')) {
+    title = week <= 6 ? 'Animal Needs: Food and Water' : 'Animal Needs: Shelter and Air';
+  } else if (baseTitle.includes('Making Predictions')) {
+    title = week <= 6 ? 'Making Predictions: Picture Clues' : 'Making Predictions: Story Clues';
+  } else if (baseTitle.includes('Day and Night')) {
+    title = week <= 6 ? 'Day and Night: Earth\'s Rotation' : 'Day and Night: Activities and Sleep';
+  } else if (baseTitle.includes('Author and Illustrator')) {
+    title = week <= 6 ? 'Author and Illustrator: Creating Stories' : 'Author and Illustrator: Picture Books';
+  } else if (baseTitle.includes('Plant Life Cycles')) {
+    title = week <= 6 ? 'Plant Life Cycles: From Seed to Plant' : 'Plant Life Cycles: Flowers and Fruits';
+  } else if (baseTitle.includes('Story Settings')) {
+    title = week <= 6 ? 'Story Settings: Where Stories Happen' : 'Story Settings: Time and Place';
+  } else if (baseTitle.includes('Simple Machines')) {
+    title = week <= 6 ? 'Simple Machines: Levers and Wheels' : 'Simple Machines: Ramps and Pulleys';
+  } else if (baseTitle.includes('Reading with Expression')) {
+    title = week <= 6 ? 'Reading with Expression: Voice and Tone' : 'Reading with Expression: Punctuation Clues';
+  } else if (baseTitle.includes('Stars in the Sky')) {
+    title = week <= 6 ? 'Stars in the Sky: Patterns and Pictures' : 'Stars in the Sky: Constellations';
+  } else if (baseTitle.includes('High-Frequency Words')) {
+    title = week <= 6 ? 'High-Frequency Words: Basic Sight Words' : 'High-Frequency Words: Advanced Words';
+  } else if (baseTitle.includes('States of Matter')) {
+    title = week <= 6 ? 'States of Matter: Solid and Liquid' : 'States of Matter: Gas and Changes';
+  } else if (baseTitle.includes('Finding the Main Idea')) {
+    title = week <= 6 ? 'Finding the Main Idea: Topic Sentences' : 'Finding the Main Idea: Key Details';
+  } else if (baseTitle.includes('Rocks and Soil')) {
+    title = week <= 6 ? 'Rocks and Soil: Types of Rocks' : 'Rocks and Soil: How Soil Forms';
+  } else if (baseTitle.includes('Story Problems and Solutions')) {
+    title = week <= 6 ? 'Story Problems and Solutions: Character Challenges' : 'Story Problems and Solutions: How Problems Get Solved';
+  }
+
   return {
-    title: topic.title,
-    subject: subject,
+    title,
+    subject,
     gradeLevel: 2,
-    week: week,
-    day: day,
+    week,
+    day,
     content: content.content,
-    quiz: content.quiz,
-    estimatedTime: 25,
-    isBonus: false,
-    funMoneyReward: Math.floor(Math.random() * 5) + 10,
-    difficulty: "easy"
+    quiz: content.quiz || []
   };
 }
 
-function generateGrade4Lesson(week, day) {
-  const subjects = ['math', 'reading', 'science', 'history'];
-  const subject = subjects[day % 4];
-  
-  // Real educational content for 4th grade
-  const mathTopics = [
-    // Week 1-3: Multi-digit Operations
-    { title: "Multi-Digit Addition", concept: "addition", range: "1000s" },
-    { title: "Multi-Digit Subtraction", concept: "subtraction", range: "1000s" },
-    { title: "Multiplication Facts", concept: "multiplication", range: "times tables" },
-    // Week 4-6: Fractions
-    { title: "Understanding Fractions", concept: "fractions", range: "parts of whole" },
-    { title: "Equivalent Fractions", concept: "fractions", range: "same value" },
-    { title: "Adding Fractions", concept: "fractions", range: "same denominator" },
-    // Week 7-9: Decimals and Measurement
-    { title: "Introduction to Decimals", concept: "decimals", range: "tenths/hundredths" },
-    { title: "Area and Perimeter", concept: "measurement", range: "rectangles" },
-    { title: "Converting Units", concept: "measurement", range: "metric/standard" },
-    // Week 10-12: Geometry and Data
-    { title: "Angles and Lines", concept: "geometry", range: "acute/obtuse/right" },
-    { title: "Coordinate Graphing", concept: "graphing", range: "ordered pairs" },
-    { title: "Data Analysis", concept: "statistics", range: "mean/median/mode" }
-  ];
-  
-  const readingTopics = [
-    // Week 1-3: Literary Analysis
-    { title: "Character Development", concept: "characters", focus: "traits and motivation" },
-    { title: "Plot Structure", concept: "plot", focus: "beginning/middle/end" },
-    { title: "Theme and Message", concept: "theme", focus: "lesson of story" },
-    // Week 4-6: Reading Strategies
-    { title: "Making Inferences", concept: "inference", focus: "reading between lines" },
-    { title: "Cause and Effect", concept: "relationships", focus: "what happens why" },
-    { title: "Compare and Contrast", concept: "comparison", focus: "similarities/differences" },
-    // Week 7-9: Text Features
-    { title: "Nonfiction Text Features", concept: "text features", focus: "headings/captions" },
-    { title: "Author's Purpose", concept: "purpose", focus: "inform/persuade/entertain" },
-    { title: "Point of View", concept: "perspective", focus: "who tells story" },
-    // Week 10-12: Critical Reading
-    { title: "Fact vs Opinion", concept: "critical thinking", focus: "truth vs belief" },
-    { title: "Research Skills", concept: "research", focus: "finding information" },
-    { title: "Poetry Elements", concept: "poetry", focus: "rhyme/rhythm/metaphor" }
-  ];
-  
-  const scienceTopics = [
-    // Week 1-3: Life Science
-    { title: "Food Chains and Webs", concept: "ecosystems", focus: "energy flow" },
-    { title: "Plant and Animal Adaptations", concept: "adaptations", focus: "survival features" },
-    { title: "Human Body Systems", concept: "anatomy", focus: "organs work together" },
-    // Week 4-6: Physical Science
-    { title: "Properties of Matter", concept: "matter", focus: "physical/chemical" },
-    { title: "Energy and Motion", concept: "energy", focus: "kinetic/potential" },
-    { title: "Sound and Light Waves", concept: "waves", focus: "vibration/reflection" },
-    // Week 7-9: Earth Science
-    { title: "Water Cycle", concept: "cycles", focus: "evaporation/precipitation" },
-    { title: "Rock Cycle", concept: "geology", focus: "igneous/sedimentary/metamorphic" },
-    { title: "Weather Systems", concept: "meteorology", focus: "fronts/pressure" },
-    // Week 10-12: Space Science
-    { title: "Solar System", concept: "astronomy", focus: "planets and sun" },
-    { title: "Moon Phases", concept: "astronomy", focus: "lunar cycle" },
-    { title: "Earth's Rotation", concept: "astronomy", focus: "day/night/seasons" }
-  ];
-  
-  const historyTopics = [
-    // Week 1-3: Early America
-    { title: "Native American Cultures", concept: "indigenous peoples", focus: "before Europeans" },
-    { title: "European Exploration", concept: "exploration", focus: "Columbus and others" },
-    { title: "Colonial Life", concept: "colonies", focus: "daily life in 1600s-1700s" },
-    // Week 4-6: American Revolution
-    { title: "Causes of Revolution", concept: "revolution", focus: "taxes and freedom" },
-    { title: "Revolutionary War", concept: "war", focus: "fighting for independence" },
-    { title: "Founding Fathers", concept: "leaders", focus: "Washington/Jefferson/Franklin" },
-    // Week 7-9: Westward Expansion
-    { title: "Pioneer Life", concept: "pioneers", focus: "moving west" },
-    { title: "California Gold Rush", concept: "migration", focus: "seeking fortune" },
-    { title: "Transcontinental Railroad", concept: "transportation", focus: "connecting country" },
-    // Week 10-12: Industrial Revolution
-    { title: "Inventions Change Life", concept: "technology", focus: "machines and factories" },
-    { title: "Immigration to America", concept: "immigration", focus: "people seeking new life" },
-    { title: "Growth of Cities", concept: "urbanization", focus: "farms to cities" }
-  ];
-  
-  const topicIndex = ((week - 1) * 5 + (day - 1)) % 12;
-  let topic, content;
-  
-  if (subject === 'math') {
-    topic = mathTopics[topicIndex];
-    content = generateMathContent4th(topic, week, day);
-  } else if (subject === 'reading') {
-    topic = readingTopics[topicIndex];
-    content = generateReadingContent4th(topic, week, day);
-  } else if (subject === 'science') {
-    topic = scienceTopics[topicIndex];
-    content = generateScienceContent4th(topic, week, day);
-  } else {
-    topic = historyTopics[topicIndex];
-    content = generateHistoryContent4th(topic, week, day);
-  }
-  
-  return {
-    title: topic.title,
-    subject: subject,
-    gradeLevel: 4,
-    week: week,
-    day: day,
-    content: content.content,
     quiz: content.quiz,
     estimatedTime: 35,
     isBonus: false,
@@ -2366,6 +2268,79 @@ function generateHistoryContent4th(topic, week, day) {
   };
   
   return historyContents[topic.concept] || historyContents["indigenous peoples"];
+}
+
+function generateGrade4Lesson(week, day) {
+  const lessonTypes = [
+    { subject: 'math', topics: ['multiplication', 'division', 'fractions', 'decimals', 'geometry', 'measurement', 'data', 'algebra', 'problem solving', 'place value', 'area', 'perimeter'] },
+    { subject: 'science', topics: ['ecosystems', 'adaptations', 'matter', 'energy', 'waves', 'astronomy', 'geology', 'weather', 'human body', 'forces', 'cycles', 'engineering'] },
+    { subject: 'reading', topics: ['comprehension', 'characters', 'plot', 'theme', 'inference', 'author purpose', 'text features', 'poetry', 'research', 'compare contrast', 'fact opinion', 'point of view'] },
+    { subject: 'history', topics: ['native americans', 'exploration', 'colonial life', 'revolution', 'pioneers', 'civil war', 'immigration', 'industrial revolution', 'geography', 'government', 'economics', 'culture'] }
+  ];
+
+  const subjects = ['math', 'science', 'reading', 'history'];
+  const subjectIndex = (day - 1) % subjects.length;
+  const subject = subjects[subjectIndex];
+  
+  const lessonType = lessonTypes.find(type => type.subject === subject);
+  const topicIndex = (week - 1 + day - 1) % lessonType.topics.length;
+  const topic = lessonType.topics[topicIndex];
+
+  let content;
+
+  switch (subject) {
+    case 'math':
+      content = generateMathContent4th(topic, week, day);
+      break;
+    case 'science':
+      content = generateScienceContent4th(topic, week, day);
+      break;
+    case 'reading':
+      content = generateReadingContent4th(topic, week, day);
+      break;
+    case 'history':
+      content = generateHistoryContent4th(topic, week, day);
+      break;
+  }
+
+  // Ensure unique titles by adding context when needed
+  let title = content.title;
+  const baseTitle = title;
+  
+  // Add specificity to prevent duplicates for 4th grade
+  if (baseTitle.includes('Cause and Effect')) {
+    title = week <= 6 ? 'Cause and Effect: Story Events' : 'Cause and Effect: Real World Connections';
+  } else if (baseTitle.includes('Compare and Contrast')) {
+    title = week <= 6 ? 'Compare and Contrast: Characters' : 'Compare and Contrast: Texts and Ideas';
+  } else if (baseTitle.includes('Fact vs Opinion')) {
+    title = week <= 6 ? 'Fact vs Opinion: News and Media' : 'Fact vs Opinion: Persuasive Writing';
+  } else if (baseTitle.includes('Research Skills')) {
+    title = week <= 6 ? 'Research Skills: Finding Sources' : 'Research Skills: Evaluating Information';
+  } else if (baseTitle.includes('Theme and Message')) {
+    title = week <= 6 ? 'Theme and Message: Life Lessons' : 'Theme and Message: Universal Themes';
+  } else if (baseTitle.includes('Making Inferences')) {
+    title = week <= 6 ? 'Making Inferences: Character Feelings' : 'Making Inferences: Hidden Meanings';
+  } else if (baseTitle.includes('Author\'s Purpose')) {
+    title = week <= 6 ? 'Author\'s Purpose: Inform and Explain' : 'Author\'s Purpose: Persuade and Entertain';
+  } else if (baseTitle.includes('Point of View')) {
+    title = week <= 6 ? 'Point of View: First vs Third Person' : 'Point of View: Narrator Perspective';
+  } else if (baseTitle.includes('Plot Structure')) {
+    title = week <= 6 ? 'Plot Structure: Beginning Middle End' : 'Plot Structure: Rising Action and Climax';
+  } else if (baseTitle.includes('Nonfiction Text Features')) {
+    title = week <= 6 ? 'Nonfiction Text Features: Headings and Captions' : 'Nonfiction Text Features: Diagrams and Charts';
+  } else if (baseTitle.includes('Poetry Elements')) {
+    title = week <= 6 ? 'Poetry Elements: Rhyme and Rhythm' : 'Poetry Elements: Metaphors and Imagery';
+  }
+
+  return {
+    title,
+    subject,
+    gradeLevel: 4,
+    week,
+    day,
+    content: content.content,
+    quiz: content.quiz || []
+  };
 }
 
 // Run the enhancement

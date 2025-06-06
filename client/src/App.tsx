@@ -4,6 +4,7 @@ import Login from './components/Login';
 import Dashboard from './components/Dashboard';
 import LessonView from './components/LessonView';
 import AdminDashboard from './components/AdminDashboard';
+import QuizReview from './components/QuizReview';
 import './App.css';
 
 interface User {
@@ -71,6 +72,10 @@ function App() {
           <Route 
             path="/lesson/:lessonId" 
             element={<LessonView user={user} token={token} onUserUpdate={updateUser} />} 
+          />
+          <Route 
+            path="/quiz-review/:studentId/:lessonId" 
+            element={<QuizReview />} 
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
