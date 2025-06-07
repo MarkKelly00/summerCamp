@@ -56,7 +56,9 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchLesson();
+    if (lessonId) {
+      fetchLesson();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [lessonId]);
 
@@ -94,7 +96,11 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
     }> = [];
     
     lesson.quiz.forEach((question, index) => {
-      const isCorrect = quizAnswers[index] === question.correctAnswer;
+      const correctAnswerText = typeof question.correctAnswer === 'number' 
+        ? question.options?.[question.correctAnswer] 
+        : question.correctAnswer;
+      const isCorrect = quizAnswers[index] === correctAnswerText;
+      
       if (isCorrect) {
         correctCount++;
         totalPoints += question.points;

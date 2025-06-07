@@ -2,6 +2,7 @@ import express, { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import User from '../models/User';
 import { authenticateToken } from '../middleware/auth';
+import mongoose from 'mongoose';
 
 const router = express.Router();
 
@@ -24,10 +25,34 @@ router.get('/students', authenticateToken, requireAdmin, async (req: Request, re
   }
 });
 
+// Get user by username (for compatibility)
+router.get('/username/:username', authenticateToken, async (req: Request, res: Response) => {
+  try {
+    const { username } = req.params;
+    const user = await User.findOne({ username }).select('-password').populate('badges');
+    if (!user) {
+      return res.status(404).json({ message: 'User not found' });
+    }
+    res.json(user);
+  } catch (error) {
+    console.error('Error fetching user by username:', error);
+    res.status(500).json({ message: 'Error fetching user' });
+  }
+});
+
 // Get user profile
 router.get('/profile/:id', authenticateToken, async (req: Request, res: Response) => {
   try {
-    const user = await User.findById(req.params.id).select('-password').populate('badges');
+    const { id } = req.params;
+    
+    // Check if it's a valid ObjectId, if not, try finding by username
+    let user;
+    if (mongoose.Types.ObjectId.isValid(id)) {
+      user = await User.findById(id).select('-password').populate('badges');
+    } else {
+      user = await User.findOne({ username: id }).select('-password').populate('badges');
+    }
+    
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
@@ -70,11 +95,23 @@ router.patch('/password/:id', authenticateToken, requireAdmin, async (req: Reque
 router.patch('/funmoney/:id', authenticateToken, async (req: Request, res: Response) => {
   try {
     const { amount } = req.body;
-    const user = await User.findByIdAndUpdate(
-      req.params.id,
-      { $inc: { funMoney: amount } },
-      { new: true }
-    ).select('-password');
+    const { id } = req.params;
+    
+    // Check if it's a valid ObjectId, if not, try finding by username
+    let user;
+    if (mongoose.Types.ObjectId.isValid(id)) {
+      user = await User.findByIdAndUpdate(
+        id,
+        { $inc: { funMoney: amount } },
+        { new: true }
+      ).select('-password');
+    } else {
+      user = await User.findOneAndUpdate(
+        { username: id },
+        { $inc: { funMoney: amount } },
+        { new: true }
+      ).select('-password');
+    }
     
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
@@ -90,11 +127,23 @@ router.patch('/funmoney/:id', authenticateToken, async (req: Request, res: Respo
 router.patch('/badge/:userId', authenticateToken, async (req: Request, res: Response) => {
   try {
     const { badgeId } = req.body;
-    const user = await User.findByIdAndUpdate(
-      req.params.userId,
-      { $addToSet: { badges: badgeId } },
-      { new: true }
-    ).select('-password').populate('badges');
+    const { userId } = req.params;
+    
+    // Check if it's a valid ObjectId, if not, try finding by username
+    let user;
+    if (mongoose.Types.ObjectId.isValid(userId)) {
+      user = await User.findByIdAndUpdate(
+        userId,
+        { $addToSet: { badges: badgeId } },
+        { new: true }
+      ).select('-password').populate('badges');
+    } else {
+      user = await User.findOneAndUpdate(
+        { username: userId },
+        { $addToSet: { badges: badgeId } },
+        { new: true }
+      ).select('-password').populate('badges');
+    }
     
     if (!user) {
       return res.status(404).json({ message: 'User not found' });

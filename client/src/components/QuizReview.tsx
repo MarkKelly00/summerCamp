@@ -47,7 +47,9 @@ const QuizReview: React.FC = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetchQuizReview();
+    if (studentId && lessonId) {
+      fetchQuizReview();
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [studentId, lessonId]);
 
@@ -177,7 +179,11 @@ const QuizReview: React.FC = () => {
                     <div className="space-y-2 mb-4">
                       {question.options?.map((option, optionIndex) => {
                         const isStudentAnswer = studentAnswer?.answer === option;
-                        const isCorrectAnswer = question.correctAnswer === option;
+                        // Fix: Handle both string and number correctAnswer formats
+                        const correctAnswerText = typeof question.correctAnswer === 'number' 
+                          ? question.options?.[question.correctAnswer] 
+                          : question.correctAnswer;
+                        const isCorrectAnswer = correctAnswerText === option;
                         
                         let optionClass = 'p-3 rounded-lg border-2 font-kid ';
                         if (isCorrectAnswer) {
