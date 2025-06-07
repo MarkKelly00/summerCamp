@@ -28,15 +28,15 @@ interface Lesson {
   _id: string;
   title: string;
   subject: string;
-  content: {
-    introduction: string;
-    mainContent: string;
-    activities: string[];
-    funFacts?: string[];
-  };
+  introduction: string;
+  content: string;
+  activities: string[];
+  funFacts: string[];
+  vocabulary: string[];
   quiz: Quiz[];
   estimatedTime: number;
   difficulty: string;
+  funMoney: number;
 }
 
 interface LessonViewProps {
@@ -151,7 +151,14 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
   };
 
   const renderCurrentStep = () => {
-    if (!lesson) return null;
+    if (!lesson) {
+      return (
+        <div className="text-center">
+          <div className="text-6xl animate-spin-slow">🌟</div>
+          <p className="text-gray-700 font-kid">Loading lesson content...</p>
+        </div>
+      );
+    }
 
     switch (currentStep) {
       case 0:
@@ -161,7 +168,7 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
               {lesson.title}
             </h2>
             <p className="text-lg text-gray-700 font-kid leading-relaxed">
-              {lesson.content.introduction}
+              {lesson.introduction}
             </p>
             <div className="text-6xl animate-bounce-slow">📚</div>
           </div>
@@ -175,7 +182,7 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
             </h2>
             <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded">
               <p className="text-gray-800 font-kid leading-relaxed text-lg">
-                {lesson.content.mainContent}
+                {lesson.content}
               </p>
             </div>
           </div>
@@ -188,16 +195,20 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
               Fun Activities! 🎯
             </h2>
             <div className="space-y-4">
-              {lesson.content.activities.map((activity, index) => (
-                <div key={index} className="bg-green-50 border border-green-200 p-4 rounded-lg">
-                  <div className="flex items-start space-x-3">
-                    <span className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
-                      {index + 1}
-                    </span>
-                    <p className="text-gray-800 font-kid">{activity}</p>
+              {lesson.activities && lesson.activities.length > 0 ? (
+                lesson.activities.map((activity, index) => (
+                  <div key={index} className="bg-green-50 border border-green-200 p-4 rounded-lg">
+                    <div className="flex items-start space-x-3">
+                      <span className="bg-green-500 text-white rounded-full w-8 h-8 flex items-center justify-center font-bold text-sm">
+                        {index + 1}
+                      </span>
+                      <p className="text-gray-800 font-kid">{activity}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="text-gray-600 font-kid">No activities available for this lesson.</p>
+              )}
             </div>
           </div>
         );
@@ -209,14 +220,18 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
               Fun Facts! 🤓
             </h2>
             <div className="space-y-4">
-              {lesson.content.funFacts?.map((fact, index) => (
-                <div key={index} className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
-                  <div className="flex items-start space-x-3">
-                    <span className="text-2xl">💡</span>
-                    <p className="text-gray-800 font-kid">{fact}</p>
+              {lesson.funFacts && lesson.funFacts.length > 0 ? (
+                lesson.funFacts.map((fact, index) => (
+                  <div key={index} className="bg-yellow-50 border border-yellow-200 p-4 rounded-lg">
+                    <div className="flex items-start space-x-3">
+                      <span className="text-2xl">💡</span>
+                      <p className="text-gray-800 font-kid">{fact}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))
+              ) : (
+                <p className="text-gray-600 font-kid">No fun facts available for this lesson.</p>
+              )}
             </div>
           </div>
         );
@@ -247,35 +262,41 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
               </div>
             ) : (
               <div className="space-y-6">
-                {lesson.quiz.map((question, qIndex) => (
-                  <div key={qIndex} className="bg-white border-2 border-purple-200 p-6 rounded-lg">
-                    <h4 className="text-lg font-bold text-gray-800 font-kid mb-4">
-                      Question {qIndex + 1}: {question.question}
-                    </h4>
-                    <div className="space-y-2">
-                      {question.options?.map((option, oIndex) => (
-                        <button
-                          key={oIndex}
-                          onClick={() => handleQuizAnswer(qIndex, option)}
-                          className={`w-full p-3 text-left rounded-lg border-2 transition-all font-kid ${
-                            quizAnswers[qIndex] === option
-                              ? 'border-purple-500 bg-purple-100'
-                              : 'border-gray-200 hover:border-purple-300'
-                          }`}
-                        >
-                          {option}
-                        </button>
-                      ))}
+                {lesson.quiz && lesson.quiz.length > 0 ? (
+                  lesson.quiz.map((question, qIndex) => (
+                    <div key={qIndex} className="bg-white border-2 border-purple-200 p-6 rounded-lg">
+                      <h4 className="text-lg font-bold text-gray-800 font-kid mb-4">
+                        Question {qIndex + 1}: {question.question}
+                      </h4>
+                      <div className="space-y-2">
+                        {question.options?.map((option, oIndex) => (
+                          <button
+                            key={oIndex}
+                            onClick={() => handleQuizAnswer(qIndex, option)}
+                            className={`w-full p-3 text-left rounded-lg border-2 transition-all font-kid ${
+                              quizAnswers[qIndex] === option
+                                ? 'border-purple-500 bg-purple-100'
+                                : 'border-gray-200 hover:border-purple-300'
+                            }`}
+                          >
+                            {option}
+                          </button>
+                        ))}
+                      </div>
                     </div>
-                  </div>
-                ))}
-                <button
-                  onClick={submitQuiz}
-                  disabled={quizAnswers.some(answer => !answer)}
-                  className="w-full fun-button bg-purple-500 disabled:opacity-50 font-kid"
-                >
-                  🚀 Submit Quiz
-                </button>
+                  ))
+                ) : (
+                  <p className="text-gray-600 font-kid">No quiz available for this lesson.</p>
+                )}
+                {lesson.quiz && lesson.quiz.length > 0 && (
+                  <button
+                    onClick={submitQuiz}
+                    disabled={quizAnswers.some(answer => !answer)}
+                    className="w-full fun-button bg-purple-500 disabled:opacity-50 font-kid"
+                  >
+                    🚀 Submit Quiz
+                  </button>
+                )}
               </div>
             )}
           </div>
