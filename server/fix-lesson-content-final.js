@@ -330,7 +330,7 @@ function generateEngagingContent(grade, subject, title) {
     const complexity = grade === 2 ? 'simple' : 'detailed';
     const examples = grade === 2 ? 'everyday' : 'real-world';
     
-    return `**What Is ${title}?**
+        return `**What Is ${title}?**
 
 ${title} is ${grade === 2 ? 'something really cool and useful' : 'an important concept'} that we ${grade === 2 ? 'see and use' : 'encounter and apply'} in our ${grade === 2 ? 'everyday lives' : 'daily experiences'}! ${grade === 2 ? "It's like having a special tool" : "Think of it as a powerful skill"} that helps you ${grade === 2 ? 'solve problems and have fun' : 'understand complex ideas and solve challenges'}.
 
@@ -403,10 +403,23 @@ function generateSpecificContent(grade, subject, title) {
         'Angles and Geometric Shapes': generateGeometryContent(grade),
         'Weather and Climate': generateWeatherContent(grade),
         'Weather Patterns and Observation': generateWeatherContent(grade),
-        'Seasons and Weather Changes': generateWeatherContent(grade),
+        'Seasons and Weather Changes': generateSeasonsContent(grade),
         'Plants and Animals': generatePlantsAnimalsContent(grade),
         'Plants and Their Needs': generatePlantsAnimalsContent(grade),
-        'Animals and Their Habitats': generatePlantsAnimalsContent(grade)
+        'Animals and Their Habitats': generatePlantsAnimalsContent(grade),
+        'States of Matter': generateStatesOfMatterContent(grade),
+        'States of Matter and Physical Changes': generateStatesOfMatterContent(grade),
+        'Forces and Motion': generateForcesAndMotionContent(grade),
+        'Forces and Motion in Everyday Life': generateForcesAndMotionContent(grade),
+        'Introduction to Basic Coding': generateBasicCodingContent(grade),
+        'Basic Coding Concepts': generateBasicCodingContent(grade),
+        'Understanding Point of View': generatePointOfViewContent(grade),
+        'Point of View in Stories': generatePointOfViewContent(grade),
+        'Patterns and Functions': generatePatternsAndFunctionsContent(grade),
+        'Introduction to Patterns and Functions': generatePatternsAndFunctionsContent(grade),
+        'Main Idea and Details': generateMainIdeaContent(grade),
+        'Finding Main Ideas': generateMainIdeaContent(grade),
+        // ... existing mappings ...
     };
     
     // Return specific content if available, otherwise generate generic content
@@ -698,7 +711,7 @@ function generateKidFriendlyFunFacts(grade, subject, title) {
     
     // Generic fun facts as fallback
     if (grade === 2) {
-        return [
+    return [
             `Did you know that ${cleanTitle} is used by cartoon characters and video game designers to make stories more exciting!`,
             `It's amazing that many animals in nature use the same ideas as ${cleanTitle} to survive and thrive!`,
             `Scientists and astronauts use ${cleanTitle} when they're exploring space and making new discoveries!`,
@@ -1216,6 +1229,126 @@ Weather and climate are related but distinct concepts that help us understand at
     }
 }
 
+function generateSeasonsContent(grade) {
+    if (grade === 2) {
+        return `**What Are Seasons and Weather Changes?**
+
+Seasons are special times of the year when the weather follows a pattern. There are four amazing seasons: spring, summer, fall (autumn), and winter! Each season brings its own kind of weather and changes in our world.
+
+**Why Seasons and Weather Changes Matter**
+
+Understanding seasons helps us know what clothes to wear, what activities we can do outside, and how plants and animals change throughout the year. Farmers use seasons to know when to plant and harvest crops, and animals know when to migrate or hibernate!
+
+**How Seasons and Weather Changes Work**
+
+**Spring (March to May):**
+• Weather gets warmer after winter
+• More rain showers help plants grow
+• Trees grow new leaves
+• Flowers start blooming
+• Many baby animals are born
+
+**Summer (June to August):**
+• Warmest season of the year
+• Most daylight hours
+• Less rain, more sunny days
+• Plants are full grown
+• Great time for outdoor activities
+
+**Fall/Autumn (September to November):**
+• Weather gets cooler
+• Days get shorter
+• Leaves change colors and fall
+• Animals prepare for winter
+• Time to harvest pumpkins and apples
+
+**Winter (December to February):**
+• Coldest season
+• Least daylight hours
+• Snow and ice in many places
+• Many trees have no leaves
+• Some animals hibernate
+
+**Real-Life Examples**
+
+• Birds fly south in fall to find warmer places for winter
+• Bears eat extra food in fall to prepare for winter hibernation
+• Farmers plant seeds in spring when the soil is warm and wet
+• We wear different clothes for each season (coats in winter, shorts in summer)
+• Trees lose their leaves in fall and grow new ones in spring
+
+**Common Mistakes to Avoid**
+
+Don't think seasons are the same everywhere! When it's summer in the United States, it's winter in Australia. Also, some places (like near the equator) don't have four distinct seasons.
+
+**Quick Recap**
+
+Seasons are nature's way of changing the weather throughout the year. Each season brings special changes in temperature, daylight, plants, and animals. Understanding these changes helps us prepare and enjoy each season!`;
+    } else {
+        return `**What Are Seasons and Weather Changes?**
+
+Seasons are cyclical patterns of weather and environmental changes caused by Earth's tilted axis and its revolution around the Sun. These patterns create distinct periods with characteristic temperature, precipitation, and daylight variations that significantly impact ecosystems and human activities.
+
+**Why Seasons and Weather Changes Matter**
+
+Understanding seasonal patterns is crucial for agriculture, urban planning, energy management, and ecosystem conservation. This knowledge helps predict environmental changes, manage resources effectively, and adapt to seasonal challenges in various industries and daily life.
+
+**How Seasons and Weather Changes Work**
+
+**Earth's Tilt and Orbit:**
+• Earth's axis is tilted 23.5 degrees
+• This tilt remains constant during Earth's orbit
+• Different hemispheres receive varying amounts of sunlight
+• Complete orbit takes one year
+
+**Seasonal Characteristics:**
+
+**Spring (Vernal Equinox):**
+• Increasing daylight hours
+• Rising temperatures
+• More frequent precipitation
+• Plant growth resumes
+• Animal migration and reproduction begin
+
+**Summer (Summer Solstice):**
+• Maximum daylight hours
+• Highest temperatures
+• Increased evaporation
+• Peak plant growth
+• High biological activity
+
+**Autumn (Autumnal Equinox):**
+• Decreasing daylight hours
+• Cooling temperatures
+• Changes in precipitation patterns
+• Leaf color changes and abscission
+• Animal preparation for winter
+
+**Winter (Winter Solstice):**
+• Minimum daylight hours
+• Lowest temperatures
+• Precipitation often as snow
+• Plant dormancy
+• Animal adaptation strategies
+
+**Real-Life Examples**
+
+• Agricultural planting and harvesting schedules
+• Seasonal energy consumption patterns
+• Migration timing of various species
+• Seasonal business cycles
+• Weather-related infrastructure planning
+
+**Common Mistakes to Avoid**
+
+Don't confuse weather and seasonal changes - weather is short-term atmospheric conditions while seasons are long-term patterns. Also, remember that seasonal changes vary by latitude and local geography.
+
+**Quick Recap**
+
+Seasons are predictable patterns of environmental change driven by Earth's tilt and orbit. Understanding these patterns helps us predict and adapt to natural cycles that affect all aspects of life on Earth.`;
+    }
+}
+
 function generatePlantsAnimalsContent(grade) {
     if (grade === 2) {
         return `**What Are Plants and Animals?**
@@ -1295,6 +1428,614 @@ Don't oversimplify the plant-animal distinction - some organisms (like fungi) do
 **Quick Recap**
 
 Plants and animals represent two major groups of living organisms with distinct characteristics and ecological roles. Their interactions and interdependence form the basis of Earth's complex ecosystems and biological diversity.`;
+    }
+}
+
+function generateStatesOfMatterContent(grade) {
+    if (grade === 2) {
+        return `**What Are States of Matter?**
+
+Matter is everything around us that we can touch, feel, or see! Matter can be in different states - like how water can be liquid in your cup, solid ice in your freezer, or steam from a kettle. Let's explore these amazing states!
+
+**Why States of Matter Matter**
+
+Understanding states of matter helps us know how things change in our world. It explains why ice cream melts on a hot day, why puddles disappear in the sun, and why we see clouds in the sky!
+
+**How States of Matter Work**
+
+There are three main states of matter:
+
+**Solids:**
+• Keep their shape (like toys and books)
+• Feel hard or firm
+• Can't flow or pour
+• Examples: rocks, ice cubes, pencils
+
+**Liquids:**
+• Take the shape of their container
+• Can be poured
+• Flow easily
+• Examples: water, milk, juice
+
+**Gases:**
+• Spread out to fill all space
+• Can't be seen (most times)
+• Can move through air
+• Examples: air, steam, balloon gas
+
+**Changes in States:**
+• Melting: solid → liquid (ice cream melting)
+• Freezing: liquid → solid (making ice cubes)
+• Evaporation: liquid → gas (puddles drying up)
+• Condensation: gas → liquid (foggy bathroom mirror)
+
+**Real-Life Examples**
+
+• Making popsicles (liquid juice → frozen solid)
+• Morning dew on grass (gas → liquid)
+• Chocolate melting in your hand (solid → liquid)
+• Boiling water for pasta (liquid → gas)
+
+**Common Mistakes to Avoid**
+
+Remember that changing state doesn't change what something is - water is still water whether it's ice, liquid, or steam! Also, not all solids melt at the same temperature - chocolate melts easily but rocks need much more heat.
+
+**Quick Recap**
+
+Everything is made of matter, and matter can be a solid, liquid, or gas. Matter can change from one state to another when heated or cooled. These changes happen all around us every day!`;
+    } else {
+        return `**What Are States of Matter?**
+
+States of matter are the different forms that matter can take based on the arrangement and behavior of its particles. Understanding these states and their transitions is fundamental to physical science and helps explain countless natural phenomena.
+
+**Why States of Matter Matter**
+
+Knowledge of matter states and phase transitions is crucial for understanding physical and chemical processes, weather patterns, industrial processes, and many technological applications. This understanding forms the foundation for advanced physics and chemistry concepts.
+
+**How States of Matter Work**
+
+**Particle Behavior in Different States:**
+
+**Solids:**
+• Particles are tightly packed in regular patterns
+• Strong intermolecular forces
+• Definite shape and volume
+• Vibrate but maintain fixed positions
+• Highest density of states
+
+**Liquids:**
+• Particles are close but can move past each other
+• Moderate intermolecular forces
+• Definite volume but take container's shape
+• Flow and can be poured
+• Moderate density
+
+**Gases:**
+• Particles are far apart and move randomly
+• Weak intermolecular forces
+• No definite shape or volume
+• Expand to fill container
+• Lowest density
+
+**Phase Transitions:**
+• Melting (fusion): solid → liquid
+• Freezing (solidification): liquid → solid
+• Vaporization: liquid → gas
+• Condensation: gas → liquid
+• Sublimation: solid → gas
+• Deposition: gas → solid
+
+**Real-Life Examples**
+
+• Phase changes in water cycle
+• Industrial processes like metal casting
+• Refrigeration and air conditioning systems
+• Cloud formation and precipitation
+• Freeze-drying food preservation
+
+**Common Mistakes to Avoid**
+
+Don't confuse temperature with heat - temperature measures average particle motion, while heat is energy transfer. Also, remember that pressure affects phase transitions - water can boil at different temperatures depending on atmospheric pressure.
+
+**Quick Recap**
+
+States of matter are determined by particle arrangement and behavior, affected by both temperature and pressure. Understanding phase transitions helps explain natural phenomena and enables technological applications.`;
+    }
+}
+
+function generateForcesAndMotionContent(grade) {
+    if (grade === 2) {
+        return `**What Are Forces and Motion?**
+
+Forces are pushes and pulls that make things move, stop, or change direction. Motion is how things move from one place to another. Together, forces and motion explain how everything around us moves!
+
+**Why Forces and Motion Matter**
+
+Understanding forces and motion helps us play sports, ride bikes, build things, and stay safe. It explains why balls roll down hills, why we need seat belts in cars, and how we can move heavy things more easily!
+
+**How Forces and Motion Work**
+
+**Types of Forces:**
+• Push forces - moving things away from you
+• Pull forces - moving things toward you
+• Gravity - pulls everything down toward Earth
+• Friction - makes it harder for things to slide
+
+**Types of Motion:**
+• Fast or slow
+• Straight or curved
+• Rolling or sliding
+• Back and forth
+
+**Things That Affect Motion:**
+• How strong the force is
+• How heavy the object is
+• What surface it's moving on
+• Whether something is in the way
+
+**Real-Life Examples**
+
+• Pushing a swing makes it go higher
+• Kicking a ball makes it roll
+• Pulling a wagon makes it follow you
+• Sliding on ice is easier than sliding on grass (less friction)
+• Heavy things need more force to move than light things
+
+**Common Mistakes to Avoid**
+
+Remember that things don't move by themselves - they need a force to start moving! Also, something that's moving will keep moving until a force (like friction) makes it stop.
+
+**Quick Recap**
+
+Forces are pushes and pulls that make things move. Different forces can make things move in different ways, and things like friction can make them stop. Understanding forces helps us move things more easily and safely!`;
+    } else {
+        return `**What Are Forces and Motion?**
+
+Forces and motion are fundamental concepts in physics that describe how objects interact and move. Forces are pushes or pulls that can change an object's motion, while motion describes an object's change in position over time.
+
+**Why Forces and Motion Matter**
+
+Understanding forces and motion is essential for engineering, sports science, transportation design, and countless practical applications. These concepts explain everything from planetary orbits to everyday activities.
+
+**How Forces and Motion Work**
+
+**Fundamental Forces:**
+• Gravity - universal attraction between masses
+• Friction - resistance force between surfaces
+• Normal force - perpendicular surface support
+• Applied forces - intentional pushes or pulls
+
+**Newton's Laws of Motion:**
+
+**First Law (Inertia):**
+• Objects maintain motion unless acted upon
+• Resistance to change in motion
+• Explains need for seat belts
+
+**Second Law (F = ma):**
+• Force equals mass times acceleration
+• Heavier objects need more force
+• Explains varying impacts of collisions
+
+**Third Law (Action-Reaction):**
+• Forces come in equal, opposite pairs
+• Explains rocket propulsion
+• Demonstrates force interactions
+
+**Motion Concepts:**
+• Speed - rate of position change
+• Velocity - speed with direction
+• Acceleration - rate of velocity change
+• Momentum - mass times velocity
+
+**Real-Life Examples**
+
+• Sports physics and equipment design
+• Vehicle safety systems
+• Construction and engineering
+• Space travel and orbital mechanics
+• Simple machines and mechanical advantage
+
+**Common Mistakes to Avoid**
+
+Don't confuse mass and weight - mass is constant, while weight depends on gravity. Also, remember that forces always come in pairs, even when one force isn't immediately obvious.
+
+**Quick Recap**
+
+Forces and motion follow predictable laws that govern all physical interactions. Understanding these principles helps explain natural phenomena and enables technological advancement.`;
+    }
+}
+
+function generateBasicCodingContent(grade) {
+    if (grade === 2) {
+        return `**What Is Basic Coding?**
+
+Coding is like giving instructions to a computer to make it do things! Just like you follow steps to make a sandwich or play a game, computers follow special instructions called code to do their jobs. Let's learn how to think like a programmer!
+
+**Why Basic Coding Matters**
+
+Learning to code helps you solve problems, think logically, and be creative. It's like learning a special language that lets you create games, tell stories, and make computers do amazing things!
+
+**How Basic Coding Works**
+
+**Basic Coding Concepts:**
+• **Sequences** - putting steps in the right order
+• **Loops** - doing something over and over
+• **If-Then** - making choices based on conditions
+• **Debugging** - finding and fixing mistakes
+
+**Writing Instructions:**
+• Be clear and specific
+• Put steps in the right order
+• Check if instructions work
+• Fix any problems you find
+
+**Important Terms:**
+• **Algorithm** - a list of steps to solve a problem
+• **Program** - instructions for the computer
+• **Bug** - a mistake in the code
+• **Debug** - fix the mistake
+
+**Real-Life Examples**
+
+• Following a recipe is like following code
+• Playing Simon Says is like giving computer commands
+• Building with blocks uses patterns like coding
+• Board game rules are like computer instructions
+• Robot toys follow coded commands
+
+**Common Mistakes to Avoid**
+
+Remember that computers follow instructions exactly as written - they can't guess what you mean! Also, start with simple instructions before trying complicated ones.
+
+**Quick Recap**
+
+Coding is writing clear instructions for computers to follow. Good coders think carefully about the steps needed, check their work, and fix any problems they find. With practice, you can make computers do amazing things!`;
+    } else {
+        return `**What Is Basic Coding?**
+
+Basic coding is the foundation of computer programming, teaching fundamental concepts of algorithmic thinking and problem-solving through writing instructions that computers can execute. It introduces the logic and structure needed for more advanced programming.
+
+**Why Basic Coding Matters**
+
+Understanding basic coding principles develops computational thinking, logical reasoning, and problem-solving skills. These skills are increasingly essential in our technology-driven world and form the foundation for digital literacy and future career opportunities.
+
+**How Basic Coding Works**
+
+**Fundamental Concepts:**
+
+**Sequences and Algorithms:**
+• Step-by-step instructions
+• Order of operations
+• Logical flow
+• Process planning
+
+**Control Structures:**
+• Loops (iteration)
+• Conditionals (if-then-else)
+• Functions (reusable code blocks)
+• Variables (data storage)
+
+**Problem-Solving Process:**
+• Problem decomposition
+• Pattern recognition
+• Algorithm design
+• Testing and debugging
+
+**Best Practices:**
+• Clear, organized code
+• Efficient solutions
+• Documentation
+• Error handling
+
+**Real-Life Examples**
+
+• Game development and animation
+• Website functionality
+• Mobile app features
+• Automated systems
+• Digital art and design
+
+**Common Mistakes to Avoid**
+
+Don't try to write complex code before mastering basics. Remember to test code thoroughly and document your process. Also, understand that there are often multiple valid solutions to a coding problem.
+
+**Quick Recap**
+
+Basic coding teaches fundamental programming concepts through hands-on practice with sequences, loops, conditionals, and problem-solving. These skills form the foundation for advanced programming and digital literacy.`;
+    }
+}
+
+function generatePointOfViewContent(grade) {
+    if (grade === 2) {
+        return `**What Is Point of View?**
+
+Point of view is who is telling the story! It's like looking through different people's eyes to see how they think and feel about what's happening. Sometimes the storyteller is in the story, and sometimes they're just watching it happen.
+
+**Why Point of View Matters**
+
+Understanding point of view helps us know how characters feel and why they do things. It's like being able to put yourself in someone else's shoes to understand their side of the story!
+
+**How Point of View Works**
+
+**Different Points of View:**
+
+**First Person (I, me, my):**
+• The storyteller is in the story
+• Uses words like "I" and "my"
+• Tells us their thoughts and feelings
+• Example: "I went to the park"
+
+**Third Person (he, she, they):**
+• The storyteller is outside the story
+• Uses names and words like "he" or "she"
+• Tells us what characters do
+• Example: "Sarah went to the park"
+
+**Clues for Point of View:**
+• Look for words like "I" or "he/she"
+• Notice whose thoughts we can hear
+• See who's telling the story
+• Watch for different characters' feelings
+
+**Real-Life Examples**
+
+• Telling about your day uses "I" (first person)
+• Writing about your friend uses "she" or "he" (third person)
+• Reading a diary shows someone's personal view
+• Watching a movie shows many characters' views
+
+**Common Mistakes to Avoid**
+
+Don't forget that different characters might see the same thing differently! Also, remember that the storyteller might not know everything about all the characters.
+
+**Quick Recap**
+
+Point of view tells us who is telling the story and how they see things. Understanding different points of view helps us be better readers and understand how different people think and feel!`;
+    } else {
+        return `**What Is Point of View?**
+
+Point of view is the perspective from which a story is narrated, determining how information is conveyed to the reader and shaping their understanding of characters, events, and themes. It's a crucial element that influences the entire narrative structure.
+
+**Why Point of View Matters**
+
+Understanding point of view helps readers analyze narrative perspective, character development, and author's purpose. It affects how we interpret information, understand bias, and connect with different narrative voices.
+
+**How Point of View Works**
+
+**Types of Point of View:**
+
+**First Person:**
+• Narrator uses "I" or "we"
+• Limited to narrator's experiences
+• Direct access to narrator's thoughts
+• Subjective perspective
+
+**Third Person Limited:**
+• Uses "he," "she," or "they"
+• Focuses on one character's perspective
+• Limited to one character's thoughts
+• Balance of intimacy and distance
+
+**Third Person Omniscient:**
+• All-knowing narrator
+• Access to multiple characters' thoughts
+• Broader perspective
+• Greater narrative flexibility
+
+**Second Person:**
+• Uses "you"
+• Directly addresses reader
+• Creates immediate involvement
+• Less common in fiction
+
+**Real-Life Examples**
+
+• Diary entries and personal narratives
+• News reports and journalism
+• Historical accounts
+• Scientific writing
+• Social media posts
+
+**Common Mistakes to Avoid**
+
+Watch for point of view shifts within a text unless they're intentional. Remember that reliability varies with perspective - first-person narrators may be biased or limited in their understanding.
+
+**Quick Recap**
+
+Point of view shapes how stories are told and understood, affecting character development, theme, and reader engagement. Different perspectives serve different narrative purposes and create various effects on readers.`;
+    }
+}
+
+function generatePatternsAndFunctionsContent(grade) {
+    if (grade === 2) {
+        return `**What Are Patterns and Functions?**
+
+Patterns are things that repeat in a way we can predict! Functions are special rules that help us understand how patterns work. It's like being a pattern detective who can figure out what comes next!
+
+**Why Patterns and Functions Matter**
+
+Finding patterns helps us understand the world around us and solve problems. Patterns are everywhere - in nature, in music, in math, and even in your daily routine! Understanding patterns helps you predict what will happen next.
+
+**How Patterns and Functions Work**
+
+**Types of Patterns:**
+
+**Number Patterns:**
+• Counting by 2s: 2, 4, 6, 8, 10...
+• Skip counting by 5s: 5, 10, 15, 20...
+• Growing patterns: 1, 3, 5, 7...
+
+**Shape Patterns:**
+• Circle, square, circle, square...
+• Big, small, big, small...
+• Red, blue, yellow, red, blue, yellow...
+
+**Finding Patterns:**
+• Look for what repeats
+• Count how many before it repeats
+• Figure out what comes next
+• Test your pattern rule
+
+**Real-Life Examples**
+
+• Days of the week repeat in a pattern
+• Seasons follow a pattern (spring, summer, fall, winter)
+• Music has patterns of beats and notes
+• Stripes on your clothes make patterns
+• Floor tiles often have patterns
+
+**Common Mistakes to Avoid**
+
+Don't forget to check your pattern more than once to make sure it really repeats! Also, remember that some patterns get bigger or smaller instead of just repeating the same thing.
+
+**Quick Recap**
+
+Patterns are things that repeat in ways we can predict, and functions are rules that explain how patterns work. Finding patterns helps us understand our world and solve problems better!`;
+    } else {
+        return `**What Are Patterns and Functions?**
+
+Patterns and functions are mathematical relationships that describe predictable sequences and changes. Functions define rules that connect input values to output values, while patterns show regular, predictable arrangements or sequences.
+
+**Why Patterns and Functions Matter**
+
+Understanding patterns and functions is fundamental to algebraic thinking and problem-solving. These concepts help us model real-world relationships, make predictions, and develop logical reasoning skills essential for advanced mathematics.
+
+**How Patterns and Functions Work**
+
+**Types of Patterns:**
+
+**Numeric Patterns:**
+• Arithmetic sequences (constant difference)
+• Geometric sequences (constant ratio)
+• Fibonacci sequence (each number is sum of previous two)
+• Prime numbers
+
+**Function Types:**
+• Linear functions (constant rate of change)
+• Quadratic functions (variable rate of change)
+• Input-output relationships
+• Function rules and notation
+
+**Pattern Analysis:**
+• Identify the pattern rule
+• Find missing terms
+• Extend patterns
+• Create function tables
+• Graph relationships
+
+**Real-Life Examples**
+
+• Population growth patterns
+• Temperature changes
+• Financial interest calculations
+• Scientific phenomena
+• Computer algorithms
+
+**Common Mistakes to Avoid**
+
+Don't assume all patterns continue indefinitely without verifying the rule. Also, remember that correlation doesn't always imply causation - patterns may be coincidental rather than meaningful.
+
+**Quick Recap**
+
+Patterns and functions are powerful tools for understanding relationships and making predictions. They form the foundation for algebraic thinking and help us model real-world phenomena mathematically.`;
+    }
+}
+
+function generateMainIdeaContent(grade) {
+    if (grade === 2) {
+        return `**What Is Main Idea?**
+
+The main idea is what a story or text is mostly about! It's like the big picture or the most important message the author wants to share. Details in the story help support the main idea, just like legs support a table!
+
+**Why Main Idea Matters**
+
+Understanding the main idea helps you remember what you read and tell others about it. It's like being able to tell someone what a movie was about without telling them every little thing that happened!
+
+**How Main Idea Works**
+
+**Finding the Main Idea:**
+• Look at the title
+• Read the first and last paragraphs
+• Notice what the author talks about most
+• Think about what all the details have in common
+
+**Supporting Details:**
+• Give examples
+• Explain more about the main idea
+• Help you understand better
+• Add interesting information
+
+**Steps to Find Main Idea:**
+1. Read the whole text carefully
+2. Ask "What is this mostly about?"
+3. Look for important details
+4. Think about how details connect
+
+**Real-Life Examples**
+
+• A birthday party's main idea is celebrating someone's birthday
+• A recipe's main idea is how to make something
+• A weather report's main idea is what the weather will be like
+• A stop sign's main idea is to tell cars to stop
+
+**Common Mistakes to Avoid**
+
+Don't confuse a small detail with the main idea! Also, remember that the title sometimes helps you find the main idea, but not always - you need to read the whole text.
+
+**Quick Recap**
+
+The main idea is what something is mostly about, and details help explain and support it. Finding the main idea helps you understand and remember what you read!`;
+    } else {
+        return `**What Is Main Idea?**
+
+The main idea is the central concept or primary message of a text. It encompasses the essential information the author wants to convey, supported by relevant details and examples that develop and clarify the central theme.
+
+**Why Main Idea Matters**
+
+Identifying main ideas is crucial for reading comprehension, critical thinking, and effective communication. This skill helps readers synthesize information, distinguish between essential and supporting details, and understand author's purpose.
+
+**How Main Idea Works**
+
+**Levels of Main Ideas:**
+
+**Text Level:**
+• Overall theme or message
+• Author's primary purpose
+• Central argument or concept
+
+**Paragraph Level:**
+• Topic sentences
+• Supporting details
+• Concluding statements
+
+**Identifying Main Ideas:**
+• Analyze text structure
+• Evaluate supporting details
+• Consider author's purpose
+• Examine text features
+
+**Supporting Details:**
+• Examples and evidence
+• Statistics and data
+• Explanations
+• Illustrations and quotes
+
+**Real-Life Examples**
+
+• News article headlines and key points
+• Research paper thesis statements
+• Textbook chapter main concepts
+• Speech central messages
+• Documentary themes
+
+**Common Mistakes to Avoid**
+
+Don't confuse interesting details with main ideas. Remember that main ideas may be stated or implied, and multiple paragraphs may support a single main idea. Also, distinguish between topic (subject) and main idea (what's said about the subject).
+
+**Quick Recap**
+
+Main idea identification is essential for comprehension and analysis. Understanding how main ideas are supported by details helps readers grasp meaning and author's purpose in various texts.`;
     }
 }
 
