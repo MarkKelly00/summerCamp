@@ -172,7 +172,7 @@ Don't confuse squares and rectangles - all squares are rectangles, but not all r
 
 **Quick Recap**
 
-Shapes have special properties like numbers of sides, corners, and angles. Learning these properties helps us understand and describe the world around us!`,
+Shapes have special properties like numbers of sides, corners, and angles. Learning these properties helps us understand and describe the world around us better!`,
             activities: [
                 "Go on a 'Shape Hunt' around your house and find 10 different shapes in everyday objects",
                 "Create shape art by cutting out different shapes and making pictures or patterns with them",
@@ -425,7 +425,35 @@ function generateSpecificContent(grade, subject, title) {
         'Maps and Geography': generateMapsGeographyContent(grade),
         'Using Maps': generateMapsGeographyContent(grade),
         'Map Skills': generateMapsGeographyContent(grade),
-        // ... existing mappings ...
+        'Author\'s Purpose': generateAuthorsPurposeContent(grade),
+        'Understanding Author\'s Purpose': generateAuthorsPurposeContent(grade),
+        'Sound and Vibrations': generateSoundVibrationsContent(grade),
+        'Understanding Sound': generateSoundVibrationsContent(grade),
+        'Sound Waves and Energy': generateSoundVibrationsContent(grade),
+        'Historical Figures': generateHistoricalFiguresContent(grade),
+        'Important People in History': generateHistoricalFiguresContent(grade),
+        'Money Literacy': generateMoneyLiteracyContent(grade),
+        'Understanding Money': generateMoneyLiteracyContent(grade),
+        'Financial Literacy': generateMoneyLiteracyContent(grade),
+        'Time and Clocks': generateTimeAndClocksContent(grade),
+        'Telling Time': generateTimeAndClocksContent(grade),
+        'Understanding Time': generateTimeAndClocksContent(grade),
+        'Reading Comprehension': generateReadingComprehensionContent(grade),
+        'Reading Strategies': generateReadingComprehensionContent(grade),
+        'Understanding What We Read': generateReadingComprehensionContent(grade),
+        'Writing Skills': generateWritingSkillsContent(grade),
+        'Writing Strategies': generateWritingSkillsContent(grade),
+        'Becoming Better Writers': generateWritingSkillsContent(grade),
+        'Earth Science': generateEarthScienceContent(grade),
+        'Earth and Space': generateEarthScienceContent(grade),
+        'Our Planet Earth': generateEarthScienceContent(grade),
+        'Life Cycles': generateLifeCyclesContent(grade),
+        'Plant and Animal Life Cycles': generateLifeCyclesContent(grade),
+        'Growth and Change': generateLifeCyclesContent(grade),
+        'Health and Nutrition': generateHealthNutritionContent(grade),
+        'Healthy Living': generateHealthNutritionContent(grade),
+        'Taking Care of Our Bodies': generateHealthNutritionContent(grade),
+        // ... continue with existing mappings ...
     };
     
     // Return specific content if available, otherwise generate generic content
@@ -2276,6 +2304,1164 @@ Don't rely on a single type of map for all purposes - different maps serve diffe
 ## Quick Recap
 
 Maps and geography provide essential tools and frameworks for understanding spatial relationships, human-environment interactions, and global patterns. These skills are crucial for informed decision-making in many fields.`;
+    }
+}
+
+function generateAuthorsPurposeContent(grade) {
+    if (grade === 2) {
+        return `# What Is Author's Purpose?
+
+An author's purpose is the reason why a writer creates a story or text. It's like knowing why someone is telling you something - are they trying to teach you, entertain you, or convince you of something?
+
+## Why Author's Purpose Matters
+
+Understanding why an author wrote something helps us become better readers and writers. It's like being a detective who figures out if a story is meant to make us laugh, teach us facts, or persuade us to think differently!
+
+## How Author's Purpose Works
+
+### Main Types of Author's Purpose:
+
+#### To Entertain (PIE - Persuade, Inform, Entertain):
+* Tell fun stories
+* Make readers laugh
+* Share exciting adventures
+* Create interesting characters
+* Make reading enjoyable
+
+#### To Inform:
+* Teach new things
+* Share facts and information
+* Explain how things work
+* Answer questions
+* Help readers learn
+
+#### To Persuade:
+* Change someone's mind
+* Convince readers to do something
+* Share opinions
+* Make readers agree
+* Get readers to take action
+
+### Clues to Find Author's Purpose:
+* Look at the title
+* Check the type of book
+* Notice the writing style
+* Look for facts or opinions
+* Think about how it makes you feel
+
+## Real-Life Examples
+
+* Storybooks entertain us with fun tales
+* Science books inform us about animals and space
+* Advertisements persuade us to buy things
+* Recipes inform us how to make food
+* Comic books entertain us with pictures and jokes
+
+## Common Mistakes to Avoid
+
+Remember that some texts can have more than one purpose! Also, don't just guess - look for clues in the text that show why the author wrote it.
+
+## Quick Recap
+
+Author's purpose helps us understand why something was written. Knowing if a text is meant to entertain, inform, or persuade helps us read better and understand more!`;
+    } else {
+        return `# What Is Author's Purpose?
+
+Author's purpose refers to the primary reason or intent behind a writer's creation of a text. Understanding this purpose is fundamental to comprehending the text's message, analyzing its effectiveness, and evaluating its impact on readers.
+
+## Why Author's Purpose Matters
+
+Identifying author's purpose enhances critical reading skills, improves analytical thinking, and develops media literacy. This understanding helps readers evaluate information sources, recognize persuasive techniques, and become more discerning consumers of information.
+
+## How Author's Purpose Works
+
+### Primary Purposes:
+
+#### To Inform:
+* Present factual information
+* Explain concepts or processes
+* Document events or phenomena
+* Share research findings
+* Provide instructions or guidance
+
+#### To Persuade:
+* Present arguments
+* Change opinions
+* Call for action
+* Influence decisions
+* Support positions
+
+#### To Entertain:
+* Create emotional responses
+* Engage imagination
+* Provide enjoyment
+* Tell stories
+* Share experiences
+
+#### To Express:
+* Share personal feelings
+* Convey artistic vision
+* Explore emotions
+* Create aesthetic experiences
+* Connect with readers
+
+### Analysis Techniques:
+
+#### Text Features:
+* Language choice and tone
+* Organization and structure
+* Evidence and support
+* Literary devices
+* Visual elements
+
+#### Context Considerations:
+* Target audience
+* Historical context
+* Cultural influences
+* Genre conventions
+* Publication medium
+
+## Real-Life Examples
+
+* News articles inform about current events
+* Editorial columns persuade readers about issues
+* Novels entertain through storytelling
+* Technical manuals inform about procedures
+* Marketing materials persuade consumers
+* Poetry expresses emotions and ideas
+
+## Common Mistakes to Avoid
+
+Don't oversimplify by assuming texts have only one purpose. Consider how multiple purposes might work together. Also, remember that author's purpose can shift within a single text.
+
+## Quick Recap
+
+Author's purpose is a crucial concept for understanding and analyzing texts. Recognizing why authors write helps readers better comprehend, evaluate, and respond to different types of writing.`;
+    }
+}
+
+function generateSoundVibrationsContent(grade) {
+    if (grade === 2) {
+        return `# What Are Sound and Vibrations?
+
+Sound is what we hear, and vibrations are tiny movements that create sound! When something vibrates (moves back and forth quickly), it makes sound waves that travel through the air to our ears.
+
+## Why Sound and Vibrations Matter
+
+Understanding sound and vibrations helps us know how music works, why we can hear things, and how to make different sounds. It explains why some sounds are loud or soft, high or low!
+
+## How Sound and Vibrations Work
+
+### Making Sound:
+* Things must vibrate to make sound
+* Faster vibrations make higher sounds
+* Bigger vibrations make louder sounds
+* Sound travels through air, water, and solids
+* Our ears catch the vibrations and turn them into sounds we can hear
+
+### Types of Sounds:
+* High sounds (like birds chirping)
+* Low sounds (like a big drum)
+* Loud sounds (like thunder)
+* Soft sounds (like whispers)
+* Musical sounds (like singing)
+
+### Sound Experiments:
+* Feel your throat when you talk
+* Pluck a rubber band
+* Tap different containers
+* Listen through a wall
+* Make a cup-and-string phone
+
+## Real-Life Examples
+
+* Musical instruments make sound by vibrating
+* Your voice box vibrates when you talk
+* Thunder is a very loud vibration in the air
+* Phones vibrate to get our attention
+* Animals make different sounds to communicate
+
+## Common Mistakes to Avoid
+
+Remember that sound needs something to travel through - it can't travel through empty space! Also, some vibrations are so small or fast that we can't see them, but we can still hear them.
+
+## Quick Recap
+
+Sound comes from vibrations moving through air or other materials. Different vibrations make different kinds of sounds, and our ears help us hear them all!`;
+    } else {
+        return `# What Are Sound and Vibrations?
+
+Sound and vibrations are physical phenomena that involve the transfer of energy through matter in the form of mechanical waves. Understanding these concepts is fundamental to acoustics, music, and many technological applications.
+
+## Why Sound and Vibrations Matter
+
+The study of sound and vibrations is essential for understanding communication, music theory, architectural acoustics, and many engineering applications. This knowledge supports innovations in audio technology, building design, and medical imaging.
+
+## How Sound and Vibrations Work
+
+### Wave Properties:
+
+#### Frequency:
+* Measured in Hertz (Hz)
+* Determines pitch
+* Human hearing range (20-20,000 Hz)
+* Ultrasound and infrasound
+* Wave period relationships
+
+#### Amplitude:
+* Determines volume/loudness
+* Measured in decibels (dB)
+* Energy content
+* Wave height
+* Sound intensity
+
+### Sound Propagation:
+
+#### Medium Requirements:
+* Mechanical wave characteristics
+* Particle movement
+* Energy transfer
+* Wave speed in different media
+* Reflection and refraction
+
+#### Wave Behavior:
+* Interference patterns
+* Standing waves
+* Resonance
+* Doppler effect
+* Echo and reverberation
+
+## Real-Life Examples
+
+* Musical instrument design and acoustics
+* Architectural sound design
+* Medical ultrasound technology
+* Noise reduction engineering
+* Seismic wave analysis
+* Sound recording and reproduction
+
+## Common Mistakes to Avoid
+
+Don't confuse frequency with amplitude - frequency determines pitch while amplitude determines volume. Also, remember that sound waves are longitudinal waves, not transverse waves like water waves.
+
+## Quick Recap
+
+Sound and vibrations are complex physical phenomena that follow specific scientific principles. Understanding these concepts enables advances in music, technology, and engineering applications.`;
+    }
+}
+
+function generateHistoricalFiguresContent(grade) {
+    if (grade === 2) {
+        return `# What Are Historical Figures?
+
+Historical figures are important people from the past who made a big difference in our world! They're like superheroes of history who helped make changes, solve problems, or create new things that still affect us today.
+
+## Why Historical Figures Matter
+
+Learning about historical figures helps us understand how our world became what it is today. These people's stories teach us about courage, determination, and how one person can make a big difference!
+
+## How We Learn About Historical Figures
+
+### Important Things to Know:
+* When they lived
+* What they did that was important
+* How they helped others
+* Why we remember them
+* How they changed things
+
+### Types of Historical Figures:
+* Leaders who made good changes
+* Inventors who created new things
+* People who fought for rights
+* Teachers who shared knowledge
+* Helpers who made life better
+
+### What Made Them Special:
+* They saw problems and tried to fix them
+* They were brave when things were hard
+* They had new ideas
+* They helped other people
+* They never gave up
+
+## Real-Life Examples
+
+* George Washington helped create our country
+* Martin Luther King Jr. worked for equal rights
+* Rosa Parks stood up for what was right
+* Benjamin Franklin invented useful things
+* Florence Nightingale helped sick people
+
+## Common Mistakes to Avoid
+
+Remember that historical figures were real people who made mistakes and learned from them. Also, many important people from history didn't become famous but still made big differences!
+
+## Quick Recap
+
+Historical figures are people from the past who made important changes in our world. Learning about them helps us understand history and inspires us to make positive changes too!`;
+    } else {
+        return `# What Are Historical Figures?
+
+Historical figures are individuals whose actions, ideas, or achievements have significantly influenced the course of history, society, culture, or human development. Their impact continues to shape our understanding of the past and inform our present decisions.
+
+## Why Historical Figures Matter
+
+Studying historical figures provides context for social progress, demonstrates the impact of individual agency, and offers insights into leadership, innovation, and social change. Their experiences inform our understanding of historical processes and human potential.
+
+## How We Study Historical Figures
+
+### Historical Analysis:
+
+#### Primary Sources:
+* Personal documents
+* Contemporary accounts
+* Official records
+* Photographs and artifacts
+* Direct quotations
+
+#### Historical Context:
+* Time period characteristics
+* Social conditions
+* Cultural influences
+* Political climate
+* Economic factors
+
+### Impact Assessment:
+
+#### Immediate Effects:
+* Direct actions
+* Policy changes
+* Social movements
+* Cultural shifts
+* Technological advances
+
+#### Long-term Legacy:
+* Lasting influences
+* Modern applications
+* Cultural memory
+* Institutional changes
+* Ongoing inspiration
+
+## Real-Life Examples
+
+* Political leaders who shaped nations
+* Scientists who advanced knowledge
+* Activists who promoted social justice
+* Artists who influenced culture
+* Innovators who transformed technology
+* Philosophers who changed thinking
+
+## Common Mistakes to Avoid
+
+Avoid oversimplification of historical figures' lives and impacts. Consider multiple perspectives and the complexity of historical context. Remember that historical significance often becomes clearer with time.
+
+## Quick Recap
+
+Historical figures represent key agents of change whose actions and ideas continue to influence modern society. Understanding their contributions helps us better comprehend historical processes and contemporary challenges.`;
+    }
+}
+
+function generateMoneyLiteracyContent(grade) {
+    if (grade === 2) {
+        return `# What Is Money Literacy?
+
+Money literacy means understanding how money works! It's learning about coins and bills, how to count money, save it, and use it wisely. It's like becoming a money expert who makes smart choices!
+
+## Why Money Literacy Matters
+
+Understanding money helps you make good choices about saving and spending. It helps you know how much things cost, how to save for what you want, and how to be responsible with money.
+
+## How Money Works
+
+### Types of Money:
+* Pennies (1 cent)
+* Nickels (5 cents)
+* Dimes (10 cents)
+* Quarters (25 cents)
+* Dollar bills
+* Bigger bills
+
+### Money Skills:
+* Counting coins and bills
+* Making change
+* Adding money amounts
+* Saving in a bank
+* Spending wisely
+
+### Smart Money Habits:
+* Save some money you get
+* Think before you spend
+* Keep money in a safe place
+* Count carefully
+* Set saving goals
+
+## Real-Life Examples
+
+* Buying treats at the store
+* Saving for a special toy
+* Getting change after buying something
+* Having a piggy bank
+* Helping count money at a lemonade stand
+
+## Common Mistakes to Avoid
+
+Don't forget to count carefully and check your change! Also, remember that saving some money is always smart, even if it's just a little bit.
+
+## Quick Recap
+
+Money literacy helps us understand and use money wisely. Learning about money helps us make good choices about saving and spending!`;
+    } else {
+        return `# What Is Money Literacy?
+
+Money literacy encompasses understanding financial concepts, managing personal finances effectively, and making informed decisions about money. It includes knowledge of banking, budgeting, saving, investing, and responsible spending.
+
+## Why Money Literacy Matters
+
+Financial literacy is essential for personal economic well-being, informed decision-making, and long-term financial security. It empowers individuals to manage resources effectively and plan for future financial needs.
+
+## How Money Literacy Works
+
+### Core Financial Concepts:
+
+#### Banking and Savings:
+* Account types
+* Interest rates
+* Online banking
+* Savings strategies
+* Financial institutions
+
+#### Budgeting:
+* Income tracking
+* Expense categories
+* Budget planning
+* Financial goals
+* Spending analysis
+
+#### Investment Basics:
+* Investment types
+* Risk assessment
+* Return on investment
+* Diversification
+* Long-term planning
+
+### Financial Management:
+
+#### Personal Finance:
+* Income management
+* Expense tracking
+* Debt management
+* Credit understanding
+* Financial planning
+
+#### Consumer Skills:
+* Comparison shopping
+* Value assessment
+* Consumer rights
+* Financial responsibility
+* Smart purchasing
+
+## Real-Life Examples
+
+* Creating and following a budget
+* Opening and managing bank accounts
+* Understanding credit card terms
+* Comparing prices and value
+* Planning for future expenses
+* Making investment decisions
+
+## Common Mistakes to Avoid
+
+Don't ignore the importance of saving and emergency funds. Understand the difference between needs and wants. Be careful with credit and always read financial terms carefully.
+
+## Quick Recap
+
+Money literacy provides essential skills for managing personal finances effectively. These skills support financial well-being and informed decision-making throughout life.`;
+    }
+}
+
+function generateTimeAndClocksContent(grade) {
+    if (grade === 2) {
+        return `# What Is Time and Clocks?
+
+Time is how we measure when things happen, and clocks are special tools that help us keep track of time! Understanding time helps us know when to do things and how long they take.
+
+## Why Time and Clocks Matter
+
+Learning about time helps us get places on time, know when to start and finish activities, and plan our day. It's like having a superpower that helps you organize your life!
+
+## How Time and Clocks Work
+
+### Parts of a Clock:
+* Hour hand (short hand)
+* Minute hand (long hand)
+* Numbers 1 through 12
+* Clock face
+* Sometimes a second hand
+
+### Time Concepts:
+* Hours (60 minutes)
+* Minutes (60 seconds)
+* Morning (AM) and afternoon (PM)
+* Digital and analog clocks
+* Time words (quarter past, half past)
+
+### Reading Time:
+* Hour hand shows the hour
+* Minute hand shows minutes
+* Count by 5s around the clock
+* Look at both hands together
+* Check if it's AM or PM
+
+## Real-Life Examples
+
+* School start and end times
+* Bedtime and wake-up time
+* How long recess lasts
+* When to eat meals
+* TV show schedules
+
+## Common Mistakes to Avoid
+
+Remember that the short hand shows hours and the long hand shows minutes! Also, don't forget to check if it's morning (AM) or afternoon (PM) when telling time.
+
+## Quick Recap
+
+Time and clocks help us know when things happen and how long they take. Understanding time helps us plan our day and be on time for important things!`;
+    } else {
+        return `# What Is Time and Clocks?
+
+Time is a fundamental measurement system that helps us sequence events, measure duration, and coordinate activities. Understanding time and clock systems is essential for organizing daily life and comprehending historical and scientific concepts.
+
+## Why Time and Clocks Matter
+
+Time measurement is crucial for scheduling, coordination, scientific observation, and historical documentation. It provides a universal framework for organizing human activities and understanding natural cycles.
+
+## How Time and Clocks Work
+
+### Time Measurement Systems:
+
+#### Standard Time:
+* 24-hour system
+* Time zones
+* International date line
+* Daylight saving time
+* Coordinated Universal Time (UTC)
+
+#### Clock Types:
+* Analog clocks
+* Digital displays
+* Atomic clocks
+* Sundials and historical methods
+* Modern timekeeping technology
+
+### Time Concepts:
+
+#### Units of Time:
+* Seconds, minutes, hours
+* Days, weeks, months
+* Years, decades, centuries
+* Milliseconds and microseconds
+* Historical time periods
+
+#### Time Management:
+* Scheduling techniques
+* Duration estimation
+* Time coordination
+* Planning strategies
+* Efficiency optimization
+
+## Real-Life Examples
+
+* Transportation schedules
+* Business operations
+* Scientific experiments
+* Event planning
+* International coordination
+* Historical documentation
+
+## Common Mistakes to Avoid
+
+Don't forget to consider time zones when planning across regions. Remember that different cultures may use different time systems. Pay attention to AM/PM in 12-hour format.
+
+## Quick Recap
+
+Time and clock systems provide essential structure for organizing human activities and understanding temporal relationships. Mastery of time concepts supports effective planning and coordination.`;
+    }
+}
+
+function generateReadingComprehensionContent(grade) {
+    if (grade === 2) {
+        return `# What Is Reading Comprehension?
+
+Reading comprehension means understanding what you read! It's like being a reading detective who finds clues and solves mysteries in stories and books. When you comprehend what you read, you can remember it, talk about it, and learn from it!
+
+## Why Reading Comprehension Matters
+
+Good reading comprehension helps you learn from books, enjoy stories more, and understand instructions better. It's like having a special key that unlocks the meaning in everything you read!
+
+## How Reading Comprehension Works
+
+### Reading Strategies:
+* Look at pictures for clues
+* Think about what might happen next
+* Ask questions while reading
+* Make connections to your life
+* Visualize the story in your mind
+
+### Understanding Parts:
+* Main idea (what it's mostly about)
+* Characters (who's in the story)
+* Setting (where and when)
+* Plot (what happens)
+* Problem and solution
+
+### Good Reader Habits:
+* Read slowly and carefully
+* Stop and think about what you read
+* Look up words you don't know
+* Reread confusing parts
+* Talk about what you read
+
+## Real-Life Examples
+
+* Understanding a story about a magical adventure
+* Following directions for a craft project
+* Reading a letter from a friend
+* Understanding signs and labels
+* Learning facts from a science book
+
+## Common Mistakes to Avoid
+
+Don't just read the words without thinking about what they mean! Also, don't be afraid to ask questions or reread parts you don't understand.
+
+## Quick Recap
+
+Reading comprehension helps you understand and enjoy what you read. Using good reading strategies helps you become a better reader and learner!`;
+    } else {
+        return `# What Is Reading Comprehension?
+
+Reading comprehension is the complex cognitive process of extracting meaning from text through active engagement, analysis, and interpretation. It involves multiple skills working together to create understanding at literal, inferential, and evaluative levels.
+
+## Why Reading Comprehension Matters
+
+Strong reading comprehension skills are fundamental to academic success, lifelong learning, and critical thinking. These skills enable effective information processing, analysis, and application across all subject areas.
+
+## How Reading Comprehension Works
+
+### Comprehension Strategies:
+
+#### Before Reading:
+* Activate prior knowledge
+* Set purpose for reading
+* Preview text features
+* Make predictions
+* Generate questions
+
+#### During Reading:
+* Monitor understanding
+* Make connections
+* Visualize content
+* Identify main ideas
+* Note text structure
+
+#### After Reading:
+* Summarize key points
+* Evaluate information
+* Draw conclusions
+* Synthesize ideas
+* Apply knowledge
+
+### Critical Reading Skills:
+
+#### Text Analysis:
+* Main idea identification
+* Supporting details
+* Author's purpose
+* Text structure
+* Literary devices
+
+#### Higher-Order Thinking:
+* Making inferences
+* Drawing conclusions
+* Analyzing arguments
+* Evaluating evidence
+* Synthesizing information
+
+## Real-Life Examples
+
+* Academic research and study
+* Professional document analysis
+* Critical media consumption
+* Technical manual comprehension
+* Literary analysis and appreciation
+
+## Common Mistakes to Avoid
+
+Don't rely solely on surface-level understanding. Practice active reading strategies and engage deeply with text. Remember that comprehension involves both understanding and analysis.
+
+## Quick Recap
+
+Reading comprehension is a multifaceted skill that enables deep understanding and analysis of text. Mastery of comprehension strategies supports academic success and lifelong learning.`;
+    }
+}
+
+function generateWritingSkillsContent(grade) {
+    if (grade === 2) {
+        return `# What Are Writing Skills?
+
+Writing skills are special abilities that help you share your ideas, stories, and thoughts with others through writing! It's like painting with words to create pictures in readers' minds.
+
+## Why Writing Skills Matter
+
+Good writing helps you tell stories, share information, and express your feelings clearly. It's like having a magic power that lets you share what's in your mind with other people!
+
+## How Writing Skills Work
+
+### Parts of Writing:
+* Beginning (introduction)
+* Middle (main part)
+* End (conclusion)
+* Details and descriptions
+* Clear sentences
+
+### Types of Writing:
+* Stories (narrative)
+* Information (expository)
+* Opinion (persuasive)
+* Letters and notes
+* Descriptions
+
+### Writing Steps:
+* Plan what to write
+* Write a first draft
+* Add details
+* Check your work
+* Make it better
+
+## Real-Life Examples
+
+* Writing a story about your weekend
+* Making a list of your favorite things
+* Writing a letter to a friend
+* Describing your pet
+* Writing about a fun vacation
+
+## Common Mistakes to Avoid
+
+Don't forget to use capital letters and punctuation! Also, remember to organize your ideas before you start writing, and check your spelling when you're done.
+
+## Quick Recap
+
+Writing skills help you share your ideas clearly and creatively. Good writing makes your thoughts and stories come alive for others to read!`;
+    } else {
+        return `# What Are Writing Skills?
+
+Writing skills encompass the ability to communicate effectively through written language, including organization, clarity, style, and technical accuracy. These skills enable clear expression of ideas, arguments, and information across various contexts.
+
+## Why Writing Skills Matter
+
+Strong writing skills are essential for academic success, professional communication, and personal expression. They enable effective conveyance of ideas, facilitate clear communication, and support critical thinking development.
+
+## How Writing Skills Work
+
+### Writing Process:
+
+#### Planning:
+* Brainstorming ideas
+* Organizing thoughts
+* Creating outlines
+* Research methods
+* Purpose identification
+
+#### Drafting:
+* Thesis development
+* Paragraph structure
+* Transitions
+* Evidence integration
+* Argument construction
+
+#### Revision:
+* Content evaluation
+* Organization review
+* Style enhancement
+* Clarity improvement
+* Feedback incorporation
+
+### Writing Elements:
+
+#### Technical Skills:
+* Grammar and mechanics
+* Sentence structure
+* Vocabulary usage
+* Punctuation
+* Format conventions
+
+#### Rhetorical Skills:
+* Audience awareness
+* Purpose clarity
+* Tone management
+* Style adaptation
+* Voice development
+
+## Real-Life Examples
+
+* Academic essays and research papers
+* Professional communications
+* Creative writing projects
+* Technical documentation
+* Digital communication
+* Personal expression
+
+## Common Mistakes to Avoid
+
+Don't skip the planning and revision stages. Pay attention to audience and purpose. Remember that good writing often requires multiple drafts and revisions.
+
+## Quick Recap
+
+Writing skills combine technical accuracy with effective communication strategies. Mastery of these skills supports success in academic, professional, and personal contexts.`;
+    }
+}
+
+function generateEarthScienceContent(grade) {
+    if (grade === 2) {
+        return `# What Is Earth Science?
+
+Earth Science is learning about our amazing planet Earth! It's like being a planet detective who studies rocks, water, air, and all the changes that happen on Earth. We learn how our planet works and how to take care of it!
+
+## Why Earth Science Matters
+
+Understanding Earth Science helps us know how to protect our planet, prepare for weather changes, and use Earth's resources wisely. It's like learning the rules of our giant home in space!
+
+## How Earth Science Works
+
+### Parts of Earth:
+* Land (rocks, soil, mountains)
+* Water (oceans, lakes, rivers)
+* Air (atmosphere)
+* Living things (plants, animals)
+* Weather and climate
+
+### Earth's Features:
+* Mountains and valleys
+* Oceans and beaches
+* Volcanoes and earthquakes
+* Rivers and lakes
+* Rocks and minerals
+
+### Earth's Changes:
+* Day and night
+* Weather changes
+* Seasons
+* Erosion (wind and water)
+* Plant and animal life
+
+## Real-Life Examples
+
+* Watching weather patterns
+* Finding different types of rocks
+* Seeing how water shapes land
+* Observing plant growth in soil
+* Watching clouds form and move
+
+## Common Mistakes to Avoid
+
+Remember that Earth's changes can happen very slowly or very quickly! Also, don't forget that everything on Earth is connected - what happens in one place can affect other places.
+
+## Quick Recap
+
+Earth Science helps us understand our planet and how it changes. Learning about Earth helps us take better care of our world!`;
+    } else {
+        return `# What Is Earth Science?
+
+Earth Science is the comprehensive study of Earth's systems, including geology, meteorology, oceanography, and astronomy. It examines the interactions between Earth's spheres and the processes that shape our planet.
+
+## Why Earth Science Matters
+
+Understanding Earth Science is crucial for resource management, environmental protection, natural hazard prediction, and climate change response. This knowledge supports informed decision-making about environmental issues and resource utilization.
+
+## How Earth Science Works
+
+### Earth's Systems:
+
+#### Geosphere:
+* Plate tectonics
+* Rock cycle
+* Mineral formation
+* Geological processes
+* Surface features
+
+#### Hydrosphere:
+* Water cycle
+* Ocean currents
+* Groundwater systems
+* Freshwater resources
+* Marine ecosystems
+
+#### Atmosphere:
+* Weather patterns
+* Climate systems
+* Atmospheric layers
+* Air circulation
+* Weather phenomena
+
+#### Biosphere:
+* Ecosystem interactions
+* Biogeochemical cycles
+* Environmental adaptation
+* Resource utilization
+* Human impact
+
+### Earth Processes:
+
+#### Internal Processes:
+* Plate movements
+* Volcanic activity
+* Earthquake generation
+* Mountain building
+* Mineral formation
+
+#### External Processes:
+* Weathering and erosion
+* Deposition and sedimentation
+* Climate change
+* Ocean circulation
+* Atmospheric dynamics
+
+## Real-Life Examples
+
+* Natural resource exploration
+* Weather forecasting
+* Environmental impact assessment
+* Natural hazard prediction
+* Climate change research
+* Conservation planning
+
+## Common Mistakes to Avoid
+
+Don't oversimplify Earth's complex systems. Remember that processes occur at various time scales and that human activities can significantly impact Earth's systems.
+
+## Quick Recap
+
+Earth Science provides essential understanding of our planet's systems and processes. This knowledge is crucial for environmental stewardship and sustainable resource management.`;
+    }
+}
+
+function generateLifeCyclesContent(grade) {
+    if (grade === 2) {
+        return `# What Are Life Cycles?
+
+Life cycles are the stages that living things go through as they grow and change! Every plant and animal has its own special life cycle, from tiny seeds to full-grown plants, and from baby animals to adults.
+
+## Why Life Cycles Matter
+
+Understanding life cycles helps us know how living things grow, change, and make new living things. It's like watching nature's most amazing show!
+
+## How Life Cycles Work
+
+### Plant Life Cycles:
+* Seeds
+* Sprouting
+* Growing leaves
+* Making flowers
+* Making new seeds
+
+### Animal Life Cycles:
+* Being born or hatching
+* Growing bigger
+* Changing form (some animals)
+* Becoming adult
+* Having babies
+
+### Different Types:
+* Butterfly (egg, caterpillar, chrysalis, butterfly)
+* Frog (egg, tadpole, froglet, frog)
+* Bird (egg, chick, adult)
+* Plant (seed, sprout, plant, flower, seed)
+* Human (baby, child, adult)
+
+## Real-Life Examples
+
+* Watching a seed grow into a plant
+* Seeing a caterpillar become a butterfly
+* Watching chicks hatch from eggs
+* Growing your own garden
+* Observing how animals care for babies
+
+## Common Mistakes to Avoid
+
+Remember that different living things have different life cycles! Also, some changes happen quickly, while others take a long time.
+
+## Quick Recap
+
+Life cycles show how living things grow, change, and make new life. Every plant and animal has its own special journey through life!`;
+    } else {
+        return `# What Are Life Cycles?
+
+Life cycles are the sequential stages of growth, development, and reproduction that organisms undergo throughout their existence. These patterns demonstrate the continuity of life and the diversity of reproductive strategies in nature.
+
+## Why Life Cycles Matter
+
+Understanding life cycles is fundamental to biology, ecology, and environmental science. This knowledge supports conservation efforts, agricultural practices, and our understanding of evolution and adaptation.
+
+## How Life Cycles Work
+
+### Reproductive Strategies:
+
+#### Sexual Reproduction:
+* Genetic diversity
+* Meiosis and fertilization
+* Gamete production
+* Embryonic development
+* Offspring variation
+
+#### Asexual Reproduction:
+* Cellular division
+* Budding
+* Fragmentation
+* Vegetative propagation
+* Clone production
+
+### Development Stages:
+
+#### Complete Metamorphosis:
+* Embryonic stage
+* Larval stage
+* Pupal stage
+* Adult stage
+* Reproductive phase
+
+#### Incomplete Metamorphosis:
+* Egg stage
+* Nymph stages
+* Adult stage
+* Reproductive maturity
+* Life cycle completion
+
+## Real-Life Examples
+
+* Insect metamorphosis
+* Plant reproductive cycles
+* Vertebrate development
+* Cellular reproduction
+* Population dynamics
+* Species continuation
+
+## Common Mistakes to Avoid
+
+Don't assume all organisms follow the same pattern. Remember that environmental factors can influence life cycle timing and success. Consider both individual and population-level cycles.
+
+## Quick Recap
+
+Life cycles represent the fundamental patterns of biological continuation and development. Understanding these patterns is crucial for ecological knowledge and species conservation.`;
+    }
+}
+
+function generateHealthNutritionContent(grade) {
+    if (grade === 2) {
+        return `# What Are Health and Nutrition?
+
+Health and nutrition are about keeping our bodies strong and healthy! It's like being your body's best friend by giving it good food, exercise, and rest. When we take care of our bodies, they help us do all the fun things we love!
+
+## Why Health and Nutrition Matter
+
+Taking care of our health helps us feel good, have energy to play, and stay strong. Good nutrition is like giving our body the right fuel to work its best!
+
+## How Health and Nutrition Work
+
+### Healthy Foods:
+* Fruits and vegetables (like nature's candy!)
+* Whole grains (for energy)
+* Protein foods (to build strong muscles)
+* Dairy (for strong bones)
+* Water (to stay hydrated)
+
+### Healthy Habits:
+* Exercise every day
+* Get enough sleep
+* Wash hands often
+* Brush teeth twice daily
+* Eat balanced meals
+
+### Making Healthy Choices:
+* Choose colorful foods
+* Drink water instead of sugary drinks
+* Play active games
+* Take breaks when tired
+* Listen to your body
+
+## Real-Life Examples
+
+* Eating a rainbow of fruits and vegetables
+* Playing games at recess
+* Getting good sleep at night
+* Drinking water when thirsty
+* Washing hands before eating
+
+## Common Mistakes to Avoid
+
+Don't forget that treats are okay sometimes - it's about balance! Also, remember that different bodies need different amounts of food and rest.
+
+## Quick Recap
+
+Health and nutrition help us feel our best and have energy to do fun things. Taking care of our bodies helps us grow strong and stay healthy!`;
+    } else {
+        return `# What Are Health and Nutrition?
+
+Health and nutrition encompass the physical, mental, and social well-being achieved through proper diet, exercise, and lifestyle choices. This knowledge supports optimal body function, disease prevention, and overall wellness.
+
+## Why Health and Nutrition Matter
+
+Understanding health and nutrition is essential for maintaining physical wellness, preventing disease, and optimizing performance. This knowledge enables informed decisions about diet, exercise, and lifestyle choices.
+
+## How Health and Nutrition Work
+
+### Nutritional Components:
+
+#### Macronutrients:
+* Proteins
+* Carbohydrates
+* Fats
+* Fiber
+* Water
+
+#### Micronutrients:
+* Vitamins
+* Minerals
+* Antioxidants
+* Phytochemicals
+* Trace elements
+
+### Health Maintenance:
+
+#### Physical Activity:
+* Cardiovascular exercise
+* Strength training
+* Flexibility work
+* Balance activities
+* Recovery periods
+
+#### Wellness Practices:
+* Sleep hygiene
+* Stress management
+* Preventive care
+* Mental health
+* Social connections
+
+## Real-Life Examples
+
+* Meal planning and preparation
+* Exercise program design
+* Stress reduction techniques
+* Sleep optimization
+* Disease prevention strategies
+* Performance enhancement
+
+## Common Mistakes to Avoid
+
+Don't follow fad diets or extreme exercise programs. Remember that health involves balance and individual needs vary. Consider both short-term and long-term health impacts.
+
+## Quick Recap
+
+Health and nutrition are fundamental to human well-being and performance. Understanding these principles enables informed choices for optimal health maintenance.`;
     }
 }
 
