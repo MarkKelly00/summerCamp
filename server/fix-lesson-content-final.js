@@ -409,6 +409,7 @@ function generateSpecificContent(grade, subject, title) {
         'Animals and Their Habitats': generatePlantsAnimalsContent(grade),
         'States of Matter': generateStatesOfMatterContent(grade),
         'States of Matter and Physical Changes': generateStatesOfMatterContent(grade),
+        'Solids, Liquids, and Gases': generateStatesOfMatterContent(grade),
         'Forces and Motion': generateForcesAndMotionContent(grade),
         'Forces and Motion in Everyday Life': generateForcesAndMotionContent(grade),
         'Introduction to Basic Coding': generateBasicCodingContent(grade),
@@ -419,6 +420,11 @@ function generateSpecificContent(grade, subject, title) {
         'Introduction to Patterns and Functions': generatePatternsAndFunctionsContent(grade),
         'Main Idea and Details': generateMainIdeaContent(grade),
         'Finding Main Ideas': generateMainIdeaContent(grade),
+        'Holidays and Traditions': generateHolidaysContent(grade),
+        'Holiday Celebrations': generateHolidaysContent(grade),
+        'Maps and Geography': generateMapsGeographyContent(grade),
+        'Using Maps': generateMapsGeographyContent(grade),
+        'Map Skills': generateMapsGeographyContent(grade),
         // ... existing mappings ...
     };
     
@@ -2036,6 +2042,240 @@ Don't confuse interesting details with main ideas. Remember that main ideas may 
 **Quick Recap**
 
 Main idea identification is essential for comprehension and analysis. Understanding how main ideas are supported by details helps readers grasp meaning and author's purpose in various texts.`;
+    }
+}
+
+function generateHolidaysContent(grade) {
+    if (grade === 2) {
+        return `# What Are Holidays and Traditions?
+
+Holidays and traditions are special celebrations and customs that people share with their families and communities. They help us remember important events, celebrate our culture, and bring people together!
+
+## Why Holidays and Traditions Matter
+
+Learning about holidays and traditions helps us understand different cultures and what makes each family special. It teaches us how people celebrate around the world and why these celebrations are important to them.
+
+## How Holidays and Traditions Work
+
+### Types of Holidays:
+* National holidays (like Independence Day)
+* Religious holidays (like Christmas, Hanukkah, or Eid)
+* Cultural celebrations (like Lunar New Year)
+* Family traditions (like birthday celebrations)
+
+### Common Holiday Activities:
+* Special foods and meals
+* Decorations and symbols
+* Songs and music
+* Games and activities
+* Gift-giving
+* Family gatherings
+
+### Important Holiday Elements:
+* History behind the holiday
+* Ways people celebrate
+* Special clothes or costumes
+* Traditional foods
+* Holiday symbols and their meanings
+
+## Real-Life Examples
+
+* Thanksgiving - families gather for a special meal and give thanks
+* Birthday traditions - cake, candles, singing "Happy Birthday"
+* New Year's Day - making resolutions and celebrating fresh starts
+* Cultural festivals - dragon dances at Lunar New Year
+* Family traditions - special breakfast on first day of school
+
+## Common Mistakes to Avoid
+
+Remember that not everyone celebrates the same holidays or celebrates them the same way! Each family and culture has their own special traditions that make them unique.
+
+## Quick Recap
+
+Holidays and traditions are special times when we celebrate important events and share customs with family and friends. They help us learn about different cultures and create special memories together!`;
+    } else {
+        return `# What Are Holidays and Traditions?
+
+Holidays and traditions are cultural practices and celebrations that commemorate significant events, religious observances, or historical moments. They represent the shared values, beliefs, and customs that define different communities and cultures.
+
+## Why Holidays and Traditions Matter
+
+Understanding holidays and traditions helps develop cultural awareness, promotes social cohesion, and preserves historical and cultural heritage. These celebrations connect generations, strengthen community bonds, and provide opportunities for cultural exchange.
+
+## How Holidays and Traditions Work
+
+### Categories of Celebrations:
+
+#### Cultural Holidays:
+* Based on cultural heritage and history
+* Often include specific customs and rituals
+* May vary by region or ethnic group
+* Preserve cultural identity
+
+#### Religious Observances:
+* Based on religious beliefs and practices
+* Include specific ceremonies or rituals
+* Often have deep spiritual significance
+* May involve fasting or feasting
+
+#### National Holidays:
+* Commemorate historical events
+* Celebrate national identity
+* Often include civic participation
+* Unite diverse populations
+
+#### Family Traditions:
+* Unique to individual families
+* Passed down through generations
+* Create family identity
+* Build lasting memories
+
+## Cultural Significance
+
+### Social Impact:
+* Strengthens community bonds
+* Preserves cultural heritage
+* Teaches values and history
+* Promotes understanding between cultures
+
+### Educational Value:
+* Historical context
+* Cultural literacy
+* Global awareness
+* Social studies connections
+
+## Real-Life Examples
+
+* Independence Day celebrations across different nations
+* Religious festivals and their cultural adaptations
+* Family holiday traditions and their evolution
+* Modern interpretations of ancient customs
+* Cross-cultural holiday celebrations
+
+## Common Mistakes to Avoid
+
+Avoid cultural stereotyping or assuming all members of a culture celebrate the same way. Remember that traditions evolve over time and may have different meanings for different groups.
+
+## Quick Recap
+
+Holidays and traditions are essential elements of cultural identity that help preserve history, strengthen communities, and promote understanding between different groups. They continue to evolve while maintaining their core cultural significance.`;
+    }
+}
+
+function generateMapsGeographyContent(grade) {
+    if (grade === 2) {
+        return `# What Are Maps and Geography?
+
+Maps are special pictures that show us where things are in our world! Geography is learning about different places and how people live there. Together, they help us understand and explore our amazing planet!
+
+## Why Maps and Geography Matter
+
+Maps and geography help us find our way around, learn about different places, and understand how people live in different parts of the world. They're like having a bird's eye view of Earth!
+
+## How Maps and Geography Work
+
+### Types of Maps:
+* World maps (show all countries)
+* City maps (show streets and buildings)
+* Weather maps (show temperature and rain)
+* Physical maps (show mountains and rivers)
+* Political maps (show countries and cities)
+
+### Map Features:
+* Compass rose (shows directions)
+* Map key or legend (explains symbols)
+* Scale (shows distances)
+* Colors (show different features)
+* Labels (name important places)
+
+### Geographic Features:
+* Mountains and hills
+* Rivers and lakes
+* Oceans and seas
+* Forests and deserts
+* Cities and towns
+
+## Real-Life Examples
+
+* Using a map to find your way to a new park
+* Looking at a globe to see where countries are
+* Reading a weather map to know if it will rain
+* Finding your house on a city map
+* Planning a trip using different kinds of maps
+
+## Common Mistakes to Avoid
+
+Remember that maps show things from above, like a bird's view! Also, different maps show different things - you need to use the right map for what you want to find.
+
+## Quick Recap
+
+Maps and geography help us understand where things are and what different places are like. They're tools that help us explore and learn about our world!`;
+    } else {
+        return `# What Are Maps and Geography?
+
+Maps and geography are tools and concepts that help us understand spatial relationships, physical features, and human interactions with the environment. They provide essential frameworks for analyzing location, movement, and regional characteristics.
+
+## Why Maps and Geography Matter
+
+Understanding maps and geography is crucial for spatial awareness, cultural understanding, environmental science, and global citizenship. These skills support decision-making in fields ranging from urban planning to environmental conservation.
+
+## How Maps and Geography Work
+
+### Map Types and Uses:
+
+#### Physical Maps:
+* Topographic features
+* Natural resources
+* Climate zones
+* Ecosystems
+* Geological formations
+
+#### Human Geography Maps:
+* Population distribution
+* Cultural regions
+* Economic activities
+* Political boundaries
+* Urban development
+
+#### Thematic Maps:
+* Climate data
+* Population density
+* Economic indicators
+* Historical events
+* Environmental changes
+
+### Geographic Concepts:
+
+#### Location Analysis:
+* Absolute location (coordinates)
+* Relative location
+* Spatial relationships
+* Distance and direction
+* Regional characteristics
+
+#### Geographic Tools:
+* Geographic Information Systems (GIS)
+* Remote sensing
+* Global Positioning System (GPS)
+* Digital mapping technologies
+* Data visualization
+
+## Real-Life Examples
+
+* Urban planning and development
+* Environmental impact assessment
+* Natural disaster response
+* Transportation network design
+* Resource management
+* Cultural diffusion studies
+
+## Common Mistakes to Avoid
+
+Don't rely on a single type of map for all purposes - different maps serve different functions. Also, remember that maps are representations and may contain distortions or biases based on their projection and purpose.
+
+## Quick Recap
+
+Maps and geography provide essential tools and frameworks for understanding spatial relationships, human-environment interactions, and global patterns. These skills are crucial for informed decision-making in many fields.`;
     }
 }
 
