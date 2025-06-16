@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 require('dotenv').config();
+const lessonGenerator = require('./services/lessonGenerator');
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI, {
@@ -168,7 +169,7 @@ Understanding shapes helps us describe the world around us. Architects use shape
 
 **Common Mistakes to Avoid**
 
-Don't confuse squares and rectangles - all squares are rectangles, but not all rectangles are squares! Also, remember that circles don't have sides or corners like other shapes.
+Don't confuse squares and rectangles - all squares are rectangles, but not all rectangles are squares! Also, remember that circles don't have any sides or corners like other shapes do.
 
 **Quick Recap**
 
@@ -375,245 +376,24 @@ ${title} is ${grade === 2 ? 'useful, interesting, and all around us' : 'a fundam
 'Through systematic study and practice, you\'ll develop mastery that serves you well in many contexts.'}`;
 }
 
-function generateSpecificContent(grade, subject, title) {
-    // Generate content specifically tailored to common lesson topics
-    // Clean the title by removing week information and parentheses for matching
-    const cleanTitle = title.replace(/\s*\(Week \d+\)/g, '').trim();
-    
-    const topics = {
-        'Animal Habitats and Adaptations': generateAnimalHabitatsContent(grade),
-        'Community Helpers Past and Present': generateCommunityHelpersContent(grade),
-        'Fractions': generateFractionsContent(grade),
-        'Introduction to Fractions as Parts of a Whole': generateFractionsContent(grade),
-        'Fractions: Halves and Fourths': generateFractionsContent(grade),
-        'Addition and Subtraction': generateAddSubContent(grade),
-        'Addition with Two-Digit Numbers': generateAddSubContent(grade),
-        'Adding Two-Digit Numbers': generateAddSubContent(grade),
-        'Subtraction Within 100': generateAddSubContent(grade),
-        'Subtracting Two-Digit Numbers': generateAddSubContent(grade),
-        'Multiplication': generateMultiplicationContent(grade),
-        'Multiplication and Division Facts': generateMultiplicationContent(grade),
-        'Multi-Digit Multiplication': generateMultiplicationContent(grade),
-        'Place Value': generatePlaceValueContent(grade),
-        'Decimals and Place Value': generatePlaceValueContent(grade),
-        'Measurement': generateMeasurementContent(grade),
-        'Measuring Length': generateMeasurementContent(grade),
-        'Geometry': generateGeometryContent(grade),
-        'Shapes and Their Properties': generateGeometryContent(grade),
-        'Angles and Geometric Shapes': generateGeometryContent(grade),
-        'Weather and Climate': generateWeatherContent(grade),
-        'Weather Patterns and Observation': generateWeatherContent(grade),
-        'Seasons and Weather Changes': generateSeasonsContent(grade),
-        'Plants and Animals': generatePlantsAnimalsContent(grade),
-        'Plants and Their Needs': generatePlantsAnimalsContent(grade),
-        'Animals and Their Habitats': generatePlantsAnimalsContent(grade),
-        'States of Matter': generateStatesOfMatterContent(grade),
-        'States of Matter and Physical Changes': generateStatesOfMatterContent(grade),
-        'Solids, Liquids, and Gases': generateStatesOfMatterContent(grade),
-        'Forces and Motion': generateForcesAndMotionContent(grade),
-        'Forces and Motion in Everyday Life': generateForcesAndMotionContent(grade),
-        'Introduction to Basic Coding': generateBasicCodingContent(grade),
-        'Basic Coding Concepts': generateBasicCodingContent(grade),
-        'Understanding Point of View': generatePointOfViewContent(grade),
-        'Point of View in Stories': generatePointOfViewContent(grade),
-        'Patterns and Functions': generatePatternsAndFunctionsContent(grade),
-        'Introduction to Patterns and Functions': generatePatternsAndFunctionsContent(grade),
-        'Main Idea and Details': generateMainIdeaContent(grade),
-        'Finding Main Ideas': generateMainIdeaContent(grade),
-        'Holidays and Traditions': generateHolidaysContent(grade),
-        'Holiday Celebrations': generateHolidaysContent(grade),
-        'Maps and Geography': generateMapsGeographyContent(grade),
-        'Using Maps': generateMapsGeographyContent(grade),
-        'Map Skills': generateMapsGeographyContent(grade),
-        'Author\'s Purpose': generateAuthorsPurposeContent(grade),
-        'Understanding Author\'s Purpose': generateAuthorsPurposeContent(grade),
-        'Sound and Vibrations': generateSoundVibrationsContent(grade),
-        'Understanding Sound': generateSoundVibrationsContent(grade),
-        'Sound Waves and Energy': generateSoundVibrationsContent(grade),
-        'Historical Figures': generateHistoricalFiguresContent(grade),
-        'Important People in History': generateHistoricalFiguresContent(grade),
-        'Money Literacy': generateMoneyLiteracyContent(grade),
-        'Understanding Money': generateMoneyLiteracyContent(grade),
-        'Financial Literacy': generateMoneyLiteracyContent(grade),
-        'Time and Clocks': generateTimeAndClocksContent(grade),
-        'Telling Time': generateTimeAndClocksContent(grade),
-        'Understanding Time': generateTimeAndClocksContent(grade),
-        'Reading Comprehension': generateReadingComprehensionContent(grade),
-        'Reading Strategies': generateReadingComprehensionContent(grade),
-        'Understanding What We Read': generateReadingComprehensionContent(grade),
-        'Writing Skills': generateWritingSkillsContent(grade),
-        'Writing Strategies': generateWritingSkillsContent(grade),
-        'Becoming Better Writers': generateWritingSkillsContent(grade),
-        'Earth Science': generateEarthScienceContent(grade),
-        'Earth and Space': generateEarthScienceContent(grade),
-        'Our Planet Earth': generateEarthScienceContent(grade),
-        'Life Cycles': generateLifeCyclesContent(grade),
-        'Plant and Animal Life Cycles': generateLifeCyclesContent(grade),
-        'Growth and Change': generateLifeCyclesContent(grade),
-        'Health and Nutrition': generateHealthNutritionContent(grade),
-        'Healthy Living': generateHealthNutritionContent(grade),
-        'Taking Care of Our Bodies': generateHealthNutritionContent(grade),
-        // ... continue with existing mappings ...
-    };
-    
-    // Return specific content if available, otherwise generate generic content
-    return topics[cleanTitle] || generateEngagingContent(grade, subject, cleanTitle);
-}
-
-function generateAnimalHabitatsContent(grade) {
-    if (grade === 2) {
-        return `**What Are Animal Habitats and Adaptations?**
-
-Animal habitats are like homes for animals - special places where they live, find food, and raise their babies! Adaptations are like superpowers that help animals survive in their homes. Just like you might wear a jacket when it's cold, animals have special features that help them stay safe and healthy.
-
-**Why Animal Habitats and Adaptations Matter**
-
-Learning about where animals live and how they survive helps us understand nature and take care of our planet. It's like being a nature detective - you can figure out why a polar bear has thick fur and why a fish has gills!
-
-**How Animal Habitats and Adaptations Work**
-
-Animals choose habitats that give them everything they need:
-• Food to eat (like how rabbits live in places with lots of grass)
-• Water to drink (like how hippos live near rivers)
-• Shelter to stay safe (like how birds build nests in trees)
-• The right temperature (like how penguins live where it's cold)
-
-Adaptations help them survive:
-• Sharp claws help cats catch food
-• Thick fur keeps animals warm
-• Big ears help elephants stay cool
-• Webbed feet help ducks swim
-
-**Real-Life Examples**
-
-• Desert animals like camels can go without water for days
-• Arctic foxes have extra-thick fur in winter that turns white for camouflage
-• Giraffes have long necks to reach leaves high up in trees
-• Fish have gills to breathe underwater, while whales have lungs and must come up for air
-
-**Common Mistakes to Avoid**
-
-Don't think all animals can live anywhere - each animal needs its special habitat! Also, remember that adaptations take a very long time to develop, not just a few days.
-
-**Quick Recap**
-
-Animals live in habitats that meet their needs, and they have special adaptations (like superpowers) that help them survive. Every animal is perfectly designed for its home!`;
-    } else {
-        return `**What Are Animal Habitats and Adaptations?**
-
-Animal habitats are specific environments where organisms have evolved to live and thrive, while adaptations are inherited characteristics that help animals survive in their particular environments. These concepts work together to explain how life has diversified across Earth's many ecosystems.
-
-**Why Animal Habitats and Adaptations Matter**
-
-Understanding these concepts helps us comprehend biodiversity, evolution, and conservation. This knowledge is crucial for protecting endangered species, managing ecosystems, and understanding how climate change affects wildlife populations.
-
-**How Animal Habitats and Adaptations Work**
-
-Habitats provide essential resources:
-• Food sources and foraging opportunities
-• Fresh water and appropriate moisture levels
-• Shelter and nesting sites
-• Suitable temperature ranges and climate conditions
-• Protection from predators
-
-Adaptations are specialized features:
-• Structural adaptations (physical features like beaks, claws, fur)
-• Behavioral adaptations (migration patterns, hunting strategies)
-• Physiological adaptations (internal body processes)
-
-**Real-Life Examples**
-
-• Rain forest animals have adaptations for climbing and living in trees
-• Desert animals conserve water and tolerate extreme temperatures  
-• Ocean animals have specialized breathing and pressure adaptations
-• Arctic animals have insulation and hunting adaptations for cold climates
-
-**Common Mistakes to Avoid**
-
-Don't confuse adaptations with learned behaviors - adaptations are inherited traits. Also, avoid thinking animals consciously develop adaptations; they evolve over many generations through natural selection.
-
-**Quick Recap**
-
-Habitats and adaptations work together to explain how animals survive in specific environments. This knowledge helps us understand evolution, biodiversity, and conservation principles.`;
-    }
-}
-
-function generateCommunityHelpersContent(grade) {
-    if (grade === 2) {
-        return `**What Are Community Helpers Past and Present?**
-
-Community helpers are special people who work hard every day to keep our neighborhoods safe, clean, and happy! Some helpers have been around for a very long time (like doctors and teachers), while others are newer (like computer repair people). They're like real-life superheroes who help make our community a better place!
-
-**Why Community Helpers Past and Present Matter**
-
-Learning about community helpers helps you understand how people work together to take care of each other. It shows you all the different ways people can help their neighbors and gives you ideas for how you might want to help your community when you grow up!
-
-**How Community Helpers Past and Present Work**
-
-Community helpers have special jobs:
-• Some keep us safe (like police officers and firefighters)
-• Some help us learn (like teachers and librarians)  
-• Some keep us healthy (like doctors and dentists)
-• Some deliver things we need (like mail carriers and grocery store workers)
-
-Long ago, some helpers did their jobs differently:
-• Doctors used to make house calls with horse and buggy
-• Teachers taught all grades in one room
-• People got milk delivered to their doors
-• Firefighters used horse-drawn fire trucks
-
-**Real-Life Examples**
-
-• Police officers today use cars and computers, but they still help keep people safe like they did 100 years ago
-• Teachers used to write on chalkboards, now they use smart boards and tablets
-• Mail carriers used to only deliver letters, now they bring packages from online shopping
-• Firefighters now have better equipment, but they still rescue people and put out fires
-
-**Common Mistakes to Avoid**
-
-Don't think that old ways were always worse - sometimes they were different but still worked well! Also remember that new community helpers keep appearing as our world changes.
-
-**Quick Recap**
-
-Community helpers are important people who take care of our neighborhoods. Some helpers have been around forever, some have changed how they work, and some are brand new. They all help make our community strong!`;
-    } else {
-        return `**What Are Community Helpers Past and Present?**
-
-Community helpers are essential workers who provide vital services that maintain the functioning, safety, and well-being of our society. By comparing past and present community helpers, we can understand how societies evolve while maintaining core human needs for safety, education, health care, and communication.
-
-**Why Community Helpers Past and Present Matter**
-
-This knowledge helps us appreciate social progress, understand career evolution, and recognize the interconnected nature of community services. It also helps us understand how technology and social changes affect the workforce and service delivery.
-
-**How Community Helpers Past and Present Work**
-
-Essential community services include:
-• Public safety (law enforcement, emergency services)
-• Education (teachers, administrators, support staff)
-• Healthcare (medical professionals, public health workers)
-• Infrastructure (utilities, transportation, communication)
-• Government services (elected officials, civil servants)
-
-Historical evolution shows:
-• Technology has transformed service delivery methods
-• Core functions remain consistent across time periods
-• New specializations emerge as society becomes more complex
-• Training and education requirements have generally increased
-
-**Real-Life Examples**
-
-• Law enforcement has evolved from town marshals to specialized police departments with advanced technology
-• Healthcare has expanded from general practitioners to specialized medical fields with advanced diagnostic tools
-• Education has grown from one-room schoolhouses to complex educational systems with specialized roles
-• Transportation has evolved from horse-drawn vehicles to modern logistics and delivery systems
-
-**Common Mistakes to Avoid**
-
-Don't assume that newer methods are always superior to historical approaches - each era develops solutions appropriate to its technology and social needs. Also avoid oversimplifying the complexity of modern community helper roles.
-
-**Quick Recap**
-
-Community helpers provide essential services that have evolved significantly while maintaining core functions. Understanding this evolution helps us appreciate both historical contributions and modern innovations in community service.`;
+async function generateSpecificContent(grade, subject, title) {
+    try {
+        const content = await lessonGenerator.generateLessonContent(title, grade, subject);
+        const quiz = await lessonGenerator.generateQuiz(title, grade, subject);
+        
+        return {
+            content,
+            quiz,
+            lastUpdated: new Date().toISOString()
+        };
+    } catch (error) {
+        console.error(`Error generating content for ${title}:`, error);
+        // Fallback to existing content generation if API fails
+        return {
+            content: generateEngagingContent(grade, subject, title),
+            quiz: generateUniqueActivities(grade, subject, title),
+            lastUpdated: new Date().toISOString()
+        };
     }
 }
 
