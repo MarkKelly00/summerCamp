@@ -142,6 +142,58 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
     }
   };
 
+  // Helper function to parse markdown-style content
+  const parseMarkdownContent = (content: string) => {
+    if (!content) return null;
+
+    // Split content by double newlines to get paragraphs
+    const sections = content.split('\n\n');
+    
+    return sections.map((section, index) => {
+      // Check for headers
+      if (section.startsWith('## ')) {
+        return (
+          <h3 key={index} className="text-xl font-bold text-purple-700 font-kid mt-6 mb-3">
+            {section.replace('## ', '')}
+          </h3>
+        );
+      } else if (section.startsWith('### ')) {
+        return (
+          <h4 key={index} className="text-lg font-bold text-purple-600 font-kid mt-4 mb-2">
+            {section.replace('### ', '')}
+          </h4>
+        );
+      }
+      
+      // Check for lists
+      if (section.includes('\n-') || section.startsWith('-')) {
+        const listItems = section.split('\n').filter(line => line.trim().startsWith('-'));
+        return (
+          <ul key={index} className="list-disc list-inside space-y-2 mb-4">
+            {listItems.map((item, itemIndex) => (
+              <li key={itemIndex} className="text-gray-800 font-kid leading-relaxed">
+                {item.replace(/^-\s*/, '').replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+                  .split(/<strong>|<\/strong>/).map((part, i) => 
+                    i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+                  )}
+              </li>
+            ))}
+          </ul>
+        );
+      }
+      
+      // Regular paragraphs with bold text support
+      const parts = section.split(/\*\*(.*?)\*\*/g);
+      return (
+        <p key={index} className="text-gray-800 font-kid leading-relaxed text-lg mb-4">
+          {parts.map((part, i) => 
+            i % 2 === 1 ? <strong key={i}>{part}</strong> : part
+          )}
+        </p>
+      );
+    });
+  };
+
   const getStepTitle = () => {
     if (currentStep === 0) return 'Introduction';
     if (currentStep === 1) return 'Learn';
@@ -181,9 +233,7 @@ const LessonView: React.FC<LessonViewProps> = ({ user, token, onUserUpdate }) =>
               Let's Learn! 🎓
             </h2>
             <div className="bg-blue-50 border-l-4 border-blue-400 p-6 rounded">
-              <p className="text-gray-800 font-kid leading-relaxed text-lg">
-                {lesson.content}
-              </p>
+              {parseMarkdownContent(lesson.content)}
             </div>
           </div>
         );
