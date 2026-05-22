@@ -9,6 +9,7 @@
 import Link from "next/link";
 
 import { logoutAction } from "@/lib/actions/auth";
+import { SfxToggle } from "./SfxToggle";
 import { ThemeSwitcher } from "./ThemeSwitcher";
 
 interface AppShellProps {
@@ -43,6 +44,7 @@ export function AppShell({ children, identity, nav = [] }: AppShellProps) {
               {n.label}
             </Link>
           ))}
+          <SfxToggle />
           <ThemeSwitcher />
           <form action={logoutAction}>
             <button

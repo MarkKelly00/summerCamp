@@ -24,8 +24,13 @@
  */
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { motion } from "framer-motion";
+
+import { primeAudio, sfxMunch, sfxWrong } from "@/lib/sfx";
 
 import type { GameRendererProps } from "../engine/types";
+import { MuncherSprite, type MuncherState } from "./MuncherSprite";
+import { ParticleBurst } from "./ParticleBurst";
 
 // ---- Config (validated upstream by Zod in lib/schemas/mini-game.ts) ------
 interface NumberMuncherConfig {
@@ -128,6 +133,10 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
   const [lives, setLives] = useState(LIVES);
   const [timeLeft, setTimeLeft] = useState(cfg.durationSeconds);
   const [announce, setAnnounce] = useState<string>(label);
+  const [muncherState, setMuncherState] = useState<MuncherState>("idle");
+  // Tracks recently-eaten cells (key -> burst id) so ParticleBurst can
+  // animate from the exact cell that was just munched.
+  const [bursts, setBursts] = useState<Map<string, number>>(new Map());
   const boardRef = useRef<HTMLDivElement>(null);
 
   const totalMatching = useMemo(() => {
@@ -141,6 +150,10 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
     session.start();
     // Focus the board so keyboard works without a click.
     boardRef.current?.focus();
+    // Prime the Web Audio context (browsers require a user gesture; if
+    // this gets called before one, the first sound will be silent and
+    // subsequent ones will play. That's acceptable.)
+    primeAudio();
   }, [session]);
 
   // ---- Timer -----------------------------------------------------------
@@ -187,6 +200,8 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
 
   const eat = useCallback(() => {
     if (session.status !== "playing") return;
+    let wasCorrect = false;
+    const cellKey = `${pos.x}-${pos.y}`;
     setBoard((prev) => {
       const next = prev.map((row) => row.map((c) => ({ ...c })));
       const cell = next[pos.y]?.[pos.x];
@@ -194,6 +209,7 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
       if (isMatch(cell.value)) {
         cell.eaten = true;
         cell.flash = "correct";
+        wasCorrect = true;
         session.recordCorrect({ points: CORRECT_POINTS, skillTag });
         setAnnounce(`Correct: ${cell.value} is a match.`);
       } else {
@@ -212,12 +228,32 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
       }
       return next;
     });
-    // Clear the flash after a beat.
+
+    // Drive the muncher sprite state + SFX from the synchronous result
+    // we captured above.
+    if (wasCorrect) {
+      sfxMunch();
+      setMuncherState("munching");
+      const burstId = Date.now();
+      setBursts((b) => new Map(b).set(cellKey, burstId));
+      setTimeout(() => {
+        setBursts((b) => {
+          const next = new Map(b);
+          if (next.get(cellKey) === burstId) next.delete(cellKey);
+          return next;
+        });
+      }, 800);
+    } else {
+      sfxWrong();
+      setMuncherState("wrong");
+    }
+    setTimeout(() => setMuncherState("idle"), 280);
+
+    // Clear the flash after a beat (parallel to the muncher state reset).
     setTimeout(() => {
-      setBoard((prev) => {
-        const next = prev.map((row) => row.map((c) => ({ ...c, flash: "none" as const })));
-        return next;
-      });
+      setBoard((prev) =>
+        prev.map((row) => row.map((c) => ({ ...c, flash: "none" as const }))),
+      );
     }, 240);
   }, [isMatch, label, pos, session, skillTag]);
 
@@ -307,16 +343,15 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
         {board.map((row, y) =>
           row.map((cell, x) => {
             const isPlayer = pos.x === x && pos.y === y;
+            const cellKey = `${x}-${y}`;
+            const hasBurst = bursts.has(cellKey);
             const bg = cell.eaten
               ? "bg-slate-700/60"
               : cell.flash === "correct"
-                ? "bg-emerald-400 text-slate-900"
+                ? "bg-emerald-300 text-slate-900"
                 : cell.flash === "wrong"
-                  ? "bg-rose-500 text-white"
+                  ? "bg-rose-400 text-white"
                   : "bg-slate-100 text-slate-900 hover:bg-white";
-            // Cells are clickable as a fallback for kids who don't reach
-            // for the keyboard. Click jumps the muncher to that cell;
-            // clicking the cell the muncher is already on eats it.
             const handleClick = () => {
               if (session.status !== "playing") return;
               if (isPlayer) {
@@ -326,8 +361,8 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
               }
             };
             return (
-              <button
-                key={`${x}-${y}`}
+              <motion.button
+                key={cellKey}
                 type="button"
                 role="gridcell"
                 onClick={handleClick}
@@ -338,14 +373,35 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
                     : `Cell ${x + 1},${y + 1} value ${cell.value}${isPlayer ? " — muncher here, click to eat" : ", click to move"}`
                 }
                 aria-current={isPlayer ? "location" : undefined}
-                className={`relative flex aspect-square items-center justify-center rounded-md font-mono text-lg font-bold transition motion-reduce:transition-none disabled:cursor-not-allowed sm:text-xl ${bg} ${
-                  isPlayer
-                    ? "ring-4 ring-amber-400 ring-offset-2 ring-offset-slate-800"
-                    : "cursor-pointer"
+                animate={{
+                  scale: cell.eaten ? 0.92 : 1,
+                  opacity: cell.eaten ? 0.55 : 1,
+                  rotateX: cell.eaten ? 180 : 0,
+                }}
+                transition={{
+                  duration: 0.32,
+                  ease: "easeOut",
+                }}
+                className={`relative flex aspect-square items-center justify-center rounded-md font-mono text-lg font-bold transition-colors duration-150 disabled:cursor-not-allowed sm:text-xl ${bg} ${
+                  isPlayer && !cell.eaten ? "" : "cursor-pointer"
                 }`}
+                style={{ transformStyle: "preserve-3d" }}
               >
-                {cell.eaten ? "" : cell.value}
-              </button>
+                {/* The number — hidden while eaten so the burst takes the stage */}
+                <span className={cell.eaten ? "opacity-0" : ""}>
+                  {cell.value}
+                </span>
+                {/* The muncher character sits centered on its cell */}
+                {isPlayer && !cell.eaten ? (
+                  <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
+                    <MuncherSprite state={muncherState} size={48} />
+                  </span>
+                ) : null}
+                {/* Particle burst spawns from the cell on every correct eat */}
+                {hasBurst ? (
+                  <ParticleBurst burstKey={String(bursts.get(cellKey))} />
+                ) : null}
+              </motion.button>
             );
           }),
         )}

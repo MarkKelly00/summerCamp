@@ -24,9 +24,11 @@ import {
   submitMiniGameResult,
   type SubmitMiniGameResultState,
 } from "@/lib/actions/mini-games";
+import { sfxLevelUp, sfxMastery } from "@/lib/sfx";
 import { CampButton } from "@/components/ui/CampButton";
 import { CampCard, CampKicker } from "@/components/ui/CampCard";
 import { CampChip } from "@/components/ui/CampChip";
+import { Confetti } from "@/components/ui/Confetti";
 
 import { GAME_RENDERERS } from "../registry";
 import { useMiniGameSession } from "./useMiniGameSession";
@@ -178,6 +180,19 @@ function ResultPanel({
   submitting: boolean;
   onReplay: () => void;
 }) {
+  // Fire the celebration audio once when a successful result lands.
+  // useEffect with the result identity in deps means a replay re-fires it.
+  useEffect(() => {
+    if (submitting || !state?.ok || !state.result) return;
+    if (state.result.isFirstMastery) {
+      sfxMastery();
+    } else if (state.result.isMastery) {
+      sfxLevelUp();
+    }
+    // We intentionally don't fire a sound on "keep practicing" — the
+    // game already played its wrong/right sounds during play.
+  }, [submitting, state]);
+
   if (submitting || !state) {
     return (
       <CampCard className="text-center" aria-live="polite">
@@ -209,6 +224,7 @@ function ResultPanel({
 
   return (
     <CampCard aria-live="polite" className="space-y-4">
+      <Confetti active={r.isFirstMastery} />
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div>
           <CampKicker>Result</CampKicker>
