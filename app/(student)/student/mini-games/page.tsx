@@ -1,8 +1,7 @@
 /**
  * Mini-game directory — lists games for the signed-in student's track.
- *
- * Phase 5 places this under /student/mini-games. Phase 7 will integrate
- * the list into the proper adventure-map dashboard.
+ * Wrapped in AppShell for consistent nav (back to dashboard, theme +
+ * SFX toggles, sign out).
  */
 import Link from "next/link";
 import { redirect } from "next/navigation";
@@ -10,6 +9,9 @@ import { redirect } from "next/navigation";
 import { getSession } from "@/lib/auth/cookies";
 import { connectToDatabase } from "@/lib/db/mongoose";
 import { MiniGame, User } from "@/lib/db/models";
+import { AppShell } from "@/components/ui/AppShell";
+import { CampCard, CampKicker } from "@/components/ui/CampCard";
+import { CampChip } from "@/components/ui/CampChip";
 
 export const dynamic = "force-dynamic";
 
@@ -19,8 +21,6 @@ export default async function MiniGameDirectoryPage() {
 
   await connectToDatabase();
 
-  // Determine which track to show. Students see their own track. Admins
-  // see both for testing.
   const user = await User.findById(session.userId).lean();
   const studentTrack = user?.profile?.learningTrack ?? "entering-3rd";
   const filter =
@@ -33,33 +33,46 @@ export default async function MiniGameDirectoryPage() {
     .lean();
 
   return (
-    <main className="mx-auto max-w-3xl px-6 py-12">
-      <header>
-        <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
-          Mini-games
+    <AppShell
+      identity={{
+        line1: "Mini-games",
+        line2: "Pick a game to play",
+      }}
+      nav={[
+        { href: "/student/dashboard", label: "Back to trail" },
+        { href: "/student/rewards", label: "Prize shop" },
+      ]}
+    >
+      <CampCard className="space-y-2">
+        <CampKicker>Playable today</CampKicker>
+        <p className="text-sm text-camp-ink-muted">
+          Number Muncher (3rd-grade track) and Vocabulary Arena (5th-grade
+          track) are fully playable with sounds, animations, and rewards.
+          The other games show a &ldquo;coming soon&rdquo; card for now.
         </p>
-        <h1 className="mt-1 text-3xl font-bold tracking-tight">
-          Pick a game
-        </h1>
-        <p className="mt-2 text-sm text-slate-600">
-          Two are fully playable in Phase 5 — Number Muncher (Dean&apos;s track)
-          and Vocabulary Arena (Addie&apos;s track). The other nine give a small
-          XP nudge for showing up and ship soon.
-        </p>
-      </header>
+      </CampCard>
 
-      <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <ul className="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
         {games.map((g) => (
           <li key={String(g._id)}>
             <Link
               href={`/student/mini-games/${g.slug}`}
-              className="block rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-slate-400 hover:shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
+              className="block h-full rounded-2xl border border-[var(--camp-border)] bg-[var(--camp-surface)] p-5 transition hover:border-[var(--camp-accent)] hover:bg-[var(--camp-surface-soft)] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--camp-accent)]"
             >
-              <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
-                {g.subject} · {g.learningTrack === "entering-3rd" ? "3rd" : "5th"} grade
-              </p>
-              <h2 className="mt-1 text-lg font-bold">{g.title}</h2>
-              <p className="mt-1 text-xs text-slate-500">
+              <div className="flex items-start justify-between gap-2">
+                <CampKicker>
+                  {g.subject} · {g.learningTrack === "entering-3rd" ? "3rd" : "5th"} grade
+                </CampKicker>
+                {g.type === "number-muncher" || g.type === "knoword-vocab" ? (
+                  <CampChip tone="positive">Playable</CampChip>
+                ) : (
+                  <CampChip tone="neutral">Coming soon</CampChip>
+                )}
+              </div>
+              <h2 className="mt-2 text-lg font-bold text-camp-ink">
+                {g.title}
+              </h2>
+              <p className="mt-1 text-xs text-camp-ink-muted">
                 {g.skillTags.slice(0, 3).join(" · ")}
               </p>
             </Link>
@@ -68,11 +81,16 @@ export default async function MiniGameDirectoryPage() {
       </ul>
 
       {games.length === 0 ? (
-        <p className="mt-12 rounded-md bg-amber-50 p-4 text-sm text-amber-900">
-          No mini-games seeded yet for your track. Ask an admin to run{" "}
-          <code className="rounded bg-amber-100 px-1">npm run seed:2026</code>.
-        </p>
+        <CampCard className="mt-6 text-center">
+          <p className="text-sm text-camp-ink-muted">
+            No mini-games seeded yet for your track. Ask an admin to run{" "}
+            <code className="rounded bg-[var(--camp-surface-soft)] px-1 font-mono">
+              npm run seed:2026
+            </code>
+            .
+          </p>
+        </CampCard>
       ) : null}
-    </main>
+    </AppShell>
   );
 }
