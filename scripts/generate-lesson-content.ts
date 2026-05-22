@@ -1,28 +1,31 @@
 /**
- * Generate full lesson content + quizzes for skeleton lessons via OpenAI.
- *
- * What it does:
- *   - Loads lesson(s) from MongoDB that are missing instruction OR quiz.
- *   - For each, asks OpenAI to draft: instruction text, examples,
- *     6-8 multiple-choice quiz questions, an offline activity, a
- *     reflection prompt. Output must match the LessonUpsertSchema shape.
- *   - Saves the result with `published: false` so Mark can review +
- *     publish via the admin UI.
+ * Generate full lesson content + quizzes for skeleton lessons via an
+ * LLM. Defaults to OpenAI; can be flipped to xAI Grok by setting
+ * LESSON_PROVIDER=grok in .env.
  *
  * Usage:
  *   tsx scripts/generate-lesson-content.ts <slug>          # one lesson
  *   tsx scripts/generate-lesson-content.ts --all-drafts    # every empty lesson
  *
+ * Configuration (`.env`):
+ *   OPENAI_API_KEY=sk-...                  # required for provider=openai
+ *   GROK_API_KEY=xai-...                   # required for provider=grok
+ *   LESSON_PROVIDER=openai|grok            # default: openai
+ *   OPENAI_LESSON_MODEL=gpt-4o             # default per provider
+ *     OpenAI options (account-dependent): gpt-4o, gpt-4o-mini, gpt-5, gpt-5-mini
+ *     Grok options: grok-4, grok-3, grok-2
+ *
  * Safety:
- *   - Always sets `published: false` so drafts don't leak to the kids
- *     before Mark reviews them.
+ *   - Always sets `published: false` so drafts don't leak to the kids.
  *   - Refuses to overwrite a lesson that already has both `instruction`
  *     AND a non-empty `quiz` (unless --force).
- *   - Costs OpenAI credits. The script logs estimated tokens per call.
+ *   - Costs LLM credits. With gpt-4o-mini, 78 lessons ≈ $0.10. With
+ *     gpt-4o, ≈ $5-10. Set OPENAI_LESSON_MODEL accordingly.
  *
- * Setup:
- *   - Requires OPENAI_API_KEY in `.env` (already there from Phase 0's
- *     legacy openai integration).
+ * Note on OpenAI structured outputs strict mode:
+ *   - Every object in the schema MUST set `additionalProperties: false`.
+ *   - Every property in `properties` MUST also appear in `required`.
+ *   - Optional fields are not allowed; use nullable types instead.
  */
 
 import "dotenv/config";
@@ -35,9 +38,27 @@ import {
 } from "../lib/db/mongoose";
 import { Lesson } from "../lib/db/models";
 
-const MODEL = process.env.OPENAI_LESSON_MODEL ?? "gpt-4o-mini";
+type Provider = "openai" | "grok";
+
+const PROVIDER: Provider =
+  (process.env.LESSON_PROVIDER as Provider | undefined) === "grok"
+    ? "grok"
+    : "openai";
+
+const DEFAULT_MODEL: Record<Provider, string> = {
+  openai: "gpt-4o",
+  grok: "grok-4",
+};
+
+const MODEL = process.env.OPENAI_LESSON_MODEL ?? DEFAULT_MODEL[PROVIDER];
 const FORCE = process.argv.includes("--force");
 const ALL_DRAFTS = process.argv.includes("--all-drafts");
+
+// xAI's chat.completions endpoint is OpenAI-compatible but doesn't yet
+// support the same json_schema strict mode that OpenAI does. We fall
+// back to json_object mode when on Grok and rely on the prompt to
+// enforce shape.
+const USE_STRICT_SCHEMA = PROVIDER === "openai";
 
 interface DraftedContent {
   instruction: string;
@@ -52,11 +73,11 @@ interface DraftedContent {
     correctAnswer: string;
     explanation: string;
     points: number;
-    skillTag?: string;
+    skillTag: string;
   }[];
 }
 
-const SYSTEM_PROMPT = `You are a master elementary-school curriculum designer specializing in standards-aligned summer enrichment for grades 3 and 5. You write at the student's reading level (specifically the target grade), with clear pedagogy: hook → instruction → worked examples → quiz with explanations.
+const SYSTEM_PROMPT = `You are a master elementary-school curriculum designer specializing in standards-aligned summer enrichment for grades 3 and 5. You write at the student's reading level (specifically the target grade), with clear pedagogy: hook -> instruction -> worked examples -> quiz with explanations.
 
 Output rules:
 - Instruction: 250-450 words. Conversational but precise. Use line breaks between ideas. Define every term. Connect to real life.
@@ -70,43 +91,54 @@ Output rules:
 
 Return STRICT JSON only matching the requested schema. No markdown, no commentary.`;
 
+// OpenAI strict mode requires:
+//   - additionalProperties: false on every object
+//   - every property in `properties` must appear in `required`
+const QUIZ_ITEM_SCHEMA = {
+  type: "object",
+  additionalProperties: false,
+  properties: {
+    question: { type: "string" },
+    type: { type: "string", enum: ["multiple-choice"] },
+    options: {
+      type: "array",
+      items: { type: "string" },
+      minItems: 4,
+      maxItems: 4,
+    },
+    correctAnswer: { type: "string" },
+    explanation: { type: "string" },
+    points: { type: "number" },
+    skillTag: { type: "string" },
+  },
+  required: [
+    "question",
+    "type",
+    "options",
+    "correctAnswer",
+    "explanation",
+    "points",
+    "skillTag",
+  ],
+} as const;
+
 const OUTPUT_SCHEMA = {
   type: "object",
+  additionalProperties: false,
   properties: {
     instruction: { type: "string" },
     examples: { type: "array", items: { type: "string" } },
     offlineActivity: { type: "string" },
     reflectionPrompt: { type: "string" },
     funFacts: { type: "array", items: { type: "string" } },
-    quiz: {
-      type: "array",
-      items: {
-        type: "object",
-        properties: {
-          question: { type: "string" },
-          type: { type: "string", enum: ["multiple-choice"] },
-          options: { type: "array", items: { type: "string" }, minItems: 4, maxItems: 4 },
-          correctAnswer: { type: "string" },
-          explanation: { type: "string" },
-          points: { type: "number" },
-          skillTag: { type: "string" },
-        },
-        required: [
-          "question",
-          "type",
-          "options",
-          "correctAnswer",
-          "explanation",
-          "points",
-        ],
-      },
-    },
+    quiz: { type: "array", items: QUIZ_ITEM_SCHEMA },
   },
   required: [
     "instruction",
     "examples",
     "offlineActivity",
     "reflectionPrompt",
+    "funFacts",
     "quiz",
   ],
 } as const;
@@ -133,8 +165,26 @@ function buildUserPrompt(lesson: {
     `Standards:\n${lesson.standards.map((s) => `  - ${s.framework} ${s.code}: ${s.description}`).join("\n")}`,
     `Skill tags (pick one per quiz question):\n${lesson.skillTags.map((t) => `  - ${t}`).join("\n")}`,
     "",
-    "Generate the full content as JSON.",
+    "Generate the full content as JSON. Required keys: instruction, examples, offlineActivity, reflectionPrompt, funFacts, quiz.",
+    "Quiz must have exactly 6 multiple-choice items, each with 4 distinct options.",
   ].join("\n");
+}
+
+function buildClient(): OpenAI {
+  if (PROVIDER === "grok") {
+    const apiKey = process.env.GROK_API_KEY;
+    if (!apiKey) {
+      throw new Error(
+        "GROK_API_KEY is not set. Add it to .env or switch LESSON_PROVIDER to openai.",
+      );
+    }
+    return new OpenAI({ apiKey, baseURL: "https://api.x.ai/v1" });
+  }
+  const apiKey = process.env.OPENAI_API_KEY;
+  if (!apiKey) {
+    throw new Error("OPENAI_API_KEY is not set. Add it to .env.");
+  }
+  return new OpenAI({ apiKey });
 }
 
 async function generateForSlug(
@@ -154,7 +204,7 @@ async function generateForSlug(
     return;
   }
 
-  console.log(`[generate] ${slug}: requesting content from ${MODEL}...`);
+  console.log(`[generate] ${slug}: requesting content from ${PROVIDER}/${MODEL}...`);
   const userPrompt = buildUserPrompt({
     title: doc.title,
     subject: doc.subject,
@@ -167,16 +217,20 @@ async function generateForSlug(
     content: doc.content,
   });
 
+  const responseFormat = USE_STRICT_SCHEMA
+    ? ({
+        type: "json_schema",
+        json_schema: {
+          name: "LessonContent",
+          schema: OUTPUT_SCHEMA,
+          strict: true,
+        },
+      } as never)
+    : ({ type: "json_object" } as never);
+
   const res = await client.chat.completions.create({
     model: MODEL,
-    response_format: {
-      type: "json_schema",
-      json_schema: {
-        name: "LessonContent",
-        schema: OUTPUT_SCHEMA,
-        strict: true,
-      },
-    } as never,
+    response_format: responseFormat,
     messages: [
       { role: "system", content: SYSTEM_PROMPT },
       { role: "user", content: userPrompt },
@@ -221,16 +275,9 @@ async function generateForSlug(
 }
 
 async function main(): Promise<void> {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    console.error(
-      "[generate] OPENAI_API_KEY is not set. Add it to .env and re-run.",
-    );
-    process.exit(1);
-  }
-
+  console.log(`[generate] Provider=${PROVIDER}, model=${MODEL}`);
   await connectToDatabase();
-  const client = new OpenAI({ apiKey });
+  const client = buildClient();
 
   if (ALL_DRAFTS) {
     const candidates = await Lesson.find({
@@ -242,17 +289,31 @@ async function main(): Promise<void> {
       .select({ slug: 1 })
       .lean();
     console.log(`[generate] Found ${candidates.length} lesson(s) needing content`);
+    let failures = 0;
     for (const c of candidates) {
       if (!c.slug) continue;
       try {
         await generateForSlug(client, c.slug);
       } catch (err) {
-        console.error(`[generate] ${c.slug} failed:`, err);
+        failures += 1;
+        const message =
+          err instanceof Error ? err.message : "unknown error";
+        console.error(`[generate] ${c.slug} failed: ${message}`);
+        if (failures >= 3) {
+          console.error(
+            "[generate] Aborting after 3 consecutive failures. Fix the underlying issue (auth, model name, schema) and re-run.",
+          );
+          break;
+        }
       }
     }
   } else {
     const slug = process.argv.find(
-      (arg) => !arg.startsWith("-") && arg !== "tsx" && !arg.endsWith(".ts"),
+      (arg) =>
+        !arg.startsWith("-") &&
+        arg !== "tsx" &&
+        !arg.endsWith(".ts") &&
+        !arg.includes("/"),
     );
     if (!slug) {
       console.error(
@@ -264,7 +325,9 @@ async function main(): Promise<void> {
   }
 
   await disconnectFromDatabase();
-  console.log("[generate] Done. Review drafts in the admin UI before publishing.");
+  console.log(
+    "[generate] Done. Review drafts in the admin UI before publishing.",
+  );
 }
 
 main().catch(async (err) => {
