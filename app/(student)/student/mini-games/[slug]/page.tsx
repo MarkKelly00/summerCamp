@@ -1,17 +1,22 @@
 /**
  * Mini-game play page — `/student/mini-games/[slug]`.
  *
- * Server Component: fetches the MiniGame document by slug, hands it to
- * the client-side MiniGameShell which loads the right renderer from the
- * registry. Auth is enforced by proxy.ts; this page double-checks role
- * and that the game is active.
+ * Server Component: fetches the MiniGame document by slug and hands the
+ * plain serializable data to MiniGameShell (a client component) which
+ * looks up the right renderer from the registry itself.
+ *
+ * The renderer lookup MUST happen client-side. A previous version of
+ * this file did the lookup here and passed the component as a prop —
+ * that fails because Next.js's RSC boundary doesn't serialize plain
+ * objects of client component references; the prop arrives as
+ * undefined.
  */
+
 import { notFound, redirect } from "next/navigation";
 
 import { getSession } from "@/lib/auth/cookies";
 import { connectToDatabase } from "@/lib/db/mongoose";
 import { MiniGame } from "@/lib/db/models";
-import { GAME_RENDERERS } from "@/components/games/registry";
 import { MiniGameShell } from "@/components/games/engine/MiniGameShell";
 
 export const dynamic = "force-dynamic";
@@ -29,8 +34,6 @@ export default async function MiniGamePage({
 
   const game = await MiniGame.findOne({ slug, active: true }).lean();
   if (!game) notFound();
-
-  const Renderer = GAME_RENDERERS[game.type];
 
   // Serialize the lean doc into plain values for the client component.
   const miniGame = {
@@ -51,5 +54,5 @@ export default async function MiniGamePage({
     },
   };
 
-  return <MiniGameShell miniGame={miniGame} renderer={Renderer} />;
+  return <MiniGameShell miniGame={miniGame} />;
 }
