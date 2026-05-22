@@ -254,7 +254,11 @@ export function KnowordVocab({ config, session }: GameRendererProps) {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={onKey}
             disabled={round.result !== null || session.status !== "playing"}
-            className="flex-1 rounded-md border border-slate-300 px-3 py-2 text-base focus:border-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900 disabled:opacity-60"
+            // Explicit bg + text color so the input is readable regardless
+            // of the inherited body color. (body sets color: var(--camp-ink)
+            // = near-white, which on the input's browser-default white
+            // background turns the typed letters invisible.)
+            className="flex-1 rounded-md border border-slate-300 bg-white px-3 py-2 text-base text-slate-900 placeholder:text-slate-400 focus:border-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900 disabled:opacity-60"
             placeholder="Type the word"
           />
           <button

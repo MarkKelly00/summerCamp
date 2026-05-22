@@ -282,6 +282,20 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
         {announce}
       </p>
 
+      <p className="text-center text-xs text-camp-ink-muted">
+        <span className="hidden sm:inline">
+          Use{" "}
+          <kbd className="rounded border border-[var(--camp-border)] bg-[var(--camp-surface-soft)] px-1.5 py-0.5 font-mono text-[0.7rem]">←</kbd>{" "}
+          <kbd className="rounded border border-[var(--camp-border)] bg-[var(--camp-surface-soft)] px-1.5 py-0.5 font-mono text-[0.7rem]">↑</kbd>{" "}
+          <kbd className="rounded border border-[var(--camp-border)] bg-[var(--camp-surface-soft)] px-1.5 py-0.5 font-mono text-[0.7rem]">→</kbd>{" "}
+          <kbd className="rounded border border-[var(--camp-border)] bg-[var(--camp-surface-soft)] px-1.5 py-0.5 font-mono text-[0.7rem]">↓</kbd>{" "}
+          to move,{" "}
+          <kbd className="rounded border border-[var(--camp-border)] bg-[var(--camp-surface-soft)] px-1.5 py-0.5 font-mono text-[0.7rem]">SPACE</kbd>{" "}
+          to eat,
+        </span>{" "}
+        or tap any cell to move there — tap the muncher cell to eat.
+      </p>
+
       <div
         ref={boardRef}
         tabIndex={0}
@@ -299,25 +313,39 @@ export function NumberMuncher({ config, session }: GameRendererProps) {
                 ? "bg-emerald-400 text-slate-900"
                 : cell.flash === "wrong"
                   ? "bg-rose-500 text-white"
-                  : "bg-slate-100 text-slate-900";
+                  : "bg-slate-100 text-slate-900 hover:bg-white";
+            // Cells are clickable as a fallback for kids who don't reach
+            // for the keyboard. Click jumps the muncher to that cell;
+            // clicking the cell the muncher is already on eats it.
+            const handleClick = () => {
+              if (session.status !== "playing") return;
+              if (isPlayer) {
+                eat();
+              } else if (!cell.eaten) {
+                setPos({ x, y });
+              }
+            };
             return (
-              <div
+              <button
                 key={`${x}-${y}`}
+                type="button"
                 role="gridcell"
+                onClick={handleClick}
+                disabled={cell.eaten || session.status !== "playing"}
                 aria-label={
                   cell.eaten
                     ? "Empty cell"
-                    : `Cell ${x + 1},${y + 1} value ${cell.value}${isPlayer ? " — muncher here" : ""}`
+                    : `Cell ${x + 1},${y + 1} value ${cell.value}${isPlayer ? " — muncher here, click to eat" : ", click to move"}`
                 }
                 aria-current={isPlayer ? "location" : undefined}
-                className={`relative flex aspect-square items-center justify-center rounded-md font-mono text-lg font-bold transition motion-reduce:transition-none sm:text-xl ${bg} ${
+                className={`relative flex aspect-square items-center justify-center rounded-md font-mono text-lg font-bold transition motion-reduce:transition-none disabled:cursor-not-allowed sm:text-xl ${bg} ${
                   isPlayer
                     ? "ring-4 ring-amber-400 ring-offset-2 ring-offset-slate-800"
-                    : ""
+                    : "cursor-pointer"
                 }`}
               >
                 {cell.eaten ? "" : cell.value}
-              </div>
+              </button>
             );
           }),
         )}
