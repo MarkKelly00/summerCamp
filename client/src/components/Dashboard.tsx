@@ -94,15 +94,23 @@ const Dashboard: React.FC<DashboardProps> = ({ user, onLogout }) => {
               <p className="text-gray-600 font-kid">Grade {user.profile.gradeLevel} • Ready to learn?</p>
             </div>
             <div className="text-right">
-              <div className="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold font-kid mb-2">
-                💰 Fun Money: ${user.funMoney}
+              <div className="bg-yellow-400 text-yellow-900 px-4 py-2 rounded-full font-bold font-kid mb-2 cursor-pointer" onClick={() => navigate('/rewards')}>
+                💰 Fun Money: {user.funMoney}
               </div>
-              <button
-                onClick={onLogout}
-                className="fun-button bg-red-500 text-sm font-kid"
-              >
-                👋 Logout
-              </button>
+              <div className="flex space-x-2">
+                <button
+                  onClick={() => navigate('/rewards')}
+                  className="fun-button bg-green-500 text-sm font-kid"
+                >
+                  🎁 Rewards
+                </button>
+                <button
+                  onClick={onLogout}
+                  className="fun-button bg-red-500 text-sm font-kid"
+                >
+                  👋 Logout
+                </button>
+              </div>
             </div>
           </div>
         </div>

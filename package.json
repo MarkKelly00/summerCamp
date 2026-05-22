@@ -1,40 +1,71 @@
 {
-  "name": "summercamp",
-  "version": "1.0.0",
-  "description": "Kids Summer Camp App",
-  "main": "index.js",
+  "name": "summer-camp-2026",
+  "version": "2.0.0-alpha.1",
+  "description": "Summer Camp 2026 Learning RPG. Next.js 16 + MongoDB Atlas on Vercel. Strangler migration in progress from the legacy CRA + Express app under client/ and server/.",
+  "private": true,
+  "engines": {
+    "node": ">=20.9.0",
+    "npm": ">=10.0.0"
+  },
   "scripts": {
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "server": "cd server && npm run dev",
-    "client": "cd client && npm start",
-    "build": "cd client && npm run build && cd ../server && npm run build",
-    "heroku-postbuild": "npm install --prefix client && npm run build --prefix client && npm install --prefix server && npm run build --prefix server",
-    "start": "cd server && npm start",
-    "seed": "cd server && npm run seed",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run --config vitest.config.ts",
+    "test:watch": "vitest",
+    "test:e2e": "playwright test",
+    "seed:2026": "tsx scripts/seed-summer-2026.ts",
+    "migrate": "tsx scripts/migrations/run-all.ts",
+    "dev:legacy": "concurrently \"npm run dev:legacy:server\" \"npm run dev:legacy:client\"",
+    "dev:legacy:server": "cd server && npm run dev",
+    "dev:legacy:client": "cd client && npm start",
+    "build:legacy": "cd client && npm run build && cd ../server && npm run build",
+    "start:legacy": "cd server && npm start",
+    "seed:legacy": "cd server && npm run seed",
+    "test:unit": "vitest run --config vitest.config.ts",
+    "test:integration": "vitest run --config vitest.integration.config.ts"
+  },
+  "dependencies": {
+    "autoprefixer": "^10.4.20",
+    "bcryptjs": "^2.4.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "dotenv": "^16.5.0",
+    "framer-motion": "^11.15.0",
+    "jose": "^5.9.6",
+    "jsonwebtoken": "^9.0.2",
+    "lucide-react": "^0.469.0",
+    "mongoose": "^8.9.7",
+    "next": "16.2.6",
+    "openai": "^5.3.0",
+    "postcss": "^8.5.1",
+    "react": "19.2.0",
+    "react-dom": "19.2.0",
+    "tailwind-merge": "^2.6.0",
+    "tailwindcss": "^3.4.17",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "@playwright/test": "^1.49.1",
+    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/react": "^16.3.0",
+    "@types/bcryptjs": "^2.4.6",
+    "@types/jsonwebtoken": "^9.0.7",
+    "@types/node": "^20.17.10",
+    "@types/react": "19.2.0",
+    "@types/react-dom": "19.2.0",
+    "@vitest/ui": "^2.1.8",
+    "concurrently": "^8.2.0",
+    "mongodb-memory-server": "^11.1.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2",
+    "vitest": "^2.1.8"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MarkKelly00/summerCamp.git"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/MarkKelly00/summerCamp/issues"
-  },
-  "homepage": "https://github.com/MarkKelly00/summerCamp#readme",
-  "devDependencies": {
-    "concurrently": "^8.2.0"
-  },
-  "engines": {
-    "node": "18.x",
-    "npm": "9.x"
-  },
-  "dependencies": {
-    "@types/bcrypt": "^5.0.2",
-    "bcrypt": "^6.0.0",
-    "dotenv": "^16.5.0",
-    "openai": "^5.3.0"
-  }
+  "license": "MIT"
 }

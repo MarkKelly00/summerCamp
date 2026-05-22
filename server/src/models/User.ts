@@ -14,6 +14,12 @@ export interface IUser extends Document {
   funMoney: number;
   totalProgress: number;
   createdAt: Date;
+  completedLessons: {
+    lessonId: mongoose.Types.ObjectId;
+    completedAt: Date;
+    funMoneyEarned: number;
+  }[];
+  rewardHistory: mongoose.Types.ObjectId[];
   comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
@@ -65,6 +71,25 @@ const UserSchema = new Schema<IUser>({
     type: Number,
     default: 0
   },
+  completedLessons: [{
+    lessonId: {
+      type: Schema.Types.ObjectId,
+      ref: 'Lesson',
+      required: true
+    },
+    completedAt: {
+      type: Date,
+      default: Date.now
+    },
+    funMoneyEarned: {
+      type: Number,
+      default: 0
+    }
+  }],
+  rewardHistory: [{
+    type: Schema.Types.ObjectId,
+    ref: 'RewardRedemption'
+  }],
   createdAt: {
     type: Date,
     default: Date.now

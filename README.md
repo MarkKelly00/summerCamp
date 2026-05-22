@@ -2,6 +2,67 @@
 
 A comprehensive web-based learning platform designed for elementary school children during summer break. This platform provides structured curriculum covering Math, Science, Reading, and History with interactive lessons, progress tracking, and a reward system.
 
+---
+
+## Summer 2026 Migration (Complete)
+
+This repo migrated from the original CRA + Express + Heroku stack to **Next.js 16 + MongoDB Atlas on Vercel** via a phased strangler migration. The new Next.js app lives at the repo root (`app/`, `lib/`, `components/`); the legacy MERN app remains at `client/` and `server/` and is kept deployable for the parallel-run window. See [DEPLOY.md](./DEPLOY.md) for the Vercel handoff and [docs/heroku-decommission.md](./docs/heroku-decommission.md) for the Heroku off-ramp.
+
+### Run the new Next.js app
+
+```bash
+npm install
+cp .env.example .env.local   # then fill in MONGODB_URI and AUTH_SECRET
+npm run dev                  # http://localhost:3000
+```
+
+Health check: <http://localhost:3000/api/health> returns `{ ok: true, db: "connected" }` when Mongo is reachable.
+
+### Test + verify
+
+```bash
+npm test                    # 29 unit tests (streaks / scoring / mastery)
+npm run test:integration    # 11 integration tests (money path, atomicity, refund)
+npm run typecheck           # tsc --noEmit
+npm run build               # production build
+```
+
+### Curriculum + data
+
+```bash
+npm run seed:2026                                  # idempotent upsert of 80 lessons + 13 mini-games + 18 badges + 10 rewards
+npx tsx scripts/migrations/2026-01-add-parent-role.ts   # adds parent role + Family aggregate
+npx tsx scripts/migrations/2026-02-extend-schemas.ts    # normalizes legacy data + backfills new fields
+npx tsx scripts/verify-phase-3.ts                  # spot-check schema upgrade
+npx tsx scripts/verify-phase-4.ts                  # spot-check curriculum
+```
+
+### Run the legacy MERN app (unchanged)
+
+```bash
+npm run dev:legacy           # Express :5001 + CRA :3000 (CRA may complain about :3000 being taken; switch ports as needed)
+npm run build:legacy
+npm run seed:legacy
+```
+
+### Migration phases
+
+| Phase | Scope | Status |
+|---|---|---|
+| 0 | Audit + plan | done |
+| 1 | Next.js 16 foundation, cached Mongo helper, route stubs | done |
+| 2 | Auth (httpOnly cookie sessions), Family aggregate, parent role, proxy.ts gates | done |
+| 3 | Schema upgrades (Lesson/Progress/Reward/RewardRedemption/MiniGame/Badge) + 2026-02 backfill migration | done |
+| 4 | Summer 2026 curriculum: 80 lesson skeletons, 13 mini-game configs, 18 badges, 10 rewards, idempotent seed | done |
+| 5 | Mini-game engine, atomic `submitMiniGameResult`, Number Muncher (Dean), Knoword Vocab Arena (Addie), 9 stubs | done |
+| 6 | `awardLessonCompletion`, streaks, badges, `requestRedemption`/approve/reject(refund)/fulfill, prize shop + parent approval queue | done |
+| 7 | Theme system (5 themes), adventure-map dashboard, Lesson Player wired to `awardLessonCompletion`, parent heatmap dashboard | done |
+| 8 | Admin lesson editor (quiz editor + draft/publish), reward CRUD, JSON export, `published` gating | done |
+| 9 | 40 tests (29 unit + 11 integration), `runInTx` retry helper, a11y audit doc, Playwright smoke scaffold | done |
+| 10 | `runInTx` applied to both money paths, `public/robots.txt`, `DEPLOY.md`, `docs/heroku-decommission.md`, README rewritten for v2 | done |
+
+---
+
 ## 🎯 Target Audience
 - **Grade 2 (Age 6-7)**: Rising 1st to 2nd graders
 - **Grade 4 (Age 9-10)**: Rising 3rd to 4th graders

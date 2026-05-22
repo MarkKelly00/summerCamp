@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard';
 import LessonView from './components/LessonView';
 import AdminDashboard from './components/AdminDashboard';
 import QuizReview from './components/QuizReview';
+import RewardsPage from './components/RewardsPage';
 import './App.css';
 
 interface User {
@@ -76,6 +77,10 @@ function App() {
           <Route 
             path="/quiz-review/:studentId/:lessonId" 
             element={<QuizReview />} 
+          />
+          <Route 
+            path="/rewards" 
+            element={<RewardsPage user={user} token={token} onUserUpdate={updateUser} />} 
           />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>

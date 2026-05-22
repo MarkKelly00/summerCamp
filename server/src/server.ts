@@ -10,6 +10,7 @@ import lessonRoutes from './routes/lessons';
 import progressRoutes from './routes/progress';
 import badgeRoutes from './routes/badges';
 import userRoutes from './routes/users';
+import rewardRoutes from './routes/rewards';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use('/api/lessons', lessonRoutes);
 app.use('/api/progress', progressRoutes);
 app.use('/api/badges', badgeRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/rewards', rewardRoutes);
 
 // Health check endpoint
 app.get('/api/health', (req, res) => {

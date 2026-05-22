@@ -1,0 +1,3 @@
+# Summer Camp 2026 is a private family app. Block all crawlers.
+User-agent: *
+Disallow: /

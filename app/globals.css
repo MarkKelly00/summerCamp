@@ -1,0 +1,162 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Summer Camp 2026 — design tokens.
+ *
+ * Each theme exposes the same set of CSS variables so components only
+ * reference `var(--camp-*)`. Swap the theme by setting
+ * `data-theme="space|jungle|ocean|castle|arcade"` on <html>.
+ *
+ * Default (no data-theme) = space. The default lives at :root so the
+ * tokens resolve during SSR before any client-side ThemeProvider runs.
+ */
+
+:root,
+:root[data-theme="space"] {
+  --camp-bg-from: #0b1230;
+  --camp-bg-via: #1c1d4d;
+  --camp-bg-to: #2d1a4d;
+  --camp-surface: #111a3d;
+  --camp-surface-soft: #1c2659;
+  --camp-surface-strong: #0a1130;
+  --camp-border: #334155;
+  --camp-ink: #f8fafc;
+  --camp-ink-muted: #cbd5e1;
+  --camp-accent: #fbbf24; /* amber-400 */
+  --camp-accent-strong: #f59e0b;
+  --camp-accent-soft: #fef3c7;
+  --camp-positive: #34d399; /* emerald-400 */
+  --camp-warning: #fbbf24;
+  --camp-danger: #f87171;
+  --camp-quest: #a78bfa; /* violet-400 */
+}
+
+:root[data-theme="jungle"] {
+  --camp-bg-from: #052e2b;
+  --camp-bg-via: #064e3b;
+  --camp-bg-to: #14532d;
+  --camp-surface: #064e3b;
+  --camp-surface-soft: #0f5a44;
+  --camp-surface-strong: #053f30;
+  --camp-border: #1f7a4f;
+  --camp-ink: #ecfdf5;
+  --camp-ink-muted: #a7f3d0;
+  --camp-accent: #facc15;
+  --camp-accent-strong: #eab308;
+  --camp-accent-soft: #fef9c3;
+  --camp-positive: #4ade80;
+  --camp-warning: #facc15;
+  --camp-danger: #fb7185;
+  --camp-quest: #fb923c;
+}
+
+:root[data-theme="ocean"] {
+  --camp-bg-from: #082f49;
+  --camp-bg-via: #0e4a6f;
+  --camp-bg-to: #0c5a86;
+  --camp-surface: #0c4a6e;
+  --camp-surface-soft: #0e5a85;
+  --camp-surface-strong: #083756;
+  --camp-border: #0ea5e9;
+  --camp-ink: #f0f9ff;
+  --camp-ink-muted: #bae6fd;
+  --camp-accent: #38bdf8;
+  --camp-accent-strong: #0ea5e9;
+  --camp-accent-soft: #e0f2fe;
+  --camp-positive: #2dd4bf;
+  --camp-warning: #fbbf24;
+  --camp-danger: #fb7185;
+  --camp-quest: #c084fc;
+}
+
+:root[data-theme="castle"] {
+  --camp-bg-from: #2c1d10;
+  --camp-bg-via: #3a2818;
+  --camp-bg-to: #46291a;
+  --camp-surface: #3a2818;
+  --camp-surface-soft: #4c3320;
+  --camp-surface-strong: #2c1d10;
+  --camp-border: #92400e;
+  --camp-ink: #fef3c7;
+  --camp-ink-muted: #fde68a;
+  --camp-accent: #f97316;
+  --camp-accent-strong: #ea580c;
+  --camp-accent-soft: #ffedd5;
+  --camp-positive: #84cc16;
+  --camp-warning: #facc15;
+  --camp-danger: #f87171;
+  --camp-quest: #a78bfa;
+}
+
+:root[data-theme="arcade"] {
+  --camp-bg-from: #1f0033;
+  --camp-bg-via: #2b0148;
+  --camp-bg-to: #1a0529;
+  --camp-surface: #1f0033;
+  --camp-surface-soft: #2b0148;
+  --camp-surface-strong: #160023;
+  --camp-border: #ec4899;
+  --camp-ink: #fdf2f8;
+  --camp-ink-muted: #fbcfe8;
+  --camp-accent: #f472b6;
+  --camp-accent-strong: #ec4899;
+  --camp-accent-soft: #fce7f3;
+  --camp-positive: #4ade80;
+  --camp-warning: #facc15;
+  --camp-danger: #f87171;
+  --camp-quest: #22d3ee;
+}
+
+/* Reduced-motion + dyslexia-friendly opt-ins ---------------------------- */
+
+:root[data-motion="reduced"] *,
+:root[data-motion="reduced"] *::before,
+:root[data-motion="reduced"] *::after {
+  animation-duration: 0.001ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.001ms !important;
+  scroll-behavior: auto !important;
+}
+
+:root[data-font="dyslexia"] {
+  --camp-font-sans: "Comic Sans MS", "Trebuchet MS", system-ui, sans-serif;
+  font-family: var(--camp-font-sans);
+}
+
+/* Base ----------------------------------------------------------------- */
+
+body {
+  background:
+    radial-gradient(circle at 0% 0%, var(--camp-bg-from) 0%, transparent 55%),
+    radial-gradient(circle at 100% 100%, var(--camp-bg-to) 0%, transparent 50%),
+    linear-gradient(180deg, var(--camp-bg-from) 0%, var(--camp-bg-via) 50%, var(--camp-bg-to) 100%);
+  background-attachment: fixed;
+  color: var(--camp-ink);
+  min-height: 100vh;
+}
+
+/* Card surface utility used everywhere ---------------------------------- */
+
+.camp-card {
+  background: var(--camp-surface);
+  border: 1px solid var(--camp-border);
+  color: var(--camp-ink);
+  border-radius: 1rem;
+  box-shadow: 0 14px 40px -22px rgb(0 0 0 / 0.7);
+}
+
+.camp-card-soft {
+  background: color-mix(in srgb, var(--camp-surface) 80%, transparent);
+  border: 1px solid color-mix(in srgb, var(--camp-border) 70%, transparent);
+  color: var(--camp-ink);
+  border-radius: 0.75rem;
+}
+
+/* Focus ring used on interactive non-button elements -------------------- */
+.camp-focus:focus-visible {
+  outline: 2px solid var(--camp-accent);
+  outline-offset: 3px;
+  border-radius: 0.5rem;
+}

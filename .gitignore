@@ -7,6 +7,18 @@ package-lock.json
 .env.local
 .env.*.local
 
+# Next.js
+.next/
+out/
+next-env.d.ts
+.vercel
+tsconfig.tsbuildinfo
+
+# Test artifacts
+playwright-report/
+test-results/
+.vitest-cache/
+
 # Logs
 *.log
 npm-debug.log*
