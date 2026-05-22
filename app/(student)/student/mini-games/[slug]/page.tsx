@@ -1,15 +1,8 @@
 /**
  * Mini-game play page — `/student/mini-games/[slug]`.
  *
- * Server Component: fetches the MiniGame document by slug and hands the
- * plain serializable data to MiniGameShell (a client component) which
- * looks up the right renderer from the registry itself.
- *
- * The renderer lookup MUST happen client-side. A previous version of
- * this file did the lookup here and passed the component as a prop —
- * that fails because Next.js's RSC boundary doesn't serialize plain
- * objects of client component references; the prop arrives as
- * undefined.
+ * Wraps the MiniGameShell in AppShell so the kid has consistent
+ * navigation (back to trail, back to game list) + theme/SFX toggles.
  */
 
 import { notFound, redirect } from "next/navigation";
@@ -17,6 +10,7 @@ import { notFound, redirect } from "next/navigation";
 import { getSession } from "@/lib/auth/cookies";
 import { connectToDatabase } from "@/lib/db/mongoose";
 import { MiniGame } from "@/lib/db/models";
+import { AppShell } from "@/components/ui/AppShell";
 import { MiniGameShell } from "@/components/games/engine/MiniGameShell";
 
 export const dynamic = "force-dynamic";
@@ -35,7 +29,6 @@ export default async function MiniGamePage({
   const game = await MiniGame.findOne({ slug, active: true }).lean();
   if (!game) notFound();
 
-  // Serialize the lean doc into plain values for the client component.
   const miniGame = {
     _id: String(game._id),
     slug: game.slug,
@@ -54,5 +47,18 @@ export default async function MiniGamePage({
     },
   };
 
-  return <MiniGameShell miniGame={miniGame} />;
+  return (
+    <AppShell
+      identity={{
+        line1: game.title,
+        line2: `${game.subject} · ${game.learningTrack === "entering-3rd" ? "3rd" : "5th"} grade track`,
+      }}
+      nav={[
+        { href: "/student/mini-games", label: "All games" },
+        { href: "/student/dashboard", label: "Back to trail" },
+      ]}
+    >
+      <MiniGameShell miniGame={miniGame} />
+    </AppShell>
+  );
 }

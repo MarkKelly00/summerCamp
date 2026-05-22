@@ -1,18 +1,10 @@
 "use client";
 
 /**
- * Parent approval queue client.
- *
- * Three actions per row depending on status:
- *   - pending  → Approve / Reject (with optional note)
- *   - approved → Fulfill (with optional note)
- *   - fulfilled/rejected → read-only
- *
- * Updates the local list optimistically once the Server Action resolves.
+ * Parent approval queue client. Themed, lives inside AppShell.
  */
 
 import { useState, useTransition } from "react";
-import Link from "next/link";
 
 import {
   approveRedemption,
@@ -20,6 +12,9 @@ import {
   rejectRedemption,
   type RewardActionState,
 } from "@/lib/actions/rewards";
+import { CampButton } from "@/components/ui/CampButton";
+import { CampCard, CampKicker } from "@/components/ui/CampCard";
+import { CampChip } from "@/components/ui/CampChip";
 
 interface Redemption {
   id: string;
@@ -33,11 +28,11 @@ interface Redemption {
   createdAt: string;
 }
 
-const STATUS_CHIP: Record<Redemption["status"], string> = {
-  pending: "bg-amber-50 text-amber-900 border-amber-200",
-  approved: "bg-sky-50 text-sky-900 border-sky-200",
-  fulfilled: "bg-emerald-50 text-emerald-900 border-emerald-200",
-  rejected: "bg-rose-50 text-rose-900 border-rose-200",
+const STATUS_TONE: Record<Redemption["status"], "warning" | "accent" | "positive" | "danger"> = {
+  pending: "warning",
+  approved: "accent",
+  fulfilled: "positive",
+  rejected: "danger",
 };
 
 const STATUS_LABEL: Record<Redemption["status"], string> = {
@@ -64,10 +59,7 @@ export function ApprovalsClient({ initialRedemptions }: Props) {
     newStatus: Redemption["status"],
   ) => {
     if (!res.ok) {
-      setErrorById((m) => ({
-        ...m,
-        [id]: res.error ?? "Action failed.",
-      }));
+      setErrorById((m) => ({ ...m, [id]: res.error ?? "Action failed." }));
       return;
     }
     setErrorById((m) => {
@@ -78,11 +70,7 @@ export function ApprovalsClient({ initialRedemptions }: Props) {
     setRedemptions((prev) =>
       prev.map((r) =>
         r.id === id
-          ? {
-              ...r,
-              status: newStatus,
-              notes: noteById[id] || r.notes,
-            }
+          ? { ...r, status: newStatus, notes: noteById[id] || r.notes }
           : r,
       ),
     );
@@ -114,27 +102,15 @@ export function ApprovalsClient({ initialRedemptions }: Props) {
   );
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-12">
-      <header className="flex items-start justify-between gap-4">
-        <div>
-          <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
-            Parent
-          </p>
-          <h1 className="mt-1 text-3xl font-bold tracking-tight">
-            Reward approval queue
-          </h1>
-          <p className="mt-2 text-slate-600">
-            Approve, reject, or mark rewards delivered. Rejections refund the
-            kid&apos;s Fun Money automatically.
-          </p>
-        </div>
-        <Link
-          href="/parent/dashboard"
-          className="rounded-lg border border-slate-300 px-3 py-2 text-sm font-medium text-slate-700 hover:bg-slate-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900"
-        >
-          Dashboard
-        </Link>
-      </header>
+    <div className="space-y-6">
+      <CampCard>
+        <CampKicker>Approval queue</CampKicker>
+        <h1 className="mt-1 text-2xl font-bold">Rewards waiting on you</h1>
+        <p className="mt-1 text-sm text-camp-ink-muted">
+          Approve, reject, or mark rewards delivered. Rejections refund
+          the kid&apos;s Fun Money automatically.
+        </p>
+      </CampCard>
 
       <Section title="Pending" items={pending}>
         {(r) => (
@@ -175,7 +151,7 @@ export function ApprovalsClient({ initialRedemptions }: Props) {
       <Section title="History" items={history}>
         {() => null}
       </Section>
-    </main>
+    </div>
   );
 
   function Section({
@@ -189,36 +165,35 @@ export function ApprovalsClient({ initialRedemptions }: Props) {
   }) {
     if (items.length === 0) return null;
     return (
-      <section className="mt-10">
-        <h2 className="text-xl font-bold">{title}</h2>
-        <ul className="mt-3 space-y-3">
+      <section>
+        <h2 className="mb-3 text-xl font-bold">{title}</h2>
+        <ul className="space-y-3">
           {items.map((r) => (
-            <li
-              key={r.id}
-              className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm"
-            >
-              <div className="flex flex-wrap items-start justify-between gap-3">
-                <div>
-                  <p className="font-semibold">{r.rewardName}</p>
-                  <p className="text-xs text-slate-500">
-                    For <span className="font-medium text-slate-700">{r.studentName}</span>
-                    {" · "}
-                    {r.cost} FM · Code{" "}
-                    <span className="font-mono">{r.code}</span>
-                  </p>
-                  {r.notes ? (
-                    <p className="mt-1 text-xs text-slate-600">
-                      Note: {r.notes}
+            <li key={r.id}>
+              <CampCard className="space-y-3">
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <p className="font-semibold">{r.rewardName}</p>
+                    <p className="text-xs text-camp-ink-muted">
+                      For{" "}
+                      <span className="font-medium text-camp-ink">
+                        {r.studentName}
+                      </span>{" "}
+                      · {r.cost} FM · Code{" "}
+                      <span className="font-mono">{r.code}</span>
                     </p>
-                  ) : null}
+                    {r.notes ? (
+                      <p className="mt-1 text-xs text-camp-ink-muted">
+                        Note: {r.notes}
+                      </p>
+                    ) : null}
+                  </div>
+                  <CampChip tone={STATUS_TONE[r.status]}>
+                    {STATUS_LABEL[r.status]}
+                  </CampChip>
                 </div>
-                <span
-                  className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${STATUS_CHIP[r.status]}`}
-                >
-                  {STATUS_LABEL[r.status]}
-                </span>
-              </div>
-              <div className="mt-3">{children(r)}</div>
+                {children(r)}
+              </CampCard>
             </li>
           ))}
         </ul>
@@ -252,34 +227,37 @@ function ApprovalActions({
       <input
         id={`note-${id}`}
         type="text"
-        placeholder="Optional note for the kid (e.g., why approved/rejected)..."
+        placeholder="Optional note for the kid..."
         value={note}
         onChange={(e) => onNoteChange(e.target.value)}
         maxLength={500}
-        className="w-full rounded-md border border-slate-300 px-3 py-1.5 text-sm focus:border-slate-900 focus:outline-none focus:ring-1 focus:ring-slate-900"
+        className="w-full rounded-md border border-[var(--camp-border)] bg-[var(--camp-surface-soft)] px-3 py-1.5 text-sm text-camp-ink placeholder:text-camp-ink-muted/60 focus:border-[var(--camp-accent)] focus:outline-none focus:ring-1 focus:ring-[var(--camp-accent)]"
       />
       <div className="flex flex-wrap gap-2">
-        <button
-          type="button"
+        <CampButton
+          intent="primary"
+          size="sm"
           onClick={primary.onClick}
           disabled={disabled}
-          className="rounded-md bg-slate-900 px-4 py-1.5 text-sm font-medium text-white hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 disabled:opacity-60"
         >
           {primary.label}
-        </button>
+        </CampButton>
         {secondary ? (
-          <button
-            type="button"
+          <CampButton
+            intent="danger"
+            size="sm"
             onClick={secondary.onClick}
             disabled={disabled}
-            className="rounded-md border border-rose-300 px-4 py-1.5 text-sm font-medium text-rose-800 hover:bg-rose-50 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-rose-900 disabled:opacity-60"
           >
             {secondary.label}
-          </button>
+          </CampButton>
         ) : null}
       </div>
       {error ? (
-        <p role="alert" className="rounded-md bg-rose-50 px-3 py-2 text-xs text-rose-800">
+        <p
+          role="alert"
+          className="rounded-md border border-[var(--camp-danger)]/40 bg-[var(--camp-danger)]/10 px-3 py-2 text-xs text-camp-ink"
+        >
           {error}
         </p>
       ) : null}

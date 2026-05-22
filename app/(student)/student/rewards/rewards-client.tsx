@@ -1,18 +1,17 @@
 "use client";
 
 /**
- * Prize shop client component.
- *
- * Owns the optimistic UI for redemption requests. When the student taps
- * "Request", we call `requestRedemption` and reflect the new balance +
- * new history row inline. Server is the source of truth — we don't
- * pre-deduct locally; we wait for the action and apply the result.
+ * Prize shop client component — themed, wrapped in AppShell at the
+ * page level.
  */
 
 import { useState, useTransition } from "react";
-import Link from "next/link";
+import { Coins } from "lucide-react";
 
 import { requestRedemption } from "@/lib/actions/rewards";
+import { CampButton } from "@/components/ui/CampButton";
+import { CampCard, CampKicker } from "@/components/ui/CampCard";
+import { CampChip } from "@/components/ui/CampChip";
 
 interface Reward {
   id: string;
@@ -41,11 +40,11 @@ interface Props {
   redemptions: Redemption[];
 }
 
-const STATUS_CHIP: Record<Redemption["status"], string> = {
-  pending: "bg-amber-50 text-amber-900 border-amber-200",
-  approved: "bg-sky-50 text-sky-900 border-sky-200",
-  fulfilled: "bg-emerald-50 text-emerald-900 border-emerald-200",
-  rejected: "bg-rose-50 text-rose-900 border-rose-200",
+const STATUS_TONE: Record<Redemption["status"], "warning" | "accent" | "positive" | "danger"> = {
+  pending: "warning",
+  approved: "accent",
+  fulfilled: "positive",
+  rejected: "danger",
 };
 
 const STATUS_LABEL: Record<Redemption["status"], string> = {
@@ -64,9 +63,7 @@ export function RewardsClient({
   const [funMoney, setFunMoney] = useState(initialFunMoney);
   const [redemptions, setRedemptions] = useState(initialRedemptions);
   const [pendingId, setPendingId] = useState<string | null>(null);
-  const [errorByReward, setErrorByReward] = useState<Record<string, string>>(
-    {},
-  );
+  const [errorByReward, setErrorByReward] = useState<Record<string, string>>({});
   const [, startTransition] = useTransition();
 
   const handleRequest = (reward: Reward) => {
@@ -77,10 +74,7 @@ export function RewardsClient({
       return next;
     });
     startTransition(async () => {
-      const res = await requestRedemption({
-        studentId,
-        rewardId: reward.id,
-      });
+      const res = await requestRedemption({ studentId, rewardId: reward.id });
       setPendingId(null);
       if (!res.ok || !res.result) {
         setErrorByReward((m) => ({
@@ -105,26 +99,27 @@ export function RewardsClient({
   };
 
   return (
-    <main className="mx-auto max-w-4xl px-6 py-12">
-      <header className="flex flex-wrap items-start justify-between gap-4">
+    <div className="space-y-6">
+      <CampCard className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="text-xs font-medium uppercase tracking-widest text-slate-500">
-            Prize shop
-          </p>
-          <h1 className="mt-1 text-3xl font-bold tracking-tight">Rewards</h1>
-          <p className="mt-2 text-slate-600">
-            Spend your Fun Money on something worth working for.
+          <CampKicker>Prize shop</CampKicker>
+          <h1 className="mt-1 text-2xl font-bold">Spend your Fun Money</h1>
+          <p className="mt-1 text-sm text-camp-ink-muted">
+            Pick something worth working for.
           </p>
         </div>
-        <div className="rounded-2xl border border-slate-200 bg-white px-5 py-3 shadow-sm">
-          <p className="text-xs uppercase tracking-widest text-slate-500">
-            Fun Money
-          </p>
-          <p className="text-3xl font-bold">{funMoney}</p>
+        <div className="rounded-2xl border border-[var(--camp-accent)]/40 bg-[var(--camp-accent)]/10 px-5 py-3">
+          <div className="flex items-center gap-2 text-camp-ink-muted">
+            <Coins className="h-4 w-4 text-[var(--camp-accent)]" />
+            <span className="text-[0.7rem] font-semibold uppercase tracking-[0.18em]">
+              Fun Money
+            </span>
+          </div>
+          <p className="text-3xl font-bold text-camp-ink">{funMoney}</p>
         </div>
-      </header>
+      </CampCard>
 
-      <section className="mt-8">
+      <section>
         <h2 className="sr-only">Available rewards</h2>
         <ul className="grid grid-cols-1 gap-3 sm:grid-cols-2">
           {rewards.map((r) => {
@@ -132,93 +127,82 @@ export function RewardsClient({
             const isPending = pendingId === r.id;
             const err = errorByReward[r.id];
             return (
-              <li
-                key={r.id}
-                className="flex flex-col rounded-2xl border border-slate-200 bg-white p-5 shadow-sm"
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <h3 className="text-lg font-bold">{r.name}</h3>
-                  <span className="rounded-full bg-slate-900 px-2.5 py-1 text-xs font-semibold text-white">
-                    {r.cost} FM
-                  </span>
-                </div>
-                <p className="mt-1 text-sm text-slate-600">{r.description}</p>
-                <p className="mt-2 text-xs text-slate-500">
-                  {r.requiresParentApproval
-                    ? "Parent approval required."
-                    : "Auto-approved."}
-                </p>
-                <button
-                  type="button"
-                  onClick={() => handleRequest(r)}
-                  disabled={cantAfford || isPending}
-                  className="mt-4 inline-flex items-center justify-center rounded-md bg-slate-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-slate-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-900 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {isPending
-                    ? "Requesting..."
-                    : cantAfford
-                      ? `Need ${r.cost - funMoney} more`
-                      : "Request"}
-                </button>
-                {err ? (
-                  <p
-                    role="alert"
-                    className="mt-2 rounded-md bg-rose-50 px-3 py-2 text-xs text-rose-800"
-                  >
-                    {err}
+              <li key={r.id}>
+                <CampCard className="flex h-full flex-col">
+                  <div className="flex items-start justify-between gap-3">
+                    <h3 className="text-lg font-bold">{r.name}</h3>
+                    <CampChip tone="accent">{r.cost} FM</CampChip>
+                  </div>
+                  <p className="mt-1 text-sm text-camp-ink-muted">
+                    {r.description}
                   </p>
-                ) : null}
+                  <p className="mt-2 text-[0.7rem] font-semibold uppercase tracking-widest text-camp-ink-muted/80">
+                    {r.requiresParentApproval
+                      ? "Parent approval required"
+                      : "Auto-approved"}
+                  </p>
+                  <div className="mt-auto pt-4">
+                    <CampButton
+                      intent="primary"
+                      onClick={() => handleRequest(r)}
+                      disabled={cantAfford || isPending}
+                      className="w-full"
+                    >
+                      {isPending
+                        ? "Requesting..."
+                        : cantAfford
+                          ? `Need ${r.cost - funMoney} more`
+                          : "Request"}
+                    </CampButton>
+                  </div>
+                  {err ? (
+                    <p
+                      role="alert"
+                      className="mt-2 rounded-md border border-[var(--camp-danger)]/40 bg-[var(--camp-danger)]/10 px-3 py-2 text-xs text-camp-ink"
+                    >
+                      {err}
+                    </p>
+                  ) : null}
+                </CampCard>
               </li>
             );
           })}
         </ul>
       </section>
 
-      <section className="mt-12">
+      <section>
         <h2 className="text-xl font-bold">Your requests</h2>
         {redemptions.length === 0 ? (
-          <p className="mt-2 text-sm text-slate-600">
+          <p className="mt-2 text-sm text-camp-ink-muted">
             No reward requests yet. Save up and pick a prize when you&apos;re
             ready.
           </p>
         ) : (
           <ul className="mt-3 space-y-2">
             {redemptions.map((r) => (
-              <li
-                key={r.id}
-                className="flex flex-wrap items-center justify-between gap-3 rounded-xl border border-slate-200 bg-white p-4 shadow-sm"
-              >
-                <div>
-                  <p className="font-semibold">{r.rewardName}</p>
-                  <p className="text-xs text-slate-500">
-                    Code: <span className="font-mono">{r.code}</span> · Cost: {r.cost}{" "}
-                    FM
-                  </p>
-                  {r.notes ? (
-                    <p className="mt-1 text-xs text-slate-600">
-                      Note: {r.notes}
+              <li key={r.id}>
+                <CampCard className="flex flex-wrap items-center justify-between gap-3">
+                  <div>
+                    <p className="font-semibold">{r.rewardName}</p>
+                    <p className="text-xs text-camp-ink-muted">
+                      Code <span className="font-mono">{r.code}</span> · {r.cost}{" "}
+                      FM
                     </p>
-                  ) : null}
-                </div>
-                <span
-                  className={`rounded-full border px-2.5 py-1 text-xs font-semibold ${STATUS_CHIP[r.status]}`}
-                >
-                  {STATUS_LABEL[r.status]}
-                </span>
+                    {r.notes ? (
+                      <p className="mt-1 text-xs text-camp-ink-muted">
+                        Note: {r.notes}
+                      </p>
+                    ) : null}
+                  </div>
+                  <CampChip tone={STATUS_TONE[r.status]}>
+                    {STATUS_LABEL[r.status]}
+                  </CampChip>
+                </CampCard>
               </li>
             ))}
           </ul>
         )}
       </section>
-
-      <p className="mt-12 text-sm">
-        <Link
-          href="/student/dashboard"
-          className="text-slate-600 underline-offset-2 hover:underline"
-        >
-          ← Back to camp
-        </Link>
-      </p>
-    </main>
+    </div>
   );
 }

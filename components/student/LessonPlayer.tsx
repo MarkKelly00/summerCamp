@@ -324,10 +324,15 @@ function InstructionStep({
   onBack(): void;
   onNext(): void;
 }) {
+  const hasRealInstruction =
+    !!lesson.content.instruction || !!lesson.content.mainContent;
   const text =
     lesson.content.instruction ||
     lesson.content.mainContent ||
-    "Your instructor has not added detailed instruction for this quest yet — use the activity step to put it into practice.";
+    // Friendly draft notice — surfaces when the lesson is a Phase 4
+    // skeleton that hasn't had full prose added yet. Doesn't punish the
+    // student; just tells them what to do next.
+    "This quest is a draft — the full teaching gets added by your instructor in the admin tool. For now, use the goals above and the activity in the next step to dive in. You can self-assess at the end and replay any time once the lesson is filled out.";
 
   return (
     <CampCard className="space-y-4">
@@ -338,6 +343,14 @@ function InstructionStep({
       <div className="prose prose-invert max-w-none text-sm text-camp-ink-muted prose-headings:text-camp-ink prose-strong:text-camp-ink">
         <p className="whitespace-pre-line text-base text-camp-ink">{text}</p>
       </div>
+      {!hasRealInstruction ? (
+        <p className="rounded-md border border-[var(--camp-warning)]/40 bg-[var(--camp-warning)]/10 px-3 py-2 text-xs text-camp-ink-muted">
+          Draft lesson · This is one of the skeletons from the curriculum
+          seed. Mark, sign in as admin and open{" "}
+          <code className="font-mono">/admin/lessons/{lesson.slug}</code> to
+          flesh it out.
+        </p>
+      ) : null}
 
       {lesson.content.examples?.length ? (
         <div>

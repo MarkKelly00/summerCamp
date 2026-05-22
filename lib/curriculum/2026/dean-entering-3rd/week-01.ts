@@ -40,14 +40,106 @@ export const week01: WeekDefinition = {
       skillTags: [SKILL.PLACE_VALUE_3_DIGIT, SKILL.ROUNDING_10_100, SKILL.DIAGNOSTIC],
       hook: "Every number has secret slots — hundreds, tens, ones. Today you crack the code.",
       learningGoals: [
-        "Read and write 3-digit numbers in standard, expanded, and word form.",
-        "Round to the nearest 10 and the nearest 100.",
-        "Show that the digit's place changes its value 10 times over.",
+        "Read 3-digit numbers like 247 and say what each digit is worth.",
+        "Round a 3-digit number to the nearest 10.",
+        "Notice that the same digit in different slots has different values.",
+      ],
+      instruction: `Every number has hidden slots that tell you how much each digit is worth. The number 247 doesn't just mean "two hundred forty-seven" — it means 2 hundreds + 4 tens + 7 ones.
+
+Here's the trick: the SAME DIGIT means different things in different slots.
+
+The 7 in 247 is worth seven.
+The 7 in 724 is worth seven HUNDRED.
+The 7 in 27 is worth seventy.
+
+Same digit, three different values, all because of where it sits.
+
+The three slots in a 3-digit number, from right to left:
+
+1. ONES — the rightmost slot. Counts up by 1.
+2. TENS — the middle slot. Counts up by 10.
+3. HUNDREDS — the leftmost slot in a 3-digit number. Counts up by 100.
+
+Why this matters: when you add or subtract, you line up the slots. When you round to the nearest 10, you look at the ONES slot to decide whether to round up or down (5 or higher rounds up; 4 or lower rounds down). When you compare 482 vs 428, you check the slots one at a time from the left.
+
+Practice naming slots out loud — "the 4 is in the tens slot, so it's worth 40" — and it becomes automatic fast.`,
+      examples: [
+        "365 = 3 hundreds + 6 tens + 5 ones",
+        "80 = 8 tens + 0 ones (no hundreds — we just don't write a zero in front)",
+        "902 = 9 hundreds + 0 tens + 2 ones (the zero holds the tens slot open!)",
+        "374 rounded to the nearest ten = 370 (because the 4 in the ones slot is less than 5)",
       ],
       offlineActivity:
-        "Write your three favorite numbers in expanded form on the camp notebook.",
+        "Pick any three numbers between 100 and 999. Write each one in expanded form (like 365 = 300 + 60 + 5) in your camp notebook.",
       reflectionPrompt:
-        "Which place value feels easiest to you, and which one needs more practice?",
+        "Which slot feels easiest to read — ones, tens, or hundreds? Which one slows you down?",
+      quiz: [
+        {
+          question: "In the number 538, which digit is in the TENS slot?",
+          type: "multiple-choice",
+          options: ["5", "3", "8", "none"],
+          correctAnswer: "3",
+          explanation:
+            "Slots go right-to-left: 8 is ones, 3 is tens, 5 is hundreds.",
+          points: 10,
+          skillTag: SKILL.PLACE_VALUE_3_DIGIT,
+        },
+        {
+          question: "The 4 in 472 is worth how much?",
+          type: "multiple-choice",
+          options: ["4", "40", "400", "4000"],
+          correctAnswer: "400",
+          explanation:
+            "The 4 is in the leftmost (hundreds) slot of a 3-digit number, so it's worth 4 hundreds = 400.",
+          points: 10,
+          skillTag: SKILL.PLACE_VALUE_3_DIGIT,
+        },
+        {
+          question: "Which number has a 6 in the HUNDREDS slot?",
+          type: "multiple-choice",
+          options: ["168", "612", "296", "60"],
+          correctAnswer: "612",
+          explanation:
+            "In 612, the 6 is the leftmost digit — that's the hundreds slot, worth 600.",
+          points: 10,
+          skillTag: SKILL.PLACE_VALUE_3_DIGIT,
+        },
+        {
+          question: "Round 374 to the nearest TEN.",
+          type: "multiple-choice",
+          options: ["370", "380", "400", "300"],
+          correctAnswer: "370",
+          explanation:
+            "Look at the ones slot — that's a 4. Since 4 is less than 5, round DOWN to 370.",
+          points: 10,
+          skillTag: SKILL.ROUNDING_10_100,
+        },
+        {
+          question: "Which is the correct EXPANDED FORM of 423?",
+          type: "multiple-choice",
+          options: [
+            "4 + 2 + 3",
+            "4 hundreds + 2 tens + 3 ones",
+            "4 + 20 + 300",
+            "4 tens + 2 ones + 3 hundreds",
+          ],
+          correctAnswer: "4 hundreds + 2 tens + 3 ones",
+          explanation:
+            "Reading 423 left-to-right: 4 in hundreds, 2 in tens, 3 in ones. That's 400 + 20 + 3.",
+          points: 10,
+          skillTag: SKILL.PLACE_VALUE_3_DIGIT,
+        },
+        {
+          question: "What is the LARGEST 3-digit number?",
+          type: "multiple-choice",
+          options: ["999", "900", "1000", "100"],
+          correctAnswer: "999",
+          explanation:
+            "All three slots filled with the biggest digit (9): 9 hundreds + 9 tens + 9 ones = 999. (1000 has FOUR digits.)",
+          points: 10,
+          skillTag: SKILL.PLACE_VALUE_3_DIGIT,
+        },
+      ],
     }),
 
     lesson({

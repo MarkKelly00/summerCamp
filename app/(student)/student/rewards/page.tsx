@@ -1,18 +1,12 @@
 /**
- * Student prize shop — `/student/rewards`.
- *
- * Server Component: fetches the user's Fun Money balance, the active
- * reward catalog, and the user's recent redemption history. Hands the
- * data to the RewardsClient which wires up the redeem button via
- * Server Action.
- *
- * Phase 7 will skin this; Phase 6 keeps it utilitarian.
+ * Student prize shop page.
  */
 import { redirect } from "next/navigation";
 
 import { getSession } from "@/lib/auth/cookies";
 import { connectToDatabase } from "@/lib/db/mongoose";
 import { Reward, RewardRedemption, User } from "@/lib/db/models";
+import { AppShell } from "@/components/ui/AppShell";
 
 import { RewardsClient } from "./rewards-client";
 
@@ -53,11 +47,22 @@ export default async function StudentRewardsPage() {
   }));
 
   return (
-    <RewardsClient
-      studentId={session.userId}
-      initialFunMoney={user?.funMoney ?? 0}
-      rewards={rewards}
-      redemptions={redemptions}
-    />
+    <AppShell
+      identity={{
+        line1: "Prize shop",
+        line2: user?.profile?.name ?? session.username,
+      }}
+      nav={[
+        { href: "/student/dashboard", label: "Back to trail" },
+        { href: "/student/mini-games", label: "Mini-games" },
+      ]}
+    >
+      <RewardsClient
+        studentId={session.userId}
+        initialFunMoney={user?.funMoney ?? 0}
+        rewards={rewards}
+        redemptions={redemptions}
+      />
+    </AppShell>
   );
 }

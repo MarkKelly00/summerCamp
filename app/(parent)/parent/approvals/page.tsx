@@ -11,6 +11,8 @@ import { getSession } from "@/lib/auth/cookies";
 import { connectToDatabase } from "@/lib/db/mongoose";
 import { Family, RewardRedemption, User } from "@/lib/db/models";
 
+import { AppShell } from "@/components/ui/AppShell";
+
 import { ApprovalsClient } from "./approvals-client";
 
 export const dynamic = "force-dynamic";
@@ -64,5 +66,20 @@ export default async function ApprovalsPage() {
       r.createdAt instanceof Date ? r.createdAt.toISOString() : "",
   }));
 
-  return <ApprovalsClient initialRedemptions={redemptions} />;
+  return (
+    <AppShell
+      identity={{
+        line1: "Reward approvals",
+        line2: family?.name ?? "Kelly Family",
+      }}
+      nav={[
+        { href: "/parent/dashboard", label: "Dashboard" },
+        ...(session.role === "admin"
+          ? [{ href: "/admin", label: "Admin" }]
+          : []),
+      ]}
+    >
+      <ApprovalsClient initialRedemptions={redemptions} />
+    </AppShell>
+  );
 }

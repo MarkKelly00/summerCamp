@@ -25,7 +25,9 @@
     "start:legacy": "cd server && npm start",
     "seed:legacy": "cd server && npm run seed",
     "test:unit": "vitest run --config vitest.config.ts",
-    "test:integration": "vitest run --config vitest.integration.config.ts"
+    "test:integration": "vitest run --config vitest.integration.config.ts",
+    "generate:sfx": "tsx scripts/generate-sfx.ts",
+    "generate:lessons": "tsx scripts/generate-lesson-content.ts"
   },
   "dependencies": {
     "autoprefixer": "^10.4.20",

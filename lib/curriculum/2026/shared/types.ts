@@ -114,6 +114,13 @@ export function lesson(args: {
   offlineActivity?: string;
   creativeMission?: string;
   reflectionPrompt?: string;
+  // Full-content extensions — fill these in to upgrade a skeleton into
+  // a complete lesson with auto-graded assessment.
+  instruction?: string;
+  examples?: string[];
+  funFacts?: string[];
+  checkpoints?: ICheckpoint[];
+  quiz?: IQuiz[];
   rewardOverride?: Partial<IRewardPolicy>;
 }): LessonDefinition {
   const lessonType: LessonType = args.lessonType ?? "core";
@@ -141,7 +148,11 @@ export function lesson(args: {
       offlineActivity: args.offlineActivity,
       creativeMission: args.creativeMission,
       reflectionPrompt: args.reflectionPrompt,
+      instruction: args.instruction,
+      examples: args.examples,
+      funFacts: args.funFacts,
+      checkpoints: args.checkpoints,
     },
-    quiz: [],
+    quiz: args.quiz ?? [],
   };
 }

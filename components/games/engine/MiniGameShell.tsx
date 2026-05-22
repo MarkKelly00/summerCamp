@@ -107,21 +107,7 @@ export function MiniGameShell({ miniGame }: MiniGameShellProps) {
   };
 
   return (
-    <main className="mx-auto max-w-3xl px-4 py-6 sm:px-6 sm:py-10">
-      <header className="mb-4 flex flex-wrap items-baseline justify-between gap-2">
-        <div>
-          <CampKicker>Mini-game · {miniGame.subject}</CampKicker>
-          <h1 className="mt-1 text-2xl font-bold tracking-tight">
-            {miniGame.title}
-          </h1>
-        </div>
-        <Link href="/student/mini-games">
-          <CampButton intent="secondary" size="sm">
-            Back to games
-          </CampButton>
-        </Link>
-      </header>
-
+    <div className="mx-auto max-w-3xl">
       {!Game ? (
         <UnknownGameTypeNotice type={miniGame.type} />
       ) : session.status === "finished" ? (
@@ -142,7 +128,7 @@ export function MiniGameShell({ miniGame }: MiniGameShellProps) {
           }}
         />
       )}
-    </main>
+    </div>
   );
 }
 
