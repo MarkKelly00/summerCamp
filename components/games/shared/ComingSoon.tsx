@@ -1,34 +1,44 @@
 "use client";
 
 /**
- * Placeholder renderer for mini-games whose engine hasn't been built yet
- * in Phase 5. Lessons can reference these games today; the rest of their
- * implementations land in follow-up phases.
+ * Placeholder renderer for mini-games whose engine hasn't been built
+ * yet. Two games are fully playable in Phase 5 (Number Muncher,
+ * Knoword Vocab); the other nine route here.
+ *
+ * Previous behavior auto-submitted a 0/100 attempt so the student got
+ * a small effort-XP nudge — but the resulting "Keep practicing"
+ * screen was confusing (looks like the kid played and bombed). Now
+ * the placeholder just shows a clean "coming soon" + navigation back.
+ * No XP awarded, no Progress recorded.
  */
 
-import { useEffect } from "react";
+import Link from "next/link";
+
+import { CampButton } from "@/components/ui/CampButton";
+import { CampCard, CampKicker } from "@/components/ui/CampCard";
 
 import type { GameRendererProps } from "../engine/types";
 
-export function ComingSoon({ session, meta }: GameRendererProps) {
-  // Auto-finish with a baseline score so the engine doesn't get stuck —
-  // gives the student a small effort XP reward and a friendly message.
-  useEffect(() => {
-    if (session.status === "idle") {
-      session.start();
-      session.recordCorrect({ points: 0 });
-      // Finish at 0% so they get effort XP only, not mastery.
-      session.finish({ rawScore: 0, accuracy: 0 });
-    }
-  }, [session]);
-
+export function ComingSoon({ meta }: GameRendererProps) {
   return (
-    <section className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+    <CampCard className="space-y-3">
+      <CampKicker>Coming soon</CampKicker>
       <h2 className="text-xl font-bold">{meta.title}</h2>
-      <p className="mt-1 text-sm text-slate-600">
-        This game is in the works. You still get a small XP nudge for
-        showing up — come back soon to play it for real.
+      <p className="text-sm text-camp-ink-muted">
+        This mini-game is on the build list. Two games are fully playable
+        today: <span className="font-semibold text-camp-ink">Number Muncher</span>{" "}
+        (multiplication, 3rd-grade track) and{" "}
+        <span className="font-semibold text-camp-ink">Vocabulary Arena</span>{" "}
+        (5th-grade track). The rest will land in follow-up updates.
       </p>
-    </section>
+      <div className="flex flex-wrap gap-2 pt-1">
+        <Link href="/student/mini-games">
+          <CampButton intent="primary">Pick a playable game</CampButton>
+        </Link>
+        <Link href="/student/dashboard">
+          <CampButton intent="secondary">Back to the trail</CampButton>
+        </Link>
+      </div>
+    </CampCard>
   );
 }
